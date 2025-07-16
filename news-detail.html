@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الخبر - برو نيوز</title>
+    <meta name="description" content="اقرأ تفاصيل الخبر كاملاً على برو نيوز.">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        /* Import Cairo font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Cairo', sans-serif; /* Apply Cairo font */
+            margin: 0;
+            background-color: #000; /* Dark background */
+            color: #f0f0f0;
+            line-height: 1.8;
+            direction: rtl; /* Right-to-left for Arabic */
+            text-align: right; /* Adjust text alignment */
+            padding-bottom: 70px; /* Space for footer */
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #111;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        .news-detail-header {
+            position: relative;
+            overflow: hidden;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .news-detail-header img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+        .news-detail-content {
+            padding: 25px;
+        }
+        .news-detail-content h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-align: right;
+        }
+        .news-detail-content .detail-date {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-bottom: 25px;
+            text-align: right;
+        }
+        .news-detail-content .detail-text {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            text-align: justify;
+        }
+        .back-button {
+            display: block;
+            margin: 30px auto 0;
+            text-align: center;
+        }
+        .back-button a {
+            font-family: 'Cairo', sans-serif;
+            background-color: #00aaff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .back-button a:hover {
+            background-color: #0088cc;
+        }
+        
+        /* Footer Navigation - same as index.html for consistency */
+        .footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #111;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 60px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1500;
+        }
+        .footer-nav button {
+            font-family: 'Cairo', sans-serif;
+            flex: 1;
+            background: none;
+            border: none;
+            color: #f0f0f0;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 5px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            transition: color 0.3s ease;
+        }
+        .footer-nav button:hover {
+            color: #f0f0f0;
+        }
+        .footer-nav button .material-icons {
+            font-size: 20px;
+            display: block;
+            color: #f0f0f0;
+        }
+
+        /* Site Info Footer - same as index.html for consistency */
+        .site-info-footer {
+            background-color: #0a0a0a;
+            color: #ccc;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 14px;
+            margin-top: 30px;
+        }
+        .site-info-footer a {
+            color: #f0f0f0;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .site-info-footer a:hover {
+            color: #00aaff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="news-detail-header">
+            <img id="detailNewsImage" src="" alt="صورة الخبر">
+        </div>
+        <div class="news-detail-content">
+            <h1 id="detailNewsTitle"></h1>
+            <p class="detail-date" id="detailNewsDate"></p>
+            <p class="detail-text" id="detailNewsContent"></p>
+        </div>
+        <div class="back-button">
+            <a href="index.html">العودة إلى الرئيسية</a>
+        </div>
+    </div>
+
+    <div class="footer-nav" id="footerNav">
+        </div>
+
+    <footer class="site-info-footer">
+        &copy; 2025 برو نيوز. جميع الحقوق محفوظة.
+        <div>
+            <a href="about.html">من نحن</a> |
+            <a href="contact.html">اتصل بنا</a> |
+            <a href="privacy-policy.html">سياسة الخصوصية</a>
+        </div>
+    </footer>
+
+    <script>
+        // Start of self-contained script content (DO NOT MODIFY THESE COMMENTS)
+        // Replicate newsData here so news-detail.html can function independently
+        let newsData = [
+            { id: 1, title: 'اكتشاف أثري جديد في العراق يثير اهتمام العالم', image: 'https://picsum.photos/600/400?random=1', content: 'كشفت بعثة تنقيب دولية عن اكتشافات أثرية مذهلة في جنوب العراق، يعتقد أنها تعود إلى الحضارات القديمة، مما قد يغير فهمنا لتاريخ المنطقة. الاكتشاف يتضمن قطعًا فخارية ونقوشًا نادرة. اكتشافات أثرية جديدة في العراق تفتح آفاقًا لفهم أعمق للتاريخ القديم للمنطقة. تتضمن الاكتشافات الأخيرة مجموعة من القطع الأثرية النادرة التي تشير إلى وجود حضارات متقدمة كانت مزدهرة في هذه المنطقة. يعمل الفريق حاليًا على تحليل هذه الاكتشافات وتقديم تقارير مفصلة عنها. هذا الاكتشاف يعد إضافة قيمة للتراث الثقافي العراقي والعالمي.', date: '2025-07-10', order: 10, detailButtonText: 'تفاصيل الخبر', detailButtonColor: '#cf0e0e' },
+            { id: 2, title: 'تطورات في مشروع الطاقة المتجددة في كربلاء', image: 'https://picsum.photos/600/400?random=2', content: 'أعلنت السلطات المحلية عن تقدم كبير في مشروع الطاقة الشمسية بكربلاء، والذي يهدف إلى تزويد المدينة بجزء كبير من احتياجاتها الكهربائية من مصادر نظيفة. المشروع يتضمن تركيب ألواح شمسية على مساحات واسعة وسيساهم في تقليل الاعتماد على الوقود الأحفوري وتعزيز الاستدامة البيئية في المحافظة. من المتوقع أن يتم الانتهاء من المرحلة الأولى من المشروع في نهاية العام الحالي، مما سيوفر طاقة نظيفة لآلاف المنازل والمنشآت. هذا المشروع يعكس التزام العراق بالتحول نحو الطاقة المتجددة.', date: '2025-07-12', order: 20, detailButtonText: 'اقرأ المزيد', detailButtonColor: '#28a745' },
+            { id: 3, title: 'افتتاح معرض فني دولي في بغداد', image: 'https://picsum.photos/600/400?random=3', content: 'شهدت العاصمة بغداد اليوم افتتاح معرض فني دولي بمشاركة فنانين من مختلف أنحاء العالم، يعرضون أعمالًا فنية تعكس التنوع الثقافي والإبداع. يهدف المعرض إلى تعزيز التبادل الثقافي والفني بين الدول وتقديم منصة للفنانين لعرض إبداعاتهم. حضر الافتتاح عدد كبير من الشخصيات الثقافية والدبلوماسية، وقد أشاد الحضور بجودة الأعمال المعروضة والتنظيم المميز للمعرض. المعرض سيكون مفتوحًا للجمهور لمدة شهر، ونتوقع أن يجذب الآلاف من الزوار.', date: '2025-07-14', order: 30, detailButtonText: 'مشاهدة الخبر', detailButtonColor: '#007bff' }
+        ];
+        
+        // Footer Buttons - also replicated for consistency
+        const footerButtons = [
+            { text: 'الرئيسية', icon: 'home', action: 'go:index.html' }, // Changed action to go to index.html
+            { text: 'فئات', icon: 'category', action: 'go:https://www.google.com/search?q=فئات+الأخبار' },
+            { text: 'تنبيهات', icon: 'notifications', action: 'function:showAlert:زر التنبيهات' },
+            { text: 'من نحن', icon: 'info', action: 'go:about.html' },
+            { text: 'بحث', icon: 'search', action: 'function:handleSearchClick' } // Changed for news-detail context
+        ];
+
+        function executeAction(actionString) {
+            if (!actionString) return;
+            if (actionString.startsWith('go:')) {
+                const url = actionString.substring(3);
+                if (url.startsWith('http://') || url.startsWith('https://')) {
+                    window.open(url, '_blank');
+                } else {
+                    window.location.href = url;
+                }
+            } else if (actionString.startsWith('function:')) {
+                let funcCall = actionString.substring(9);
+                let funcName;
+                let funcArgs = [];
+                if (funcCall.includes(':')) {
+                    const parts = funcCall.split(':');
+                    funcName = parts[0];
+                    funcArgs = parts.slice(1);
+                } else {
+                    funcName = funcCall;
+                }
+                if (typeof window[funcName] === 'function') {
+                    window[funcName](...funcArgs);
+                } else {
+                    console.error('Function not found:', funcName);
+                }
+            } else {
+                console.warn('Unknown action type:', actionString);
+            }
+        }
+
+        function showAlert(message) {
+            alert(`تم النقر على: ${message}`);
+        }
+
+        // Handle search click - on detail page, it just goes to index.html with search bar visible
+        function handleSearchClick() {
+            window.location.href = 'index.html?showSearch=true';
+        }
+
+        function setupFooterButtons() {
+            const footerNav = document.getElementById('footerNav');
+            if (!footerNav) {
+                console.error('Footer navigation element not found!');
+                return;
+            }
+            footerNav.innerHTML = '';
+            footerButtons.forEach(button => {
+                const btn = document.createElement('button');
+                btn.innerHTML = `<i class="material-icons">${button.icon}</i><span>${button.text}</span>`;
+                btn.onclick = () => executeAction(button.action);
+                footerNav.appendChild(btn);
+            });
+        }
+
+        // Function to parse URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const newsId = parseInt(getUrlParameter('id'));
+            const newsItem = newsData.find(news => news.id === newsId);
+
+            if (newsItem) {
+                document.getElementById('detailNewsImage').src = newsItem.image;
+                document.getElementById('detailNewsImage').alt = newsItem.title;
+                document.getElementById('detailNewsTitle').textContent = newsItem.title;
+                document.getElementById('detailNewsDate').textContent = `تاريخ النشر: ${newsItem.date}`;
+                document.getElementById('detailNewsContent').textContent = newsItem.content;
+                document.title = `تفاصيل الخبر: ${newsItem.title} - برو نيوز`; // Update page title
+            } else {
+                // Handle case where news item is not found
+                document.getElementById('detailNewsTitle').textContent = 'الخبر غير موجود';
+                document.getElementById('detailNewsContent').textContent = 'نعتذر، لم نتمكن من العثور على الخبر الذي تبحث عنه.';
+                document.getElementById('detailNewsImage').style.display = 'none'; // Hide image if not found
+                document.getElementById('detailNewsDate').style.display = 'none';
+                document.title = 'خطأ - الخبر غير موجود - برو نيوز';
+            }
+            setupFooterButtons();
+        });
+        // End of self-contained script content (DO NOT MODIFY THESE COMMENTS)
+    </script>
+</body>
+</html>
