@@ -302,9 +302,53 @@
                     secondPart = paragraphs.slice(splitIndex).join('\n\n');
                 } else {
                     // If no clear paragraphs, split by character count (roughly in half)
-                    const middle = Math.floor(newsItem.content.length / 2);
-                    firstPart = newsItem.content.substring(0, middle);
-                    secondPart = newsItem.content.substring(middle);
+                    const contentToSplit = newsItem.content;
+                    const middle = Math.floor(contentToSplit.length / 2);
+                    let splitPoint = middle;
+
+                    // Try to find a space or punctuation mark near the middle to avoid splitting words
+                    let foundSafeSplit = false;
+                    const searchRange = 100; // Search within 100 characters around the middle
+
+                    // Search backwards from the middle for a safe split point
+                    for (let i = middle; i >= 0 && i > middle - searchRange; i--) {
+                        const char = contentToSplit[i];
+                        if (char === '.' || char === '!' || char === '؟') { // Arabic question mark
+                            splitPoint = i + 1; // Split after punctuation
+                            foundSafeSplit = true;
+                            break;
+                        } else if (char === ' ') {
+                            splitPoint = i + 1; // Split after space
+                            foundSafeSplit = true;
+                            break;
+                        }
+                    }
+
+                    // If no safe split found backwards, search forwards
+                    if (!foundSafeSplit) {
+                        for (let i = middle; i < contentToSplit.length && i < middle + searchRange; i++) {
+                            const char = contentToSplit[i];
+                             if (char === '.' || char === '!' || char === '؟') {
+                                splitPoint = i + 1;
+                                foundSafeSplit = true;
+                                break;
+                            } else if (char === ' ') {
+                                splitPoint = i + 1;
+                                foundSafeSplit = true;
+                                break;
+                                // If at the very end of content and no space/punctuation, then just split at end of content.
+                                // This case handled by default if loop finishes without break.
+                            }
+                        }
+                    }
+
+                    // Fallback to strict middle if no safe point found in the defined range
+                    if (!foundSafeSplit) {
+                        splitPoint = middle;
+                    }
+
+                    firstPart = contentToSplit.substring(0, splitPoint).trim();
+                    secondPart = contentToSplit.substring(splitPoint).trim();
                 }
                 
                 // Append the first part of the content
