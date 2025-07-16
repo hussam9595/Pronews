@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>برو نيوز - مصدرك الموثوق للأخبار العالمية والعربية والمحلية</title> <meta name="description" content="تطبيق إخباري احترافي يقدم لك آخر الأخبار والتطورات المحلية والعالمية، تحليلات معمقة، ومقالات حصرية. ابقَ على اطلاع دائم.">
+    <meta name="keywords" content="أخبار, أخبار عاجلة, تحليل أخبار, أخبار اليوم, أخبار محلية, أخبار عالمية, صحافة, تطبيق إخباري, برو نيوز">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        /* Import Cairo font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Cairo', sans-serif; /* Apply Cairo font to the entire body */
+            margin: 0;
+            background-color: #000; /* Dark background */
+            color: #f0f0f0;
+            line-height: 1.6;
+            direction: rtl; /* Right-to-left for Arabic */
+            text-align: right; /* Adjust text alignment */
+            padding-bottom: 70px; /* Space for the fixed footer */
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: #111;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        /* Fixed Action Buttons Container - All buttons in one row */
+        .fixed-actions {
+            position: fixed;
+            bottom: 90px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+        .fixed-actions button {
+            font-family: 'Cairo', sans-serif; /* Apply Cairo font to fixed action buttons */
+            background-color: #00aaff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, border-radius 0.3s ease, width 0.3s ease, padding 0.3s ease;
+            white-space: nowrap;
+        }
+        .fixed-actions button:hover {
+            background-color: #0088cc;
+        }
+
+        /* Specific styles for Save, Add News, Copy, and new Edit Footer buttons */
+        .fixed-actions .save-changes-btn,
+        .fixed-actions .add-news-btn,
+        .fixed-actions .copy-btn,
+        .fixed-actions .edit-footer-btn {
+            background-color: #28a745;
+            font-size: 16px;
+            width: auto;
+            padding: 0 20px;
+            border-radius: 28px;
+            display: none; /* Initially hidden */
+        }
+        .fixed-actions .add-news-btn {
+            background-color: #00aaff;
+        }
+        .fixed-actions .add-news-btn:hover {
+            background-color: #0088cc;
+        }
+        .fixed-actions .save-changes-btn:hover,
+        .fixed-actions .copy-btn:hover {
+            background-color: #218838;
+        }
+
+        /* Specific color for admin copy button */
+        .fixed-actions .copy-admin-btn {
+            background-color: #333;
+        }
+        .fixed-actions .copy-admin-btn:hover {
+            background-color: #222;
+        }
+        /* Specific style for Edit Footer Button */
+        .fixed-actions .edit-footer-btn {
+            background-color: #ffc107;
+            color: #000;
+        }
+        .fixed-actions .edit-footer-btn:hover {
+            background-color: #e0a800;
+        }
+
+
+        /* News Item Styling */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .news-item {
+            background-color: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        .news-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+        .news-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .news-item-footer {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+        .news-item-footer .details-btn {
+            font-family: 'Cairo', sans-serif; /* Apply Cairo font to detail button */
+            position: static;
+            background-color: #cf0e0e;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            white-space: nowrap;
+            text-decoration: none; /* For the new <a> tag */
+            display: inline-block; /* For the new <a> tag */
+        }
+        .news-item-footer .details-btn:hover {
+            opacity: 0.8;
+        }
+
+        .news-item-title {
+            padding: 10px 15px 0 15px;
+        }
+        .news-item-title h3 {
+            margin: 0;
+            font-size: 1.0rem;
+            color: #ffffff;
+        }
+        
+        /* Admin Action Buttons on News Items */
+        .admin-news-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+            display: none; /* Initially hidden */
+        }
+        .admin-news-actions button {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .admin-news-actions button:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        .admin-news-actions .edit-btn:hover {
+            color: #00aaff;
+        }
+        .admin-news-actions .delete-btn:hover {
+            color: #ff4d4d;
+        }
+
+        /* Modal Input Styles */
+        .modal-content label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #eee;
+        }
+        .modal-content input[type="text"],
+        .modal-content input[type="date"],
+        .modal-content input[type="number"],
+        .modal-content textarea {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #333;
+            border-radius: 6px;
+            font-size: 16px;
+            background-color: #222;
+            color: #f0f0f0;
+            font-family: 'Cairo', sans-serif; /* Apply Cairo to inputs */
+        }
+        .modal-content input::placeholder,
+        .modal-content textarea::placeholder {
+            color: #aaa;
+        }
+        .modal-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .modal-buttons button {
+            font-family: 'Cairo', sans-serif; /* Apply Cairo to modal buttons */
+            padding: 12px 25px;
+            margin: 0 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+        .modal-buttons .add-modal-btn,
+        .modal-buttons .save-modal-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        .modal-buttons .add-modal-btn:hover,
+        .modal-buttons .save-modal-btn:hover {
+            background-color: #218838;
+        }
+        .modal-buttons .close-modal-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+        .modal-buttons .close-modal-btn:hover {
+            background-color: #c82333;
+        }
+
+        /* Modal Overlay for Add News & News Detail & Footer Edit & Edit News */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        /* Specific modal-content overrides for general modals */
+        #addNewsModal .modal-content,
+        #editNewsModal .modal-content,
+        #footerEditModal .modal-content {
+            background-color: #111;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        /* Separator line in modals */
+        hr {
+            border-color: #333 !important;
+        }
+
+        /* Search Bar at the top */
+        .search-bar-container {
+            display: none; /* Initially hidden */
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background-color: #222;
+            padding: 10px 20px;
+            border-bottom: 1px solid #333;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            z-index: 100;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        .search-bar-container input {
+            font-family: 'Cairo', sans-serif; /* Apply Cairo to search input */
+            width: calc(100% - 40px);
+            padding: 10px 15px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #222;
+            color: #f0f0f0;
+            font-size: 16px;
+            text-align: right;
+        }
+        .search-bar-container input::placeholder {
+            color: #aaa;
+        }
+
+        /* Footer Navigation */
+        .footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #111;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 60px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1500;
+        }
+        .footer-nav button {
+            font-family: 'Cairo', sans-serif; /* Apply Cairo to footer buttons */
+            flex: 1;
+            background: none;
+            border: none;
+            color: #f0f0f0;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 5px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            transition: color 0.3s ease;
+        }
+        .footer-nav button:hover {
+            color: #f0f0f0; /* KEEP WHITE ON HOVER */
+        }
+        .footer-nav button .material-icons {
+            font-size: 20px;
+            display: block;
+            color: #f0f0f0; /* Ensure color is visible, in case of override */
+        }
+
+        /* Footer Links (About Us, Contact Us, Privacy Policy) */
+        .site-info-footer {
+            background-color: #0a0a0a;
+            color: #ccc;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 14px;
+            margin-top: 30px; /* Space above this footer */
+        }
+        .site-info-footer a {
+            color: #f0f0f0;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .site-info-footer a:hover {
+            color: #00aaff;
+        }
+
+
+        /* Style for inputs within footer edit modal */
+        #footerEditModal .footer-button-inputs {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #222;
+            border-radius: 8px;
+            background-color: #111;
+        }
+        #footerEditModal .footer-button-inputs label {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 5px;
+        }
+        #footerEditModal .footer-button-inputs input {
+            font-family: 'Cairo', sans-serif; /* Apply Cairo to footer edit inputs */
+            width: calc(100% - 20px);
+            padding: 8px 10px;
+            margin-bottom: 10px;
+            font-size: 15px;
+            background-color: #333;
+            border: 1px solid #444;
+            color: #f0f0f0;
+            border-radius: 4px;
+        }
+        #footerEditModal .footer-button-inputs input:focus {
+            outline: none;
+            border-color: #00aaff;
+            box-shadow: 0 0 5px rgba(0, 170, 255, 0.5);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="searchBar" class="search-bar-container">
+            <input type="text" id="searchInput" placeholder="ابحث عن الأخبار..." onkeyup="filterNews()">
+        </div>
+
+        <div class="fixed-actions">
+            <button class="admin-toggle-btn" onclick="toggleAdminMode()" title="وضع المسؤول">
+                <i class="material-icons">settings</i>
+            </button>
+            <button class="add-news-btn" id="addNewsBtn" onclick="showAddNewsModal()">
+                <i class="material-icons">add</i> إضافة خبر
+            </button>
+            <button class="edit-footer-btn" id="editFooterBtn" onclick="showFooterEditModal()">
+                <i class="material-icons">edit</i> تحرير القائمة
+            </button>
+            <button class="save-changes-btn" id="saveChangesBtn" onclick="showCopyOptions()">
+                حفظ التغييرات
+            </button>
+            <button class="copy-btn" id="copyUserBtn" onclick="copyHtmlCode(false)">
+                نسخ (مستخدم)
+            </button>
+            <button class="copy-btn copy-admin-btn" id="copyAdminBtn" onclick="copyHtmlCode(true)">
+                نسخ (أدمن)
+            </button>
+        </div>
+
+        <div id="newsFeed" class="news-grid">
+            </div>
+    </div>
+
+    <div id="addNewsModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>إضافة خبر جديد</h2>
+            <div>
+                <label for="modalNewsTitle">عنوان الخبر:</label>
+                <input type="text" id="modalNewsTitle" placeholder="أدخل عنوان الخبر هنا">
+            </div>
+            <div>
+                <label for="modalNewsImage">رابط صورة الخبر (URL):</label>
+                <input type="text" id="modalNewsImage" placeholder="مثال: https://example.com/image.jpg">
+            </div>
+            <div>
+                <label for="modalNewsContent">محتوى الخبر:</label>
+                <textarea id="modalNewsContent" rows="5" placeholder="أدخل محتوى الخبر هنا"></textarea>
+            </div>
+            <div>
+                <label for="modalNewsDate">تاريخ الخبر:</label>
+                <input type="date" id="modalNewsDate">
+            </div>
+            <div>
+                <label for="modalNewsOrder">ترتيب الخبر (رقم):</label>
+                <input type="number" id="modalNewsOrder" value="0" min="0">
+            </div>
+            <hr>
+            <div>
+                <label for="modalDetailButtonText">نص زر التفاصيل:</label>
+                <input type="text" id="modalDetailButtonText" value="تفاصيل الخبر" placeholder="مثال: اقرأ المزيد">
+            </div>
+            <div>
+                <label for="modalDetailButtonColor">لون خلفية زر التفاصيل (Hex, RGB, Name):</label>
+                <input type="text" id="modalDetailButtonColor" value="#cf0e0e" placeholder="مثال: #cf0e0e أو red">
+            </div>
+            <div class="modal-buttons">
+                <button class="add-modal-btn" onclick="addNewsFromModal()">إضافة الخبر</button>
+                <button class="close-modal-btn" onclick="hideAddNewsModal()">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="editNewsModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>تعديل الخبر</h2>
+            <input type="hidden" id="editNewsId"> 
+            <div>
+                <label for="editModalNewsTitle">عنوان الخبر:</label>
+                <input type="text" id="editModalNewsTitle" placeholder="أدخل عنوان الخبر هنا">
+            </div>
+            <div>
+                <label for="editModalNewsImage">رابط صورة الخبر (URL):</label>
+                <input type="text" id="editModalNewsImage" placeholder="مثال: https://example.com/image.jpg">
+            </div>
+            <div>
+                <label for="editModalNewsContent">محتوى الخبر:</label>
+                <textarea id="editModalNewsContent" rows="5" placeholder="أدخل محتوى الخبر هنا"></textarea>
+            </div>
+            <div>
+                <label for="editModalNewsDate">تاريخ الخبر:</label>
+                <input type="date" id="editModalNewsDate">
+            </div>
+            <div>
+                <label for="editModalNewsOrder">ترتيب الخبر (رقم):</label>
+                <input type="number" id="editModalNewsOrder" value="0" min="0">
+            </div>
+            <hr>
+            <div>
+                <label for="editModalDetailButtonText">نص زر التفاصيل:</label>
+                <input type="text" id="editModalDetailButtonText" value="تفاصيل الخبر" placeholder="مثال: اقرأ المزيد">
+            </div>
+            <div>
+                <label for="editModalDetailButtonColor">لون خلفية زر التفاصيل (Hex, RGB, Name):</label>
+                <input type="text" id="editModalDetailButtonColor" value="#cf0e0e" placeholder="مثال: #cf0e0e أو red">
+            </div>
+            <div class="modal-buttons">
+                <button class="save-modal-btn" onclick="saveEditedNews()">حفظ التعديلات</button>
+                <button class="close-modal-btn" onclick="hideEditNewsModal()">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="footerEditModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>تحرير أزرار القائمة السفلية</h2>
+            <div id="footerButtonsEditArea">
+                </div>
+            <div class="modal-buttons">
+                <button class="save-modal-btn" onclick="saveFooterChanges()">حفظ التغييرات</button>
+                <button class="close-modal-btn" onclick="hideFooterEditModal()">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-nav" id="footerNav">
+        </div>
+
+    <footer class="site-info-footer">
+        &copy; 2025 برو نيوز. جميع الحقوق محفوظة.
+        <div>
+            <a href="about.html">من نحن</a> |
+            <a href="contact.html">اتصل بنا</a> |
+            <a href="privacy-policy.html">سياسة الخصوصية</a>
+        </div>
+    </footer>
+
+    <script id="main-script">
+        // Start of self-contained script content (DO NOT MODIFY THESE COMMENTS)
+        let adminMode = false;
+        let newsData = [
+            { id: 1, title: 'اكتشاف أثري جديد في العراق يثير اهتمام العالم', image: 'https://picsum.photos/600/400?random=1', content: 'كشفت بعثة تنقيب دولية عن اكتشافات أثرية مذهلة في جنوب العراق، يعتقد أنها تعود إلى الحضارات القديمة، مما قد يغير فهمنا لتاريخ المنطقة. الاكتشاف يتضمن قطعًا فخارية ونقوشًا نادرة. اكتشافات أثرية جديدة في العراق تفتح آفاقًا لفهم أعمق للتاريخ القديم للمنطقة. تتضمن الاكتشافات الأخيرة مجموعة من القطع الأثرية النادرة التي تشير إلى وجود حضارات متقدمة كانت مزدهرة في هذه المنطقة. يعمل الفريق حاليًا على تحليل هذه الاكتشافات وتقديم تقارير مفصلة عنها. هذا الاكتشاف يعد إضافة قيمة للتراث الثقافي العراقي والعالمي.', date: '2025-07-10', order: 10, detailButtonText: 'تفاصيل الخبر', detailButtonColor: '#cf0e0e' },
+            { id: 2, title: 'تطورات في مشروع الطاقة المتجددة في كربلاء', image: 'https://picsum.photos/600/400?random=2', content: 'أعلنت السلطات المحلية عن تقدم كبير في مشروع الطاقة الشمسية بكربلاء، والذي يهدف إلى تزويد المدينة بجزء كبير من احتياجاتها الكهربائية من مصادر نظيفة. المشروع يتضمن تركيب ألواح شمسية على مساحات واسعة وسيساهم في تقليل الاعتماد على الوقود الأحفوري وتعزيز الاستدامة البيئية في المحافظة. من المتوقع أن يتم الانتهاء من المرحلة الأولى من المشروع في نهاية العام الحالي، مما سيوفر طاقة نظيفة لآلاف المنازل والمنشآت. هذا المشروع يعكس التزام العراق بالتحول نحو الطاقة المتجددة.', date: '2025-07-12', order: 20, detailButtonText: 'اقرأ المزيد', detailButtonColor: '#28a745' },
+            { id: 3, title: 'افتتاح معرض فني دولي في بغداد', image: 'https://picsum.photos/600/400?random=3', content: 'شهدت العاصمة بغداد اليوم افتتاح معرض فني دولي بمشاركة فنانين من مختلف أنحاء العالم، يعرضون أعمالًا فنية تعكس التنوع الثقافي والإبداع. يهدف المعرض إلى تعزيز التبادل الثقافي والفني بين الدول وتقديم منصة للفنانين لعرض إبداعاتهم. حضر الافتتاح عدد كبير من الشخصيات الثقافية والدبلوماسية، وقد أشاد الحضور بجودة الأعمال المعروضة والتنظيم المميز للمعرض. المعرض سيكون مفتوحًا للجمهور لمدة شهر، ونتوقع أن يجذب الآلاف من الزوار.', date: '2025-07-14', order: 30, detailButtonText: 'مشاهدة الخبر', detailButtonColor: '#007bff' }
+        ];
+        let nextNewsId = 4;
+        let originalNewsData = [...newsData]; 
+
+        const footerButtons = [
+            { text: 'الرئيسية', icon: 'home', action: 'function:resetNewsAndHideSearch' },
+            { text: 'فئات', icon: 'category', action: 'go:https://www.google.com/search?q=فئات+الأخبار' },
+            { text: 'تنبيهات', icon: 'notifications', action: 'function:showAlert:زر التنبيهات' },
+            { text: 'من نحن', icon: 'info', action: 'go:about.html' },
+            { text: 'بحث', icon: 'search', action: 'function:toggleSearchBar' }
+        ];
+
+        function executeAction(actionString) {
+            if (!actionString) return;
+            if (actionString.startsWith('go:')) {
+                const url = actionString.substring(3);
+                // For internal links, we can use window.location.href, for external, window.open
+                if (url.startsWith('http://') || url.startsWith('https://')) {
+                    window.open(url, '_blank');
+                } else {
+                    window.location.href = url; // For relative paths like about.html or news-detail.html
+                }
+            } else if (actionString.startsWith('function:')) {
+                let funcCall = actionString.substring(9);
+                let funcName;
+                let funcArgs = [];
+                if (funcCall.includes(':')) {
+                    const parts = funcCall.split(':');
+                    funcName = parts[0];
+                    funcArgs = parts.slice(1);
+                } else {
+                    funcName = funcCall;
+                }
+                // Check if the function exists in the global scope (window)
+                if (typeof window[funcName] === 'function') {
+                    window[funcName](...funcArgs);
+                } else {
+                    console.error('Function not found:', funcName);
+                }
+            } else {
+                console.warn('Unknown action type:', actionString);
+            }
+        }
+        
+        function resetNewsAndHideSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchBar = document.getElementById('searchBar');
+            if (searchInput) searchInput.value = '';
+            filterNews();
+            if (searchBar) searchBar.style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showAlert(message) {
+            alert(`تم النقر على: ${message}`);
+        }
+
+        function renderNews(filteredData = newsData) {
+            const newsFeed = document.getElementById('newsFeed');
+            if (!newsFeed) {
+                console.error('News feed element not found!');
+                return;
+            }
+            newsFeed.innerHTML = '';
+            filteredData.sort((a, b) => a.order - b.order);
+            filteredData.forEach(news => {
+                const newsItemDiv = document.createElement('div');
+                newsItemDiv.classList.add('news-item');
+                newsItemDiv.setAttribute('data-id', news.id);
+                const buttonText = news.detailButtonText || 'تفاصيل الخبر';
+                const buttonColor = news.detailButtonColor || '#cf0e0e';
+                
+                // Changed from <button> to <a> for separate page navigation
+                newsItemDiv.innerHTML = `
+                    <img src="${news.image}" alt="${news.title}">
+                    <div class="news-item-title">
+                        <h3>${news.title}</h3>
+                    </div>
+                    <div class="news-item-footer">
+                        <p class="news-date">${news.date}</p>
+                        <a href="news-detail.html?id=${news.id}" class="details-btn" style="background-color: ${buttonColor};">${buttonText}</a>
+                    </div>
+                    <div class="admin-news-actions" style="display: ${adminMode ? 'flex' : 'none'};">
+                        <button class="edit-btn" data-news-id="${news.id}"><i class="material-icons">edit</i></button>
+                        <button class="delete-btn" data-news-id="${news.id}"><i class="material-icons">close</i></button>
+                    </div>
+                `;
+                newsFeed.appendChild(newsItemDiv);
+            });
+            // Attach event listeners for admin actions (edit/delete)
+            attachAdminNewsItemEventListeners();
+        }
+
+        function attachAdminNewsItemEventListeners() {
+            // No need for .details-btn event listener here as it's now an <a> tag
+            
+            if (adminMode) {
+                document.querySelectorAll('.admin-news-actions .edit-btn').forEach(button => {
+                    button.onclick = null; // Remove any old listeners to prevent duplicates
+                    button.onclick = (event) => {
+                        const newsId = parseInt(event.target.dataset.newsId || event.target.closest('button').dataset.newsId);
+                        showEditNewsModal(newsId);
+                    };
+                });
+                document.querySelectorAll('.admin-news-actions .delete-btn').forEach(button => {
+                    button.onclick = null; // Remove any old listeners
+                    button.onclick = (event) => {
+                        const newsId = parseInt(event.target.dataset.newsId || event.target.closest('button').dataset.newsId);
+                        deleteNews(newsId);
+                    };
+                });
+            }
+        }
+
+
+        function toggleAdminMode() {
+            adminMode = !adminMode;
+            const addNewsBtn = document.getElementById('addNewsBtn');
+            const saveChangesBtn = document.getElementById('saveChangesBtn');
+            const copyUserBtn = document.getElementById('copyUserBtn');
+            const copyAdminBtn = document.getElementById('copyAdminBtn');
+            const editFooterBtn = document.getElementById('editFooterBtn');
+
+            if (addNewsBtn) addNewsBtn.style.display = adminMode ? 'flex' : 'none';
+            if (saveChangesBtn) saveChangesBtn.style.display = adminMode ? 'flex' : 'none';
+            if (editFooterBtn) editFooterBtn.style.display = adminMode ? 'flex' : 'none';
+
+            if (copyUserBtn) copyUserBtn.style.display = 'none';
+            if (copyAdminBtn) copyAdminBtn.style.display = 'none';
+
+            document.querySelectorAll('.admin-news-actions').forEach(actionsDiv => {
+                actionsDiv.style.display = adminMode ? 'flex' : 'none';
+            });
+
+            if (!adminMode) {
+                hideAddNewsModal();
+                hideEditNewsModal();
+                // hideNewsDetailModal(); // No longer needed as it's a separate page
+                hideFooterEditModal();
+                const searchBar = document.getElementById('searchBar');
+                const searchInput = document.getElementById('searchInput');
+                if (searchBar) searchBar.style.display = 'none';
+                if (searchInput) searchInput.value = '';
+            }
+            renderNews(); // Re-render to apply admin action visibility and re-attach listeners
+        }
+
+        function showCopyOptions() {
+            const copyUserBtn = document.getElementById('copyUserBtn');
+            const copyAdminBtn = document.getElementById('copyAdminBtn');
+            
+            if (copyUserBtn) copyUserBtn.style.display = 'flex';
+            if (copyAdminBtn) copyAdminBtn.style.display = 'flex';
+            
+            const fixedActions = document.querySelector('.fixed-actions');
+            if (fixedActions) {
+                fixedActions.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }
+            
+            alert('تم حفظ التغييرات! يمكنك الآن نسخ الكود.');
+        }
+
+        function showAddNewsModal() {
+            const modal = document.getElementById('addNewsModal');
+            if (modal) modal.style.display = 'flex';
+            clearAddNewsModalForm();
+            const modalNewsDate = document.getElementById('modalNewsDate');
+            const modalDetailButtonText = document.getElementById('modalDetailButtonText');
+            const modalDetailButtonColor = document.getElementById('modalDetailButtonColor');
+            
+            if (modalNewsDate) modalNewsDate.value = new Date().toISOString().slice(0, 10);
+            if (modalDetailButtonText) modalDetailButtonText.value = 'تفاصيل الخبر';
+            if (modalDetailButtonColor) modalDetailButtonColor.value = '#cf0e0e';
+        }
+
+        function hideAddNewsModal() {
+            const modal = document.getElementById('addNewsModal');
+            if (modal) modal.style.display = 'none';
+            clearAddNewsModalForm();
+        }
+
+        function addNewsFromModal() {
+            const titleInput = document.getElementById('modalNewsTitle');
+            const imageInput = document.getElementById('modalNewsImage');
+            const contentInput = document.getElementById('modalNewsContent');
+            const dateInput = document.getElementById('modalNewsDate');
+            const orderInput = document.getElementById('modalNewsOrder');
+            const detailButtonTextInput = document.getElementById('modalDetailButtonText');
+            const detailButtonColorInput = document.getElementById('modalDetailButtonColor');
+            
+            const title = titleInput ? titleInput.value.trim() : '';
+            let image = imageInput ? imageInput.value.trim() : '';
+            const content = contentInput ? contentInput.value.trim() : '';
+            const date = dateInput ? dateInput.value : '';
+            const order = orderInput ? parseInt(orderInput.value, 10) || 0 : 0;
+            const detailButtonText = detailButtonTextInput ? detailButtonTextInput.value.trim() || 'تفاصيل الخبر' : 'تفاصيل الخبر';
+            const detailButtonColor = detailButtonColorInput ? detailButtonColorInput.value.trim() || '#cf0e0e' : '#cf0e0e';
+
+            if (!image) {
+                image = 'https://picsum.photos/600/400?random=' + Math.floor(Math.random() * 100); // Use a random pic sum image
+            }
+
+            if (title && content && date) {
+                newsData.push({ id: nextNewsId++, title, image, content, date, order, detailButtonText, detailButtonColor });
+                originalNewsData = [...newsData];
+                hideAddNewsModal();
+                renderNews();
+            } else {
+                alert('الرجاء إدخال عنوان ومحتوى وتاريخ الخبر.');
+            }
+        }
+
+        function clearAddNewsModalForm() {
+            const modalNewsTitle = document.getElementById('modalNewsTitle');
+            const modalNewsImage = document.getElementById('modalNewsImage');
+            const modalNewsContent = document.getElementById('modalNewsContent');
+            const modalNewsDate = document.getElementById('modalNewsDate');
+            const modalNewsOrder = document.getElementById('modalNewsOrder');
+            const modalDetailButtonText = document.getElementById('modalDetailButtonText');
+            const modalDetailButtonColor = document.getElementById('modalDetailButtonColor');
+
+            if (modalNewsTitle) modalNewsTitle.value = '';
+            if (modalNewsImage) modalNewsImage.value = '';
+            if (modalNewsContent) modalNewsContent.value = '';
+            if (modalNewsDate) modalNewsDate.value = '';
+            if (modalNewsOrder) modalNewsOrder.value = '0';
+            if (modalDetailButtonText) modalDetailButtonText.value = '';
+            if (modalDetailButtonColor) modalDetailButtonColor.value = '';
+        }
+
+        function showEditNewsModal(id) {
+            const newsToEdit = newsData.find(news => news.id === id);
+            if (!newsToEdit) {
+                alert('الخبر غير موجود للتعديل.');
+                return;
+            }
+
+            const modal = document.getElementById('editNewsModal');
+            const editNewsId = document.getElementById('editNewsId');
+            const editModalNewsTitle = document.getElementById('editModalNewsTitle');
+            const editModalNewsImage = document.getElementById('editModalNewsImage');
+            const editModalNewsContent = document.getElementById('editModalNewsContent');
+            const editModalNewsDate = document.getElementById('editModalNewsDate');
+            const editModalNewsOrder = document.getElementById('editModalNewsOrder');
+            const editModalDetailButtonText = document.getElementById('editModalDetailButtonText');
+            const editModalDetailButtonColor = document.getElementById('editModalDetailButtonColor');
+
+            if (editNewsId) editNewsId.value = newsToEdit.id;
+            if (editModalNewsTitle) editModalNewsTitle.value = newsToEdit.title;
+            if (editModalNewsImage) editModalNewsImage.value = newsToEdit.image;
+            if (editModalNewsContent) editModalNewsContent.value = newsToEdit.content;
+            if (editModalNewsDate) editModalNewsDate.value = newsToEdit.date;
+            if (editModalNewsOrder) editModalNewsOrder.value = newsToEdit.order;
+            if (editModalDetailButtonText) editModalDetailButtonText.value = newsToEdit.detailButtonText || 'تفاصيل الخبر';
+            if (editModalDetailButtonColor) editModalDetailButtonColor.value = newsToEdit.detailButtonColor || '#cf0e0e';
+
+            if (modal) modal.style.display = 'flex';
+        }
+
+        function hideEditNewsModal() {
+            const modal = document.getElementById('editNewsModal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function saveEditedNews() {
+            const idInput = document.getElementById('editNewsId');
+            const titleInput = document.getElementById('editModalNewsTitle');
+            const imageInput = document.getElementById('editModalNewsImage');
+            const contentInput = document.getElementById('editModalNewsContent');
+            const dateInput = document.getElementById('editModalNewsDate');
+            const orderInput = document.getElementById('editModalNewsOrder');
+            const detailButtonTextInput = document.getElementById('editModalDetailButtonText');
+            const detailButtonColorInput = document.getElementById('editModalDetailButtonColor');
+
+            const id = idInput ? parseInt(idInput.value, 10) : -1;
+            const title = titleInput ? titleInput.value.trim() : '';
+            let image = imageInput ? imageInput.value.trim() : '';
+            const content = contentInput ? contentInput.value.trim() : '';
+            const date = dateInput ? dateInput.value : '';
+            const order = orderInput ? parseInt(orderInput.value, 10) || 0 : 0;
+            const detailButtonText = detailButtonTextInput ? detailButtonTextInput.value.trim() || 'تفاصيل الخبر' : 'تفاصيل الخبر';
+            const detailButtonColor = detailButtonColorInput ? detailButtonColorInput.value.trim() || '#cf0e0e' : '#cf0e0e';
+
+            if (!image) {
+                image = 'https://picsum.photos/600/400?random=' + Math.floor(Math.random() * 100); // Use a random pic sum image
+            }
+
+            if (title && content && date) {
+                const newsIndex = newsData.findIndex(n => n.id === id);
+                if (newsIndex !== -1) {
+                    const updatedNews = { id, title, image, content, date, order, detailButtonText, detailButtonColor };
+                    newsData[newsIndex] = updatedNews;
+                    originalNewsData = [...newsData];
+                    renderNews();
+                    hideEditNewsModal();
+                }
+            } else {
+                alert('الرجاء إدخال عنوان وصورة ومحتوى وتاريخ الخبر.');
+            }
+        }
+
+        function deleteNews(id) {
+            if (confirm('هل أنت متأكد أنك تريد حذف هذا الخبر؟')) {
+                newsData = newsData.filter(news => news.id !== id);
+                originalNewsData = [...newsData];
+                renderNews();
+            }
+        }
+
+        // تم إزالة showNewsDetailModal و hideNewsDetailModal حيث لم تعد هناك حاجة لها
+
+        function showFooterEditModal() {
+            const modal = document.getElementById('footerEditModal');
+            const editArea = document.getElementById('footerButtonsEditArea');
+            if (!editArea) {
+                console.error('Footer buttons edit area not found!');
+                return;
+            }
+            editArea.innerHTML = '';
+
+            footerButtons.forEach((button, index) => {
+                const buttonDiv = document.createElement('div');
+                buttonDiv.classList.add('footer-button-inputs');
+                buttonDiv.innerHTML = `
+                    <h3>الزر ${index + 1} (${button.text})</h3>
+                    <div>
+                        <label for="footerBtnText-${index}">نص الزر:</label>
+                        <input type="text" id="footerBtnText-${index}" value="${button.text}">
+                    </div>
+                    <div>
+                        <label for="footerBtnIcon-${index}">أيقونة الزر (اسم أيقونة Material Icons، مثال: home):</label>
+                        <input type="text" id="footerBtnIcon-${index}" value="${button.icon}">
+                    </div>
+                    <div>
+                        <label for="footerBtnAction-${index}">رابط الإجراء (مثال: go:URL أو function:name:args):</label>
+                        <input type="text" id="footerBtnAction-${index}" value="${button.action}">
+                    </div>
+                `;
+                editArea.appendChild(buttonDiv);
+            });
+
+            if (modal) modal.style.display = 'flex';
+        }
+
+        function hideFooterEditModal() {
+            const modal = document.getElementById('footerEditModal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function saveFooterChanges() {
+            footerButtons.forEach((button, index) => {
+                const textInput = document.getElementById(`footerBtnText-${index}`);
+                const iconInput = document.getElementById(`footerBtnIcon-${index}`);
+                const actionInput = document.getElementById(`footerBtnAction-${index}`);
+
+                if (textInput && iconInput && actionInput) {
+                    button.text = textInput.value.trim();
+                    button.icon = iconInput.value.trim();
+                    button.action = actionInput.value.trim();
+                }
+            });
+            setupFooterButtons();
+            hideFooterEditModal();
+            alert('تم حفظ تغييرات القائمة السفلية بنجاح!');
+        }
+
+        function setupFooterButtons() {
+            const footerNav = document.getElementById('footerNav');
+            if (!footerNav) {
+                console.error('Footer navigation element not found!');
+                return;
+            }
+            footerNav.innerHTML = '';
+            footerButtons.forEach(button => {
+                const btn = document.createElement('button');
+                // Material Icons use the icon name as text content within the <i> tag
+                btn.innerHTML = `<i class="material-icons">${button.icon}</i><span>${button.text}</span>`;
+                btn.onclick = () => executeAction(button.action);
+                footerNav.appendChild(btn);
+            });
+        }
+
+        function toggleSearchBar() {
+            const searchBar = document.getElementById('searchBar');
+            const searchInput = document.getElementById('searchInput');
+            if (searchBar) {
+                if (searchBar.style.display === 'flex') {
+                    searchBar.style.display = 'none';
+                    if (searchInput) searchInput.value = '';
+                    renderNews();
+                } else {
+                    searchBar.style.display = 'flex';
+                    if (searchInput) searchInput.focus();
+                    const container = document.querySelector('.container');
+                    if (container) container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        }
+
+        function filterNews() {
+            const searchInput = document.getElementById('searchInput');
+            const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+            if (searchTerm === '') {
+                renderNews(originalNewsData);
+                return;
+            }
+
+            const filtered = originalNewsData.filter(news => {
+                const titleMatch = news.title.toLowerCase().includes(searchTerm);
+                const contentMatch = news.content.toLowerCase().includes(searchTerm);
+                return titleMatch || contentMatch;
+            });
+
+            renderNews(filtered);
+        }
+        
+        // Function to parse URL parameters for initial search bar display (if user arrives via search link from news-detail)
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+
+        // --- Core Copy Function ---
+        function copyHtmlCode(isAdminVersion) {
+            // 1. Get the full outer HTML of the entire document
+            let fullHtml = document.documentElement.outerHTML;
+
+            // Create a temporary DOM parser to safely manipulate the HTML string
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(fullHtml, 'text/html');
+
+            const scriptTagInDoc = doc.querySelector('#main-script');
+            if (!scriptTagInDoc) {
+                alert('خطأ: لا يمكن العثور على عنصر السكريبت الرئيسي للنسخ (#main-script).');
+                return;
+            }
+
+            // Get the current content of the script tag
+            let scriptContent = scriptTagInDoc.textContent;
+
+            // Update dynamic data directly in the script content string
+            scriptContent = scriptContent.replace(
+                /let\s+adminMode\s*=\s*(true|false);/,
+                `let adminMode = ${isAdminVersion ? 'true' : 'false'};`
+            );
+            scriptContent = scriptContent.replace(
+                /let\s+newsData\s*=\s*\[[\s\S]*?\];/,
+                `let newsData = ${JSON.stringify(newsData, null, 4)};`
+            );
+            scriptContent = scriptContent.replace(
+                /let\s+nextNewsId\s*=\s*\d+;/,
+                `let nextNewsId = ${nextNewsId};`
+            );
+            scriptContent = scriptContent.replace(
+                /let\s+originalNewsData\s*=\s*\[\.\.\.newsData\];/,
+                `let originalNewsData = [...newsData];` // Ensure it's re-initialized from the new newsData
+            );
+            scriptContent = scriptContent.replace(
+                /const\s+footerButtons\s*=\s*\[[\s\S]*?\];/,
+                `const footerButtons = ${JSON.stringify(footerButtons, null, 4)};`
+            );
+
+            // Modify the DOMContentLoaded part to hide/remove elements correctly in the copied version
+            const domContentLoadedRegex = /document\.addEventListener\('DOMContentLoaded', \(\) => \{([\s\S]*?)\}\);/m;
+            const domContentLoadedMatch = scriptContent.match(domContentLoadedRegex);
+            let domContentLoadedContent = '';
+
+            if (domContentLoadedMatch && domContentLoadedMatch[1]) {
+                domContentLoadedContent = domContentLoadedMatch[1];
+            } else {
+                console.warn('Could not find DOMContentLoaded block to modify.');
+            }
+
+            // Construct the NEW DOMContentLoaded block logic
+            let newDomContentLoadedLogic = `
+            renderNews(); // This will create news items and call attachAdminNewsItemEventListeners
+            setupFooterButtons(); // This will create footer buttons and attach their listeners
+            
+            // Check for showSearch parameter if coming from news-detail page
+            const showSearchParam = getUrlParameter('showSearch');
+            if (showSearchParam === 'true') {
+                document.getElementById('searchBar').style.display = 'flex';
+                document.getElementById('searchInput').focus();
+            }
+
+            // Adjust visibility of elements based on adminMode for the copied page
+            if (!adminMode) {
+                // Remove admin-specific UI elements for user version
+                document.querySelector('.admin-toggle-btn')?.remove();
+                document.getElementById('addNewsBtn')?.remove();
+                document.getElementById('saveChangesBtn')?.remove();
+                document.getElementById('copyUserBtn')?.remove();
+                document.getElementById('copyAdminBtn')?.remove();
+                document.getElementById('editFooterBtn')?.remove();
+                
+                document.querySelectorAll('.admin-news-actions').forEach(actionsDiv => {
+                    actionsDiv.remove(); // Completely remove action buttons from news items
+                });
+                
+                // Keep searchBar if not in adminMode for user version, but ensure it's hidden by default if no param
+                if (!showSearchParam) {
+                    document.getElementById('searchBar').style.display = 'none';
+                }
+                
+                // Ensure all modals are hidden by default for user version
+                document.querySelectorAll('.modal-overlay').forEach(modal => {
+                    modal.style.display = 'none';
+                });
+
+            } else {
+                // For admin version, ensure these are hidden until toggled by user
+                document.getElementById('addNewsBtn').style.display = 'none';
+                document.getElementById('saveChangesBtn').style.display = 'none';
+                document.getElementById('copyUserBtn').style.display = 'none';
+                document.getElementById('copyAdminBtn').style.display = 'none';
+                document.getElementById('editFooterBtn').style.display = 'none';
+                document.querySelectorAll('.admin-news-actions').forEach(actionsDiv => {
+                    actionsDiv.style.display = 'none';
+                });
+                // In admin mode, search bar is also hidden until toggled by function
+                document.getElementById('searchBar').style.display = 'none';
+            }
+            `;
+            
+            // Replace the old DOMContentLoaded content with the new one
+            scriptContent = scriptContent.replace(
+                domContentLoadedRegex,
+                `document.addEventListener('DOMContentLoaded', () => {\n${newDomContentLoadedLogic}\n});`
+            );
+
+            // Update the script tag's content in the parsed document
+            scriptTagInDoc.textContent = scriptContent;
+
+            // Remove admin-specific HTML elements from the parsed DOM for user version
+            if (!isAdminVersion) {
+                const adminElementsToRemove = doc.querySelectorAll(
+                    '.admin-toggle-btn, #addNewsBtn, #saveChangesBtn, #copyUserBtn, #copyAdminBtn, #editFooterBtn, .admin-news-actions'
+                );
+                adminElementsToRemove.forEach(el => el.remove());
+                // If not admin and no showSearchParam, also remove searchBar from HTML DOM
+                if (!getUrlParameter('showSearch')) {
+                    doc.getElementById('searchBar')?.remove();
+                }
+            }
+
+            // Serialize the modified DOM back to an HTML string
+            const finalHtmlToCopy = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(finalHtmlToCopy)
+                .then(() => {
+                    alert('تم نسخ الكود إلى الحافظة بنجاح! الصقه في ملف HTML جديد.');
+                })
+                .catch(err => {
+                    console.error('فشل في نسخ الكود:', err);
+                    alert('فشل في نسخ الكود. الرجاء المحاولة يدويًا. (تحقق من الكونسول للمزيد من التفاصيل)');
+                });
+        }
+
+        // Initial setup when the page loads for the *original* loaded file (outside the copied part)
+        document.addEventListener('DOMContentLoaded', () => {
+            renderNews();
+            setupFooterButtons();
+            
+            // Check for showSearch parameter if coming from news-detail page
+            const showSearchParam = getUrlParameter('showSearch');
+            if (showSearchParam === 'true') {
+                const searchBar = document.getElementById('searchBar');
+                const searchInput = document.getElementById('searchInput');
+                if (searchBar) searchBar.style.display = 'flex';
+                if (searchInput) searchInput.focus();
+            }
+            // Admin buttons are initially hidden by CSS and controlled by toggleAdminMode()
+        });
+        // End of self-contained script content (DO NOT MODIFY THESE COMMENTS)
+    </script>
+</body>
+</html>
