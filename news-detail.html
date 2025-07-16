@@ -285,51 +285,57 @@
                 document.getElementById('detailNewsTitle').textContent = newsItem.title;
                 document.getElementById('detailNewsDate').textContent = `تاريخ النشر: ${newsItem.date}`;
 
-                // --- Start of content splitting and ad insertion logic ---
+                // --- Start of improved content splitting and ad insertion logic ---
                 const newsContentWrapper = document.getElementById('newsContentWrapper');
-                // Split content by double newline to get paragraphs
+                newsContentWrapper.innerHTML = ''; // Clear any existing content
+
+                let firstPart = '';
+                let secondPart = '';
+
+                // Try to split by paragraphs first
                 const paragraphs = newsItem.content.split('\n\n').filter(p => p.trim() !== '');
 
-                // Determine split point (e.g., after 50% of paragraphs)
-                const splitIndex = Math.ceil(paragraphs.length / 2);
-
-                const firstPart = paragraphs.slice(0, splitIndex).join('\n\n');
-                const secondPart = paragraphs.slice(splitIndex).join('\n\n');
-
-                if (newsContentWrapper) {
-                    // Clear any existing content
-                    newsContentWrapper.innerHTML = ''; 
-                    
-                    // Append the first part of the content
-                    const firstPartParagraph = document.createElement('p');
-                    firstPartParagraph.className = 'detail-text';
-                    firstPartParagraph.textContent = firstPart;
-                    newsContentWrapper.appendChild(firstPartParagraph);
-
-                    // Insert AdSense Ad container
-                    const adContainer = document.createElement('div');
-                    adContainer.className = 'ad-container';
-                    adContainer.innerHTML = `
-                        <p>إعلان</p>
-                        <ins class="adsbygoogle"
-                             style="display:block; text-align:center;"
-                             data-ad-layout="in-article"
-                             data-ad-format="fluid"
-                             data-ad-client="ca-pub-1234567890123456"
-                             data-ad-slot="1111111111"></ins> `;
-                    newsContentWrapper.appendChild(adContainer);
-
-                    // Push ad to AdSense for rendering
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-
-                    if (secondPart) { // Only add second part if it exists
-                        const secondPartParagraph = document.createElement('p');
-                        secondPartParagraph.className = 'detail-text';
-                        secondPartParagraph.textContent = secondPart;
-                        newsContentWrapper.appendChild(secondPartParagraph);
-                    }
+                if (paragraphs.length > 1) {
+                    // If multiple paragraphs exist, split evenly by paragraphs
+                    const splitIndex = Math.ceil(paragraphs.length / 2);
+                    firstPart = paragraphs.slice(0, splitIndex).join('\n\n');
+                    secondPart = paragraphs.slice(splitIndex).join('\n\n');
+                } else {
+                    // If no clear paragraphs, split by character count (roughly in half)
+                    const middle = Math.floor(newsItem.content.length / 2);
+                    firstPart = newsItem.content.substring(0, middle);
+                    secondPart = newsItem.content.substring(middle);
                 }
-                // --- End of content splitting and ad insertion logic ---
+                
+                // Append the first part of the content
+                const firstPartParagraph = document.createElement('p');
+                firstPartParagraph.className = 'detail-text';
+                firstPartParagraph.textContent = firstPart;
+                newsContentWrapper.appendChild(firstPartParagraph);
+
+                // Insert AdSense Ad container
+                const adContainer = document.createElement('div');
+                adContainer.className = 'ad-container';
+                adContainer.innerHTML = `
+                    <p>إعلان</p>
+                    <ins class="adsbygoogle"
+                         style="display:block; text-align:center;"
+                         data-ad-layout="in-article"
+                         data-ad-format="fluid"
+                         data-ad-client="ca-pub-1234567890123456"
+                         data-ad-slot="1111111111"></ins> `;
+                newsContentWrapper.appendChild(adContainer);
+
+                // Push ad to AdSense for rendering
+                (adsbygoogle = window.adsbygoogle || []).push({});
+
+                if (secondPart) { // Only add second part if it exists
+                    const secondPartParagraph = document.createElement('p');
+                    secondPartParagraph.className = 'detail-text';
+                    secondPartParagraph.textContent = secondPart;
+                    newsContentWrapper.appendChild(secondPartParagraph);
+                }
+                // --- End of improved content splitting and ad insertion logic ---
 
                 document.title = `تفاصيل الخبر: ${newsItem.title} - برو نيوز`; // Update page title
             } else {
