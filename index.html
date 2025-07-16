@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar">
-<head>
+<html lang="ar"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>برو نيوز - مصدرك الموثوق للأخبار العالمية والعربية والمحلية</title> <meta name="description" content="تطبيق إخباري احترافي يقدم لك آخر الأخبار والتطورات المحلية والعالمية، تحليلات معمقة، ومقالات حصرية. ابقَ على اطلاع دائم.">
@@ -406,33 +405,48 @@
 </head>
 <body>
     <div class="container">
-        <div id="searchBar" class="search-bar-container">
-            <input type="text" id="searchInput" placeholder="ابحث عن الأخبار..." onkeyup="filterNews()">
-        </div>
+        
 
         <div class="fixed-actions">
-            <button class="admin-toggle-btn" onclick="toggleAdminMode()" title="وضع المسؤول">
-                <i class="material-icons">settings</i>
-            </button>
-            <button class="add-news-btn" id="addNewsBtn" onclick="showAddNewsModal()">
-                <i class="material-icons">add</i> إضافة خبر
-            </button>
-            <button class="edit-footer-btn" id="editFooterBtn" onclick="showFooterEditModal()">
-                <i class="material-icons">edit</i> تحرير القائمة
-            </button>
-            <button class="save-changes-btn" id="saveChangesBtn" onclick="showCopyOptions()">
-                حفظ التغييرات
-            </button>
-            <button class="copy-btn" id="copyUserBtn" onclick="copyHtmlCode(false)">
-                نسخ (مستخدم)
-            </button>
-            <button class="copy-btn copy-admin-btn" id="copyAdminBtn" onclick="copyHtmlCode(true)">
-                نسخ (أدمن)
-            </button>
+            
+            
+            
+            
+            
+            
         </div>
 
-        <div id="newsFeed" class="news-grid">
-            </div>
+        <div id="newsFeed" class="news-grid"><div class="news-item" data-id="1">
+                    <img src="https://picsum.photos/600/400?random=1" alt="اكتشاف أثري جديد في العراق يثير اهتمام العالم">
+                    <div class="news-item-title">
+                        <h3>اكتشاف أثري جديد في العراق يثير اهتمام العالم</h3>
+                    </div>
+                    <div class="news-item-footer">
+                        <p class="news-date">2025-07-10</p>
+                        <a href="news-detail.html?id=1" class="details-btn" style="background-color: #cf0e0e;">تفاصيل الخبر</a>
+                    </div>
+                    
+                </div><div class="news-item" data-id="2">
+                    <img src="https://picsum.photos/600/400?random=2" alt="تطورات في مشروع الطاقة المتجددة في كربلاء">
+                    <div class="news-item-title">
+                        <h3>تطورات في مشروع الطاقة المتجددة في كربلاء</h3>
+                    </div>
+                    <div class="news-item-footer">
+                        <p class="news-date">2025-07-12</p>
+                        <a href="news-detail.html?id=2" class="details-btn" style="background-color: #28a745;">اقرأ المزيد</a>
+                    </div>
+                    
+                </div><div class="news-item" data-id="3">
+                    <img src="https://picsum.photos/600/400?random=3" alt="افتتاح معرض فني دولي في بغداد">
+                    <div class="news-item-title">
+                        <h3>افتتاح معرض فني دولي في بغداد</h3>
+                    </div>
+                    <div class="news-item-footer">
+                        <p class="news-date">2025-07-14</p>
+                        <a href="news-detail.html?id=3" class="details-btn" style="background-color: #007bff;">مشاهدة الخبر</a>
+                    </div>
+                    
+                </div></div>
     </div>
 
     <div id="addNewsModal" class="modal-overlay">
@@ -474,10 +488,10 @@
         </div>
     </div>
 
-    <div id="editNewsModal" class="modal-overlay">
+    <div id="editNewsModal" class="modal-overlay" style="display: none;">
         <div class="modal-content">
             <h2>تعديل الخبر</h2>
-            <input type="hidden" id="editNewsId"> 
+            <input type="hidden" id="editNewsId" value="1"> 
             <div>
                 <label for="editModalNewsTitle">عنوان الخبر:</label>
                 <input type="text" id="editModalNewsTitle" placeholder="أدخل عنوان الخبر هنا">
@@ -526,11 +540,10 @@
         </div>
     </div>
 
-    <div class="footer-nav" id="footerNav">
-        </div>
+    <div class="footer-nav" id="footerNav"><button><i class="material-icons">home</i><span>الرئيسية</span></button><button><i class="material-icons">category</i><span>فئات</span></button><button><i class="material-icons">notifications</i><span>تنبيهات</span></button><button><i class="material-icons">info</i><span>من نحن</span></button><button><i class="material-icons">search</i><span>بحث</span></button></div>
 
     <footer class="site-info-footer">
-        &copy; 2025 برو نيوز. جميع الحقوق محفوظة.
+        © 2025 برو نيوز. جميع الحقوق محفوظة.
         <div>
             <a href="about.html">من نحن</a> |
             <a href="contact.html">اتصل بنا</a> |
@@ -542,20 +555,67 @@
         // Start of self-contained script content (DO NOT MODIFY THESE COMMENTS)
         let adminMode = false;
         let newsData = [
-            { id: 1, title: 'اكتشاف أثري جديد في العراق يثير اهتمام العالم', image: 'https://picsum.photos/600/400?random=1', content: 'كشفت بعثة تنقيب دولية عن اكتشافات أثرية مذهلة في جنوب العراق، يعتقد أنها تعود إلى الحضارات القديمة، مما قد يغير فهمنا لتاريخ المنطقة. الاكتشاف يتضمن قطعًا فخارية ونقوشًا نادرة. اكتشافات أثرية جديدة في العراق تفتح آفاقًا لفهم أعمق للتاريخ القديم للمنطقة. تتضمن الاكتشافات الأخيرة مجموعة من القطع الأثرية النادرة التي تشير إلى وجود حضارات متقدمة كانت مزدهرة في هذه المنطقة. يعمل الفريق حاليًا على تحليل هذه الاكتشافات وتقديم تقارير مفصلة عنها. هذا الاكتشاف يعد إضافة قيمة للتراث الثقافي العراقي والعالمي.', date: '2025-07-10', order: 10, detailButtonText: 'تفاصيل الخبر', detailButtonColor: '#cf0e0e' },
-            { id: 2, title: 'تطورات في مشروع الطاقة المتجددة في كربلاء', image: 'https://picsum.photos/600/400?random=2', content: 'أعلنت السلطات المحلية عن تقدم كبير في مشروع الطاقة الشمسية بكربلاء، والذي يهدف إلى تزويد المدينة بجزء كبير من احتياجاتها الكهربائية من مصادر نظيفة. المشروع يتضمن تركيب ألواح شمسية على مساحات واسعة وسيساهم في تقليل الاعتماد على الوقود الأحفوري وتعزيز الاستدامة البيئية في المحافظة. من المتوقع أن يتم الانتهاء من المرحلة الأولى من المشروع في نهاية العام الحالي، مما سيوفر طاقة نظيفة لآلاف المنازل والمنشآت. هذا المشروع يعكس التزام العراق بالتحول نحو الطاقة المتجددة.', date: '2025-07-12', order: 20, detailButtonText: 'اقرأ المزيد', detailButtonColor: '#28a745' },
-            { id: 3, title: 'افتتاح معرض فني دولي في بغداد', image: 'https://picsum.photos/600/400?random=3', content: 'شهدت العاصمة بغداد اليوم افتتاح معرض فني دولي بمشاركة فنانين من مختلف أنحاء العالم، يعرضون أعمالًا فنية تعكس التنوع الثقافي والإبداع. يهدف المعرض إلى تعزيز التبادل الثقافي والفني بين الدول وتقديم منصة للفنانين لعرض إبداعاتهم. حضر الافتتاح عدد كبير من الشخصيات الثقافية والدبلوماسية، وقد أشاد الحضور بجودة الأعمال المعروضة والتنظيم المميز للمعرض. المعرض سيكون مفتوحًا للجمهور لمدة شهر، ونتوقع أن يجذب الآلاف من الزوار.', date: '2025-07-14', order: 30, detailButtonText: 'مشاهدة الخبر', detailButtonColor: '#007bff' }
-        ];
+    {
+        "id": 1,
+        "title": "اكتشاف أثري جديد في العراق يثير اهتمام العالم",
+        "image": "https://picsum.photos/600/400?random=1",
+        "content": "كشفت بعثة تنقيب دولية عن اكتشافات أثرية مذهلة في جنوب العراق، يعتقد أنها تعود إلى الحضارات القديمة، مما قد يغير فهمنا لتاريخ المنطقة. الاكتشاف يتضمن قطعًا فخارية ونقوشًا نادرة. اكتشافات أثرية جديدة في العراق تفتح آفاقًا لفهم أعمق للتاريخ القديم للمنطقة. تتضمن الاكتشافات الأخيرة مجموعة من القطع الأثرية النادرة التي تشير إلى وجود حضارات متقدمة كانت مزدهرة في هذه المنطقة. يعمل الفريق حاليًا على تحليل هذه الاكتشافات وتقديم تقارير مفصلة عنها. هذا الاكتشاف يعد إضافة قيمة للتراث الثقافي العراقي والعالمي.",
+        "date": "2025-07-10",
+        "order": 10,
+        "detailButtonText": "تفاصيل الخبر",
+        "detailButtonColor": "#cf0e0e"
+    },
+    {
+        "id": 2,
+        "title": "تطورات في مشروع الطاقة المتجددة في كربلاء",
+        "image": "https://picsum.photos/600/400?random=2",
+        "content": "أعلنت السلطات المحلية عن تقدم كبير في مشروع الطاقة الشمسية بكربلاء، والذي يهدف إلى تزويد المدينة بجزء كبير من احتياجاتها الكهربائية من مصادر نظيفة. المشروع يتضمن تركيب ألواح شمسية على مساحات واسعة وسيساهم في تقليل الاعتماد على الوقود الأحفوري وتعزيز الاستدامة البيئية في المحافظة. من المتوقع أن يتم الانتهاء من المرحلة الأولى من المشروع في نهاية العام الحالي، مما سيوفر طاقة نظيفة لآلاف المنازل والمنشآت. هذا المشروع يعكس التزام العراق بالتحول نحو الطاقة المتجددة.",
+        "date": "2025-07-12",
+        "order": 20,
+        "detailButtonText": "اقرأ المزيد",
+        "detailButtonColor": "#28a745"
+    },
+    {
+        "id": 3,
+        "title": "افتتاح معرض فني دولي في بغداد",
+        "image": "https://picsum.photos/600/400?random=3",
+        "content": "شهدت العاصمة بغداد اليوم افتتاح معرض فني دولي بمشاركة فنانين من مختلف أنحاء العالم، يعرضون أعمالًا فنية تعكس التنوع الثقافي والإبداع. يهدف المعرض إلى تعزيز التبادل الثقافي والفني بين الدول وتقديم منصة للفنانين لعرض إبداعاتهم. حضر الافتتاح عدد كبير من الشخصيات الثقافية والدبلوماسية، وقد أشاد الحضور بجودة الأعمال المعروضة والتنظيم المميز للمعرض. المعرض سيكون مفتوحًا للجمهور لمدة شهر، ونتوقع أن يجذب الآلاف من الزوار.",
+        "date": "2025-07-14",
+        "order": 30,
+        "detailButtonText": "مشاهدة الخبر",
+        "detailButtonColor": "#007bff"
+    }
+];
         let nextNewsId = 4;
         let originalNewsData = [...newsData]; 
 
         const footerButtons = [
-            { text: 'الرئيسية', icon: 'home', action: 'function:resetNewsAndHideSearch' },
-            { text: 'فئات', icon: 'category', action: 'go:https://www.google.com/search?q=فئات+الأخبار' },
-            { text: 'تنبيهات', icon: 'notifications', action: 'function:showAlert:زر التنبيهات' },
-            { text: 'من نحن', icon: 'info', action: 'go:about.html' },
-            { text: 'بحث', icon: 'search', action: 'function:toggleSearchBar' }
-        ];
+    {
+        "text": "الرئيسية",
+        "icon": "home",
+        "action": "function:resetNewsAndHideSearch"
+    },
+    {
+        "text": "فئات",
+        "icon": "category",
+        "action": "go:https://www.google.com/search?q=فئات+الأخبار"
+    },
+    {
+        "text": "تنبيهات",
+        "icon": "notifications",
+        "action": "function:showAlert:زر التنبيهات"
+    },
+    {
+        "text": "من نحن",
+        "icon": "info",
+        "action": "go:about.html"
+    },
+    {
+        "text": "بحث",
+        "icon": "search",
+        "action": "function:toggleSearchBar"
+    }
+];
 
         function executeAction(actionString) {
             if (!actionString) return;
@@ -1076,7 +1136,57 @@
             // Replace the old DOMContentLoaded content with the new one
             scriptContent = scriptContent.replace(
                 domContentLoadedRegex,
-                `document.addEventListener('DOMContentLoaded', () => {\n${newDomContentLoadedLogic}\n});`
+                `document.addEventListener('DOMContentLoaded', () => {
+
+            renderNews(); // This will create news items and call attachAdminNewsItemEventListeners
+            setupFooterButtons(); // This will create footer buttons and attach their listeners
+            
+            // Check for showSearch parameter if coming from news-detail page
+            const showSearchParam = getUrlParameter('showSearch');
+            if (showSearchParam === 'true') {
+                document.getElementById('searchBar').style.display = 'flex';
+                document.getElementById('searchInput').focus();
+            }
+
+            // Adjust visibility of elements based on adminMode for the copied page
+            if (!adminMode) {
+                // Remove admin-specific UI elements for user version
+                document.querySelector('.admin-toggle-btn')?.remove();
+                document.getElementById('addNewsBtn')?.remove();
+                document.getElementById('saveChangesBtn')?.remove();
+                document.getElementById('copyUserBtn')?.remove();
+                document.getElementById('copyAdminBtn')?.remove();
+                document.getElementById('editFooterBtn')?.remove();
+                
+                document.querySelectorAll('.admin-news-actions').forEach(actionsDiv => {
+                    actionsDiv.remove(); // Completely remove action buttons from news items
+                });
+                
+                // Keep searchBar if not in adminMode for user version, but ensure it's hidden by default if no param
+                if (!showSearchParam) {
+                    document.getElementById('searchBar').style.display = 'none';
+                }
+                
+                // Ensure all modals are hidden by default for user version
+                document.querySelectorAll('.modal-overlay').forEach(modal => {
+                    modal.style.display = 'none';
+                });
+
+            } else {
+                // For admin version, ensure these are hidden until toggled by user
+                document.getElementById('addNewsBtn').style.display = 'none';
+                document.getElementById('saveChangesBtn').style.display = 'none';
+                document.getElementById('copyUserBtn').style.display = 'none';
+                document.getElementById('copyAdminBtn').style.display = 'none';
+                document.getElementById('editFooterBtn').style.display = 'none';
+                document.querySelectorAll('.admin-news-actions').forEach(actionsDiv => {
+                    actionsDiv.style.display = 'none';
+                });
+                // In admin mode, search bar is also hidden until toggled by function
+                document.getElementById('searchBar').style.display = 'none';
+            }
+            
+});`
             );
 
             // Update the script tag's content in the parsed document
@@ -1125,5 +1235,6 @@
         });
         // End of self-contained script content (DO NOT MODIFY THESE COMMENTS)
     </script>
-</body>
-</html>
+
+
+</body></html>
