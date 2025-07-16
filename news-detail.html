@@ -62,12 +62,14 @@
             color: #e0e0e0;
             text-align: justify;
         }
-        .back-button {
-            display: block;
+        .action-buttons { /* New container for buttons */
+            display: flex;
+            flex-direction: column; /* Stack buttons vertically */
+            gap: 15px; /* Space between buttons */
             margin: 30px auto 0;
             text-align: center;
         }
-        .back-button a {
+        .action-buttons a {
             font-family: 'Cairo', sans-serif;
             background-color: #00aaff;
             color: white;
@@ -78,9 +80,31 @@
             font-size: 1.1rem;
             text-decoration: none;
             transition: background-color 0.3s ease;
+            display: flex; /* For icon and text alignment */
+            align-items: center;
+            justify-content: center;
+            width: fit-content; /* Adjust width to content */
+            margin: 0 auto; /* Center the buttons */
         }
-        .back-button a:hover {
+        .action-buttons a:hover {
             background-color: #0088cc;
+        }
+        .action-buttons a.telegram-button { /* Specific style for Telegram button */
+            background-color: #0088cc; /* Telegram blue */
+            padding: 8px 18px; /* Reduced padding for smaller size */
+            font-size: 0.95rem; /* Reduced font size for smaller size */
+        }
+        .action-buttons a.telegram-button:hover {
+            background-color: #0077b3; /* Darker Telegram blue on hover */
+        }
+        .action-buttons a .material-icons {
+            margin-left: 8px; /* Space between icon and text */
+            font-size: 1.3em;
+        }
+        /* Adjusted for Telegram button */
+        .action-buttons a.telegram-button .material-icons {
+            margin-left: 6px; /* Slightly less margin for smaller button */
+            font-size: 1.1em; /* Smaller icon for smaller button */
         }
         
         /* Footer Navigation - same as index.html for consistency */
@@ -177,10 +201,14 @@
             <h1 id="detailNewsTitle"></h1>
             <p class="detail-date" id="detailNewsDate"></p>
             <div id="newsContentWrapper">
-                </div>
+  
+            </div>
         </div>
-        <div class="back-button">
+        <div class="action-buttons">
             <a href="index.html">العودة إلى الرئيسية</a>
+            <a href="https://t.me/PROTVPLUSS" target="_blank" class="telegram-button">
+                قناتنا على التلغرام <i class="material-icons">send</i>
+            </a>
         </div>
     </div>
 
@@ -212,7 +240,6 @@
             { text: 'من نحن', icon: 'info', action: 'go:about.html' },
             { text: 'بحث', icon: 'search', action: 'function:handleSearchClick' } // Changed for news-detail context
         ];
-
         function executeAction(actionString) {
             if (!actionString) return;
             if (actionString.startsWith('go:')) {
@@ -287,60 +314,101 @@
 
                 // --- Start of content splitting and ad insertion logic ---
                 const newsContentWrapper = document.getElementById('newsContentWrapper');
-                // Split content by double newline to get paragraphs
-                const paragraphs = newsItem.content.split('\n\n').filter(p => p.trim() !== '');
+                
+                let contentToDisplay = newsItem.content;
+                let splitPoint = -1;
+                // Find the first occurrence of '.' or ',' after a reasonable starting point (e.g., 100 characters)
+                const minCharsBeforeAd = 100;
 
-                // Determine split point (e.g., after 50% of paragraphs)
-                const splitIndex = Math.ceil(paragraphs.length / 2);
-
-                const firstPart = paragraphs.slice(0, splitIndex).join('\n\n');
-                const secondPart = paragraphs.slice(splitIndex).join('\n\n');
+                for (let i = minCharsBeforeAd; i < contentToDisplay.length; i++) {
+                    if (contentToDisplay[i] === '.' || contentToDisplay[i] === ',') {
+                        // Ensure it's not immediately followed by another punctuation or space, but actually ends a thought
+                        if (contentToDisplay[i+1] === ' ' || contentToDisplay[i+1] === '\n' || i === contentToDisplay.length -1) {
+                            splitPoint = i + 1; // Include the punctuation in the first part
+                            break;
+                        }
+                    }
+                }
 
                 if (newsContentWrapper) {
-                    // Clear any existing content
-                    newsContentWrapper.innerHTML = ''; 
-                    
-                    // Append the first part of the content
-                    const firstPartParagraph = document.createElement('p');
-                    firstPartParagraph.className = 'detail-text';
-                    firstPartParagraph.textContent = firstPart;
-                    newsContentWrapper.appendChild(firstPartParagraph);
+                    newsContentWrapper.innerHTML = ''; // Clear any existing content
 
-                    // Insert AdSense Ad container
-                    const adContainer = document.createElement('div');
-                    adContainer.className = 'ad-container';
-                    adContainer.innerHTML = `
-                        <p>إعلان</p>
-                        <ins class="adsbygoogle"
-                             style="display:block; text-align:center;"
-                             data-ad-layout="in-article"
-                             data-ad-format="fluid"
-                             data-ad-client="ca-pub-1234567890123456"
-                             data-ad-slot="1111111111"></ins> `;
-                    newsContentWrapper.appendChild(adContainer);
+                    if (splitPoint !== -1) {
+                        const firstPartText = contentToDisplay.substring(0, splitPoint).trim();
+                        const secondPartText = contentToDisplay.substring(splitPoint).trim();
 
-                    // Push ad to AdSense for rendering
-                    (adsbygoogle = window.adsbygoogle || []).push({});
+                        const firstPartParagraph = document.createElement('p');
+                        firstPartParagraph.className = 'detail-text';
+                        firstPartParagraph.textContent = firstPartText;
+                        newsContentWrapper.appendChild(firstPartParagraph);
+                        
+                        // Insert AdSense Ad container
+                        const adContainer = document.createElement('div');
+                        adContainer.className = 'ad-container';
+                        adContainer.innerHTML = `
+                            <p>إعلان</p>
+                            <ins class="adsbygoogle"
+                                 style="display:block; text-align:center;"
+                                 data-ad-layout="in-article"
+                                 data-ad-format="fluid"
+                                 data-ad-client="ca-pub-1234567890123456"
+                                 data-ad-slot="1111111111"></ins> `;
+                        newsContentWrapper.appendChild(adContainer);
 
-                    if (secondPart) { // Only add second part if it exists
-                        const secondPartParagraph = document.createElement('p');
-                        secondPartParagraph.className = 'detail-text';
-                        secondPartParagraph.textContent = secondPart;
-                        newsContentWrapper.appendChild(secondPartParagraph);
+                        // Push ad to AdSense for rendering
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+
+                        if (secondPartText) {
+                            const secondPartParagraph = document.createElement('p');
+                            secondPartParagraph.className = 'detail-text';
+                            secondPartParagraph.textContent = secondPartText;
+                            newsContentWrapper.appendChild(secondPartParagraph);
+                        }
+                    } else {
+                        // Fallback to original paragraph splitting if no suitable punctuation is found
+                        const paragraphs = newsItem.content.split('\n\n').filter(p => p.trim() !== '');
+                        const splitIndex = Math.ceil(paragraphs.length / 2);
+
+                        const firstPart = paragraphs.slice(0, splitIndex).join('\n\n');
+                        const secondPart = paragraphs.slice(splitIndex).join('\n\n');
+
+                        const firstPartParagraph = document.createElement('p');
+                        firstPartParagraph.className = 'detail-text';
+                        firstPartParagraph.textContent = firstPart;
+                        newsContentWrapper.appendChild(firstPartParagraph);
+
+                        const adContainer = document.createElement('div');
+                        adContainer.className = 'ad-container';
+                        adContainer.innerHTML = `
+                            <p>إعلان</p>
+                            <ins class="adsbygoogle"
+                                 style="display:block; text-align:center;"
+                                 data-ad-layout="in-article"
+                                 data-ad-format="fluid"
+                                 data-ad-client="ca-pub-1234567890123456"
+                                 data-ad-slot="1111111111"></ins> `;
+                        newsContentWrapper.appendChild(adContainer);
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+
+                        if (secondPart) {
+                            const secondPartParagraph = document.createElement('p');
+                            secondPartParagraph.className = 'detail-text';
+                            secondPartParagraph.textContent = secondPart;
+                            newsContentWrapper.appendChild(secondPartParagraph);
+                        }
                     }
                 }
                 // --- End of content splitting and ad insertion logic ---
 
-                document.title = `تفاصيل الخبر: ${newsItem.title} - برو نيوز`; // Update page title
+                document.title = `تفاصيل الخبر: ${newsItem.title} - برو نيوز`;
             } else {
                 // Handle case where news item is not found
                 document.getElementById('detailNewsTitle').textContent = 'الخبر غير موجود';
-                // Use newsContentWrapper to display message
                 const newsContentWrapper = document.getElementById('newsContentWrapper');
                 if (newsContentWrapper) {
                     newsContentWrapper.innerHTML = '<p class="detail-text">نعتذر، لم نتمكن من العثور على الخبر الذي تبحث عنه.</p>';
                 }
-                document.getElementById('detailNewsImage').style.display = 'none'; // Hide image if not found
+                document.getElementById('detailNewsImage').style.display = 'none';
                 document.getElementById('detailNewsDate').style.display = 'none';
                 document.title = 'خطأ - الخبر غير موجود - برو نيوز';
             }
