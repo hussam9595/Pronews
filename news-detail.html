@@ -329,34 +329,6 @@
                         newsContentWrapper.appendChild(secondPartParagraph);
                     }
                 }
-                
-                // عرض الصور الإضافية إن وجدت
-                if (newsItem.extraImages && Array.isArray(newsItem.extraImages)) {
-                    newsItem.extraImages.forEach((imgObj) => {
-                        const imgContainer = document.createElement('div');
-                        imgContainer.style.marginTop = '20px';
-
-                        const imgEl = document.createElement('img');
-                        imgEl.src = imgObj.url;
-                        imgEl.alt = imgObj.desc || '';
-                        imgEl.style.width = '100%';
-                        imgEl.style.borderRadius = '8px';
-                        imgEl.style.marginBottom = '5px';
-
-                        const descEl = document.createElement('p');
-                        descEl.textContent = imgObj.desc || '';
-                        descEl.style.color = '#ccc';
-                        descEl.style.fontSize = '0.95rem';
-                        descEl.style.margin = '5px 0 15px';
-                        descEl.style.textAlign = 'justify';
-
-                        imgContainer.appendChild(imgEl);
-                        imgContainer.appendChild(descEl);
-                        newsContentWrapper.appendChild(imgContainer);
-                    });
-                }
-
-
                 // --- End of content splitting and ad insertion logic ---
 
                 document.title = `تفاصيل الخبر: ${newsItem.title} - برو نيوز`; // Update page title
