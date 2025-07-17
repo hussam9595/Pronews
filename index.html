@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="ar">
-<head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>برو نيوز - مصدرك الموثوق للأخبار العالمية والعربية والمحلية</title>
     <meta name="description" content="تطبيق إخباري احترافي يقدم لك آخر الأخبار والتطورات المحلية والعالمية، تحليلات معمقة، ومقالات حصرية. ابقَ على اطلاع دائم.">
     <meta name="keywords" content="أخبار, أخبار عاجلة, تحليل أخبار, أخبار اليوم, أخبار محلية, أخبار عالمية, صحافة, تطبيق إخباري, برو نيوز">
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234567890123456"
-     crossorigin="anonymous"></script>
+    <script src="https://pagead2.googlesyndication.com/pagead/managed/js/adsense/m202507140101/show_ads_impl_fy2021.js"></script><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234567890123456" crossorigin="anonymous" data-checked-head="true"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
@@ -460,42 +459,137 @@
             font-size: 1.2em;
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <div id="searchBar" class="search-bar-container">
+<meta http-equiv="origin-trial" content="AlK2UR5SkAlj8jjdEc9p3F3xuFYlF6LYjAML3EOqw1g26eCwWPjdmecULvBH5MVPoqKYrOfPhYVL71xAXI1IBQoAAAB8eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3NTgwNjcxOTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="Amm8/NmvvQfhwCib6I7ZsmUxiSCfOxWxHayJwyU1r3gRIItzr7bNQid6O8ZYaE1GSQTa69WwhPC9flq/oYkRBwsAAACCeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3NTgwNjcxOTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="A9wSqI5i0iwGdf6L1CERNdmsTPgVu44ewj8QxTBYgsv1LCPUVF7YmWOvTappqB1139jAymxUW/RO8zmMqo4zlAAAAACNeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiRmxlZGdlQmlkZGluZ0FuZEF1Y3Rpb25TZXJ2ZXIiLCJleHBpcnkiOjE3MzY4MTI4MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A+d7vJfYtay4OUbdtRPZA3y7bKQLsxaMEPmxgfhBGqKXNrdkCQeJlUwqa6EBbSfjwFtJWTrWIioXeMW+y8bWAgQAAACTeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiRmxlZGdlQmlkZGluZ0FuZEF1Y3Rpb25TZXJ2ZXIiLCJleHBpcnkiOjE3MzY4MTI4MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9">
+
+    <div class="container" style="height: auto !important;">
+        <div id="searchBar" class="search-bar-container" style="display: flex;">
             <input type="text" id="searchInput" placeholder="ابحث عن الأخبار..." onkeyup="filterNews()">
         </div>
 
         <div class="fixed-actions">
-            <button class="admin-toggle-btn" onclick="toggleAdminMode()" title="وضع المسؤول">
+            <button class="admin-toggle-btn" onclick="toggleAdminMode()" title="وضع المسؤول" style="display: flex;">
                 <i class="material-icons">settings</i>
             </button>
  
-            <button class="add-news-btn" id="addNewsBtn" onclick="showAddNewsModal()">
+            <button class="add-news-btn" id="addNewsBtn" onclick="showAddNewsModal()" style="display: flex;">
                 <i class="material-icons">add</i> إضافة خبر
             </button>
-            <button class="edit-footer-btn" id="editFooterBtn" onclick="showFooterEditModal()">
+            <button class="edit-footer-btn" id="editFooterBtn" onclick="showFooterEditModal()" style="display: flex;">
                 <i class="material-icons">edit</i> تحرير القائمة
             </button>
          
-            <button class="save-changes-btn" id="saveChangesBtn" onclick="showCopyOptions()">
+            <button class="save-changes-btn" id="saveChangesBtn" onclick="showCopyOptions()" style="display: flex;">
                 حفظ التغييرات
             </button>
-            <button class="copy-btn" id="copyUserBtn" onclick="copyHtmlCode(false)">
+            <button class="copy-btn" id="copyUserBtn" onclick="copyHtmlCode(false)" style="display: flex;">
                 نسخ (مستخدم)
             </button>
-            <button class="copy-btn copy-admin-btn" id="copyAdminBtn" onclick="copyHtmlCode(true)">
+            <button class="copy-btn copy-admin-btn" id="copyAdminBtn" onclick="copyHtmlCode(true)" style="display: flex;">
      
             نسخ (أدمن)
             </button>
         </div>
 
-        <div id="newsFeed" class="news-grid">
-            </div>
+        <div id="newsFeed" class="news-grid" style="height: auto !important;"><div class="news-item" data-id="9">
+                    <img src="https://b.top4top.io/p_3485iaplb2.jpg" alt="هانسي فليك يبدأ أولى خطواته الحاسمة في برشلونة!">
+                    <div class="news-item-title">
+                        <h3>هانسي فليك يبدأ أولى خطواته الحاسمة في برشلونة!</h3>
+ 
+                    </div>
+                    <div class="news-item-footer">
+                        <p class="news-date">2025-07-17</p>
+                        <span class="details-btn" style="background-color: #cf0e0e;">تفاصيل الخبر</span>
+       
+                    </div>
+                    <div class="admin-news-actions" style="display: flex;">
+                        <button class="edit-btn" data-news-id="9"><i class="material-icons">edit</i></button>
+                        <button class="delete-btn" data-news-id="9"><i class="material-icons">close</i></button>
+      
+                    </div>
+                </div><div class="news-item" data-id="8">
+                    <img src="https://a.top4top.io/p_34852z4371.jpg" alt="مشكلة جديدة تواجه تشافي الونسو في ريال مدريد">
+                    <div class="news-item-title">
+                        <h3>مشكلة جديدة تواجه تشافي الونسو في ريال مدريد</h3>
+ 
+                    </div>
+                    <div class="news-item-footer">
+                        <p class="news-date">2025-07-17</p>
+                        <span class="details-btn" style="background-color: #cf0e0e;">تفاصيل الخبر</span>
+       
+                    </div>
+                    <div class="admin-news-actions" style="display: flex;">
+                        <button class="edit-btn" data-news-id="8"><i class="material-icons">edit</i></button>
+                        <button class="delete-btn" data-news-id="8"><i class="material-icons">close</i></button>
+      
+                    </div>
+                </div><div class="news-item" data-id="7">
+                    <img src="https://d.top4top.io/p_34856p6zx4.jpg" alt="تحقيقات في إسبانيا بسبب مبابي!">
+                    <div class="news-item-title">
+                        <h3>تحقيقات في إسبانيا بسبب مبابي!</h3>
+ 
+                    </div>
+                    <div class="news-item-footer">
+                        <p class="news-date">2025-07-17</p>
+                        <span class="details-btn" style="background-color: #cf0e0e;">تفاصيل الخبر</span>
+       
+                    </div>
+                    <div class="admin-news-actions" style="display: flex;">
+                        <button class="edit-btn" data-news-id="7"><i class="material-icons">edit</i></button>
+                        <button class="delete-btn" data-news-id="7"><i class="material-icons">close</i></button>
+      
+                    </div>
+                </div><div class="news-item" data-id="6">
+                    <img src="https://c.top4top.io/p_34856jr3c3.jpg" alt="السعودية تستعد لصفقة جديدة... " ضربة"="" كبرى="" مرتقبة="" في="" الميركاتو"="">
+                    <div class="news-item-title">
+                        <h3>السعودية تستعد لصفقة جديدة... "ضربة" كبرى مرتقبة في الميركاتو</h3>
+ 
+                    </div>
+                    <div class="news-item-footer">
+                        <p class="news-date">2025-07-17</p>
+                        <span class="details-btn" style="background-color: #cf0e0e;">تفاصيل الخبر</span>
+       
+                    </div>
+                    <div class="admin-news-actions" style="display: flex;">
+                        <button class="edit-btn" data-news-id="6"><i class="material-icons">edit</i></button>
+                        <button class="delete-btn" data-news-id="6"><i class="material-icons">close</i></button>
+      
+                    </div>
+                </div><div class="news-item" data-id="5">
+                    <img src="https://f.top4top.io/p_3485mp2zi6.jpg" alt="رودريغو يقترب من مغادرة ريال مدريد… صراع إنجليزي محتدم على توقيعه">
+                    <div class="news-item-title">
+                        <h3>رودريغو يقترب من مغادرة ريال مدريد… صراع إنجليزي محتدم على توقيعه</h3>
+ 
+                    </div>
+                    <div class="news-item-footer">
+                        <p class="news-date">2025-07-17</p>
+                        <span class="details-btn" style="background-color: #cf0e0e;">تفاصيل الخبر</span>
+       
+                    </div>
+                    <div class="admin-news-actions" style="display: flex;">
+                        <button class="edit-btn" data-news-id="5"><i class="material-icons">edit</i></button>
+                        <button class="delete-btn" data-news-id="5"><i class="material-icons">close</i></button>
+      
+                    </div>
+                </div><div class="news-item" data-id="4">
+                    <img src="https://h.top4top.io/p_348588x3m8.jpg" alt="نجم فرنسا السابق يدافع عن مبابي!">
+                    <div class="news-item-title">
+                        <h3>نجم فرنسا السابق يدافع عن مبابي!</h3>
+ 
+                    </div>
+                    <div class="news-item-footer">
+                        <p class="news-date">2025-07-17</p>
+                        <span class="details-btn" style="background-color: #cf0e0e;">تفاصيل الخبر</span>
+       
+                    </div>
+                    <div class="admin-news-actions" style="display: flex;">
+                        <button class="edit-btn" data-news-id="4"><i class="material-icons">edit</i></button>
+                        <button class="delete-btn" data-news-id="4"><i class="material-icons">close</i></button>
+      
+                    </div>
+                </div></div>
     </div>
 
-    <div id="addNewsModal" class="modal-overlay">
+    <div id="addNewsModal" class="modal-overlay" style="display: none;">
         <div class="modal-content">
             <h2>إضافة خبر جديد</h2>
             <div>
@@ -505,8 +599,7 @@
             </div>
             <div>
                 <label for="modalNewsImage">رابط صورة الخبر (URL):</label>
-                <input 
- type="text" id="modalNewsImage" placeholder="مثال: https://example.com/image.jpg">
+                <input type="text" id="modalNewsImage" placeholder="مثال: https://example.com/image.jpg">
             </div>
             <div>
                 <label for="modalNewsContent">محتوى الخبر:</label>
@@ -534,16 +627,15 @@
             </div>
             <div class="modal-buttons">
                 <button class="add-modal-btn" onclick="addNewsFromModal()">إضافة الخبر</button>
-                <button class="close-modal-btn" 
- onclick="hideAddNewsModal()">إلغاء</button>
+                <button class="close-modal-btn" onclick="hideAddNewsModal()">إلغاء</button>
             </div>
         </div>
     </div>
 
-    <div id="editNewsModal" class="modal-overlay">
+    <div id="editNewsModal" class="modal-overlay" style="display: none;">
         <div class="modal-content">
             <h2>تعديل الخبر</h2>
-            <input type="hidden" id="editNewsId"> 
+            <input type="hidden" id="editNewsId" value="8"> 
             <div>
                 <label for="editModalNewsTitle">عنوان الخبر:</label>
    
@@ -586,10 +678,54 @@
  </div>
     </div>
 
-    <div id="footerEditModal" class="modal-overlay">
+    <div id="footerEditModal" class="modal-overlay" style="display: none;">
         <div class="modal-content">
             <h2>تحرير أزرار القائمة السفلية</h2>
             <div id="footerButtonsEditArea">
+                    <div class="footer-button-inputs">
+                        <label for="footerBtnText0">نص الزر 1:</label>
+                        <input type="text" id="footerBtnText0" value="الرئيسية">
+                        <label for="footerBtnIcon0">أيقونة الزر 1 (اسم Material Icon):</label>
+                        <input type="text" id="footerBtnIcon0" value="home">
+                        <label for="footerBtnAction0">إجراء الزر 1 (go:URL أو function:funcName:arg1):</label>
+                        <input type="text" id="footerBtnAction0" value="function:resetNewsAndHideSearch">
+                    </div>
+                
+                    <div class="footer-button-inputs">
+                        <label for="footerBtnText1">نص الزر 2:</label>
+                        <input type="text" id="footerBtnText1" value="فئات">
+                        <label for="footerBtnIcon1">أيقونة الزر 2 (اسم Material Icon):</label>
+                        <input type="text" id="footerBtnIcon1" value="category">
+                        <label for="footerBtnAction1">إجراء الزر 2 (go:URL أو function:funcName:arg1):</label>
+                        <input type="text" id="footerBtnAction1" value="go:https://www.google.com/search?q=فئات+الأخبار">
+                    </div>
+                
+                    <div class="footer-button-inputs">
+                        <label for="footerBtnText2">نص الزر 3:</label>
+                        <input type="text" id="footerBtnText2" value="تنبيهات">
+                        <label for="footerBtnIcon2">أيقونة الزر 3 (اسم Material Icon):</label>
+                        <input type="text" id="footerBtnIcon2" value="notifications">
+                        <label for="footerBtnAction2">إجراء الزر 3 (go:URL أو function:funcName:arg1):</label>
+                        <input type="text" id="footerBtnAction2" value="function:showAlert:زر التنبيهات">
+                    </div>
+                
+                    <div class="footer-button-inputs">
+                        <label for="footerBtnText3">نص الزر 4:</label>
+                        <input type="text" id="footerBtnText3" value="من نحن">
+                        <label for="footerBtnIcon3">أيقونة الزر 4 (اسم Material Icon):</label>
+                        <input type="text" id="footerBtnIcon3" value="info">
+                        <label for="footerBtnAction3">إجراء الزر 4 (go:URL أو function:funcName:arg1):</label>
+                        <input type="text" id="footerBtnAction3" value="go:about.html">
+                    </div>
+                
+                    <div class="footer-button-inputs">
+                        <label for="footerBtnText4">نص الزر 5:</label>
+                        <input type="text" id="footerBtnText4" value="بحث">
+                        <label for="footerBtnIcon4">أيقونة الزر 5 (اسم Material Icon):</label>
+                        <input type="text" id="footerBtnIcon4" value="search">
+                        <label for="footerBtnAction4">إجراء الزر 5 (go:URL أو function:funcName:arg1):</label>
+                        <input type="text" id="footerBtnAction4" value="function:toggleSearchBar">
+                    </div>
                 </div>
             <div class="modal-buttons">
                 <button class="save-modal-btn" onclick="saveFooterChanges()">حفظ التغييرات</button>
@@ -599,11 +735,10 @@
         </div>
     </div>
 
-    <div class="footer-nav" id="footerNav">
-        </div>
+    <div class="footer-nav" id="footerNav"><button><i class="material-icons">home</i><span>الرئيسية</span></button><button><i class="material-icons">category</i><span>فئات</span></button><button><i class="material-icons">notifications</i><span>تنبيهات</span></button><button><i class="material-icons">info</i><span>من نحن</span></button><button><i class="material-icons">search</i><span>بحث</span></button></div>
 
     <footer class="site-info-footer">
-        &copy;
+        ©
  2025 برو نيوز. جميع الحقوق محفوظة.
         <div>
             <a href="about.html">من نحن</a> |
@@ -614,23 +749,12 @@
 
     <script id="main-script">
         // Start of self-contained script content (DO NOT MODIFY THESE COMMENTS)
-        let adminMode = false;
-        let newsData = [
-            { id: 1, title: 'اكتشاف أثري جديد في العراق يثير اهتمام العالم', image: 'https://picsum.photos/600/400?random=1', content: 'كشفت بعثة تنقيب دولية عن اكتشافات أثرية مذهلة في جنوب العراق، يعتقد أنها تعود إلى الحضارات القديمة، مما قد يغير فهمنا لتاريخ المنطقة. الاكتشاف يتضمن قطعًا فخارية ونقوشًا نادرة. اكتشافات أثرية جديدة في العراق تفتح آفاقًا لفهم أعمق للتاريخ القديم للمنطقة. تتضمن الاكتشافات الأخيرة مجموعة من القطع الأثرية النادرة التي تشير إلى وجود حضارات متقدمة كانت مزدهرة في هذه المنطقة. يعمل الفريق حاليًا على تحليل هذه الاكتشافات وتقديم تقارير مفصلة عنها. هذا الاكتشاف يعد إضافة قيمة للتراث الثقافي العراقي والعالمي.', date: '2025-07-10', order: 10, detailButtonText: 'تفاصيل الخبر', detailButtonColor: '#cf0e0e' },
-            { id: 2, title: 'تطورات في مشروع الطاقة المتجددة في كربلاء', image: 'https://picsum.photos/600/400?random=2', content: 'أعلنت السلطات المحلية عن تقدم كبير في مشروع الطاقة الشمسية بكربلاء، والذي يهدف إلى تزويد المدينة بجزء كبير من احتياجاتها الكهربائية من مصادر نظيفة. المشروع يتضمن تركيب ألواح شمسية على مساحات واسعة وسيساهم في تقليل الاعتماد على الوقود الأحفوري وتعزيز الاستدامة البيئية في المحافظة. من المتوقع أن يتم الانتهاء من المرحلة الأولى من المشروع في نهاية العام الحالي، مما سيوفر طاقة نظيفة لآلاف المنازل والمنشآت. هذا المشروع يعكس التزام العراق بالتحول نحو الطاقة المتجددة.', date: '2025-07-12', order: 20, detailButtonText: 'اقرأ المزيد', detailButtonColor: '#28a745' },
-            { id: 3, title: 'افتتاح معرض فني دولي في بغداد', image: 'https://picsum.photos/600/400?random=3', content: 'شهدت العاصمة بغداد اليوم افتتاح معرض فني دولي بمشاركة فنانين من مختلف أنحاء العالم، يعرضون أعمالًا فنية تعكس التنوع الثقافي والإبداع. يهدف المعرض إلى تعزيز التبادل الثقافي والفني بين الدول وتقديم منصة للفنانين لعرض إبداعاتهم. حضر الافتتاح عدد كبير من الشخصيات الثقافية والدبلوماسية، وقد أشاد الحضور بجودة الأعمال المعروضة والتنظيم المميز للمعرض. المعرض سيكون مفتوحًا للجمهور لمدة شهر، ونتوقع أن يجذب الآلاف من الزوار.', date: '2025-07-14', order: 30, detailButtonText: 'مشاهدة الخبر', detailButtonColor: '#007bff' }
-        ];
-        let nextNewsId = 4;
+        let adminMode = true;
+        let newsData = [{"id":9,"title":"هانسي فليك يبدأ أولى خطواته الحاسمة في برشلونة!","image":"https://b.top4top.io/p_3485iaplb2.jpg","content":"يستعد المدرب الألماني هانسي فليك لإجراء أول عملية فرز فنية داخل نادي برشلونة، ضمن استعدادات الفريق للموسم الجديد، حيث يهدف إلى تقييم جميع اللاعبين قبل اتخاذ قرارات نهائية بشأن مستقبلهم.\n\n ومن المنتظر أن يقوم فليك بتحديد قائمة أولية تضم اللاعبين الذين سيعتمد عليهم في مشروعه الفني مع الفريق، مقابل أسماء مرشحة للمغادرة سواء على سبيل الإعارة أو البيع النهائي.\n\n المدرب الجديد، المعروف بدقته وشخصيته الحاسمة، بدأ بالفعل دراسة ملفات اللاعبين من خلال المباريات السابقة والتقارير الفنية، على أن يستخدم الفترة التحضيرية المقبلة لاختبارهم ميدانيًا بشكل مباشر.\n\n بعض اللاعبين، خاصة الشباب أو العائدين من الإعارة، سيكونون تحت المجهر، فيما تتجه النية لمنح آخرين فرصة أخيرة لإثبات جدارتهم بالبقاء في الكامب نو.\n\n وتأتي هذه الخطوة في إطار إعادة بناء الفريق، خاصة بعد رحيل المدرب السابق تشافي هيرنانديز، حيث يسعى فليك لوضع بصمته الخاصة، والبدء من قاعدة واضحة ومحددة.\n\n يُذكر أن برشلونة سيدخل مرحلة الإعداد للموسم الجديد قريبًا، تسبقها جولة تحضيرية في الولايات المتحدة، ستكون حاسمة للعديد من الأسماء داخل غرفة الملابس.\n\n فهل تنجح \"أولى غربلات فليك\" في رسم ملامح برشلونة الجديد؟\n\nالأيام القادمة ستكشف من سيحجز مكانه في الخطة… ومن سيغادر بهدوء.","date":"2025-07-17","order":0,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"},{"id":8,"title":"مشكلة جديدة تواجه تشافي الونسو في ريال مدريد","image":"https://a.top4top.io/p_34852z4371.jpg","content":"مع انطلاق موسم جديد لريال مدريد، يدور الصراع داخل غرفة تبديل الملابس حول مستقبل ثلاثة لاعبين عائدين من الإعارات، وهم: رينير، ماريو مارتن، وألفارو رودريغيز. بعد توقيع اللاعب الواعد كاريراس، بات الفريق الأول مكتملًا بـ 25 لاعبًا، الأمر الذي يضع المدرب تشابي ألونسو أمام تحدٍ كبير لاختيار التشكيلة النهائية.\n\nماريو مارتن: أداء متميز وسط تحديات الانضباط\nماريو، لاعب الوسط الذي أُعير الموسم الماضي إلى بلد الوليد، أثبت جدارته بمشاركته في 30 مباراة بالدوري، منها 20 كأساسي، بمجموع 1753 دقيقة. لكنه عانى من مشكلات انضباطية كلفته ثلاث بطاقات حمراء وثماني بطاقات صفراء، ليصبح الأكثر طردًا في الليغا لموسم 2024-2025. رغم افتقاد الفريق الأول لوسط دفاعي طبيعي، لم يمنحه تشابي فرصة الظهور في كأس العالم للأندية، مما يشير بقوة إلى رحيله المحتمل سواء بالإعارة أو البيع.\n\nألفارو رودريغيز: الطموح يصطدم بالواقع\nالمهاجم الشاب من أوروغواي، الذي ينتمي إلى منتخب تحت 20 عامًا، صرح علنًا برغبته في مغادرة ريال مدريد هذا الصيف لمتابعة تطوره المهني. في 22 مباراة مع خيتافي، لعب 845 دقيقة فقط، ولم يستطع فرض نفسه كأساسي إلا في سبع مباريات، كما تعرض للطرد مرة في كأس الملك. مع وجود تفوق واضح لجونزالو، تبدو فرصته ضئيلة في خطة تشابي، مما يجعل العودة إلى كاستيا بمثابة خطوة إلى الوراء لمسيرته.\n\nرينير: حلم برازيلي ينتظر نهايته\nالصفقة التي كلفت ريال مدريد 30 مليون يورو لم تر النور في البرنابيو قط. المهاجم البرازيلي قضى أعوامه الأربعة ونصف الماضية متنقلاً بين إعارات متتالية مع دورتموند، جيرونا، فروزينوني، وغرناطة. خلال هذه الفترات، لم يتمكن من تحقيق الأهداف المتوقعة، حيث شارك في 105 مباريات فقط، سجل خلالها 7 أهداف، وبقي بعيدًا عن التوهج الذي كان منتظراً منه. مع انتهاء عقده بعد عام واحد، يبدو أن رحيله بات أمراً محتوماً.\n\nالقرار بيد تشابي: إعارة أم بيع؟\nمع قرب إغلاق سوق الانتقالات وامتلاء قائمة الفريق، يتوجب على تشابي ألونسو اتخاذ قرار سريع بشأن هؤلاء اللاعبين. سواء كانت الإعارة لموسم جديد أو بيع نهائي، فإن مستقبل هؤلاء الثلاثة سيكون مفتاحًا جديدًا لريال مدريد في سعيه نحو النجاح المستدام.","date":"2025-07-17","order":1,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"},{"id":7,"title":"تحقيقات في إسبانيا بسبب مبابي!","image":"https://d.top4top.io/p_34856p6zx4.jpg","content":"تشهد إسبانيا تحقيقات إدارية في واقعة أثارت الكثير من الجدل، بعد تداول معلومات تشير إلى حصول خمسة من رجال الأمن على مكافآت مالية يُعتقد أنها جاءت من تبرعات قُدمت بعد تتويج فرنسا بكأس العالم 2018، وهي التبرعات التي نُسبت سابقًا للنجم كيليان مبابي.\n\nووفقًا للتقارير المتداولة، فإن رجال الشرطة المعنيين كانوا يعملون في أحد المطارات الإسبانية، وتلقوا مبالغ مالية عبر مؤسسة خيرية، دون أن تكون هناك صلة واضحة بين مهامهم اليومية والمناسبة الرياضية التي ارتبطت بها تلك التبرعات.\n\n وتكمن المفاجأة في أن التبرع المشار إليه كان قد تم توجيهه لدعم مبادرات خيرية وإنسانية، في خطوة حظيت بإشادة واسعة حينها، خاصة أن مبابي اختار التنازل عن مكافآته بالكامل لصالح الأعمال الإنسانية.\n\nالجهات المختصة باشرت تحقيقًا أوليًا لفهم ملابسات التحويلات المالية، وأكدت أن الخطوة تهدف فقط إلى ضمان الشفافية ومعرفة ما إذا كانت هناك أخطاء إدارية أو سوء توزيع غير مقصود.\n\n وفي الوقت الذي لم تُوجه أي اتهامات رسمية، يبقى السؤال مطروحًا:\nهل تمت إدارة التبرعات كما كان مخططًا لها؟\nوهل هناك ثغرات في آلية التوزيع داخل المؤسسات الوسيطة؟\n\nمن جانبه، لم يصدر أي تعليق رسمي من كيليان مبابي أو من المؤسسة التي تولت إدارة التبرعات، في انتظار ما ستُسفر عنه التحقيقات خلال الفترة المقبلة.","date":"2025-07-17","order":1,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"},{"id":6,"title":"السعودية تستعد لصفقة جديدة... \"ضربة\" كبرى مرتقبة في الميركاتو","image":"https://c.top4top.io/p_34856jr3c3.jpg","content":"تستعد كرة القدم السعودية لإحداث ضجة جديدة في سوق الانتقالات الصيفية، عبر صفقة توصف بأنها \"ضربة قوية\" تضاف إلى سلسلة التعاقدات الكبيرة التي شهدها الدوري السعودي خلال الموسمين الماضيين.\n\nووفقًا لمصادر صحفية، فإن هناك تحركات جدية خلف الكواليس تهدف إلى التعاقد مع نجم عالمي جديد، على غرار التعاقدات السابقة التي جلبت أسماء بارزة مثل كريستيانو رونالدو، كريم بنزيما، نغولو كانتي، نيمار، وآخرين.\n\n وتواصل الأندية السعودية، بدعم من برامج رياضية استراتيجية، استقطاب لاعبين ذوي قيمة فنية وتسويقية عالية، في إطار تعزيز تنافسية الدوري محليًا ودوليًا، وجذب أنظار الجماهير العالمية إليه.\n\n حتى اللحظة، لم يتم الكشف عن اسم اللاعب المستهدف، إلا أن الترقب بات كبيرًا في الأوساط الإعلامية والرياضية، وسط مؤشرات إلى أن الصفقة قد تُعلن خلال الأسابيع القليلة المقبلة.\n\n ويُتوقع أن تحمل هذه الصفقة تأثيرًا كبيرًا على خارطة كرة القدم العالمية، خصوصًا في ظل التغيرات المستمرة في أولويات اللاعبين وأجندات الأندية الكبرى.\n\n هل نشهد صفقة جديدة تفوق التوقعات؟","date":"2025-07-17","order":1,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"},{"id":5,"title":"رودريغو يقترب من مغادرة ريال مدريد… صراع إنجليزي محتدم على توقيعه","image":"https://f.top4top.io/p_3485mp2zi6.jpg","content":"أصبح النجم البرازيلي رودريغو في دائرة الضوء خلال فترة الانتقالات الصيفية الحالية، مع اهتمام قوي من أندية الدوري الإنجليزي الممتاز، وعلى رأسها أرسنال وليفربول.\n\n\nتزايدت التكهنات حول مستقبل رودريغو، خاصة بعد التغيرات التي طرأت على تشكيلة ريال مدريد عقب انضمام أسماء هجومية بارزة هذا الصيف، مما قد يفتح الباب أمام رحيله بحثًا عن دقائق لعب أكثر.\n\nأرسنال بدأ تحركاته الفعلية لاستطلاع موقف اللاعب، فيما يستعد ليفربول لتقديم عرض رسمي، خصوصًا مع احتمالية مغادرة أحد نجومه الكبار خلال الأسابيع المقبلة.\n\nمصادر مطلعة أكدت أن رودريغو لا يمانع خوض تجربة جديدة خارج إسبانيا، بشرط أن يكون المشروع الرياضي واضحًا والطموح فيه مرتفعًا.\n\nالسعر المتوقع للصفقة:\nيُقدر سعر اللاعب في السوق الحالية بأكثر من 85 مليون يورو، مما يعني أن أي صفقة محتملة ستكون من العيار الثقيل، وقد تغيّر ملامح المنافسة في الدوري الإنجليزي الموسم المقبل.\n\nرودريغو يُعد من أبرز المواهب البرازيلية في السنوات الأخيرة، وقدم مستويات مميزة في مختلف البطولات، وساهم في تتويج فريقه بعدة ألقاب محلية وقارية.\n\nمن المتوقع أن تتضح ملامح مستقبل رودريغو خلال الأيام المقبلة، في ظل ضغط الأندية المهتمة للحصول على خدماته قبل انطلاق الموسم الجديد، فهل نشاهده بقميص جديد في البريميرليغ؟","date":"2025-07-17","order":2,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"},{"id":4,"title":"نجم فرنسا السابق يدافع عن مبابي!","image":"https://h.top4top.io/p_348588x3m8.jpg","content":"في خضم موجة الانتقادات التي طالت النجم الفرنسي كيليان مبابي بعد انتقاله إلى ريال مدريد، خرج المهاجم الدولي السابق جبريل سيسيه عن صمته ليرد على حملات السخرية التي طالت اللاعب من جماهير فريقه السابق، باريس سان جيرمان.\n\nالانتقال المثير للجدل\n\nمبابي غادر باريس سان جيرمان مجانًا خلال سوق الانتقالات الصيفي الماضي، بعد سنوات من التألق داخل أسوار حديقة الأمراء. هذه الخطوة أثارت استياء عدد من مشجعي الفريق الباريسي، خصوصًا بعد أن نجح النادي في تحقيق دوري أبطال أوروبا لأول مرة في تاريخه خلال موسم 2024-2025، تحت قيادة المدرب الإسباني لويس إنريكي.\n\nرغم الغياب... الأرقام لا تُنسى\n\nورغم أن كيليان لم يكن ضمن الفريق الفائز بالبطولة القارية، إلا أن بصمته مع باريس لا يمكن إنكارها. فقد:\n\nتُوج بلقب الدوري الفرنسي 6 مرات\n\nسجل 256 هدفًا في 308 مباريات\n\nأصبح الهداف التاريخي للنادي\n\n\nسيسيه يوجّه رسالة للجماهير\n\nفي حديثه عبر برنامج The Bridge، عبّر جبريل سيسيه عن استغرابه من الانتقادات التي تطال مبابي، مؤكدًا أن اللاعب قدم الكثير للنادي ويجب تقديره.\n\nوقال سيسيه:\n\n \"بدلاً من الاستهزاء، دعونا نحتفل بالإنجاز. مبابي لم يكن موجودًا، نعم، لكن مساهماته السابقة أوصلت باريس إلى ما هو عليه الآن. هو جزء من تطور النادي، تمامًا مثل ماركينيوس وتياجو سيلفا.\"\n\n\n\nوختم قائلاً:\n\n \"علينا احترام كيليان. هو جزء من تاريخ باريس سان جيرمان، سواء أحب البعض ذلك أم لا.\"","date":"2025-07-17","order":2,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"}];
+        let nextNewsId = 10;
         let originalNewsData = [...newsData]; 
 
-        const footerButtons = [
-            { text: 'الرئيسية', icon: 'home', action: 'function:resetNewsAndHideSearch' },
-            { text: 'فئات', icon: 'category', action: 'go:https://www.google.com/search?q=فئات+الأخبار' },
-            { text: 'تنبيهات', icon: 'notifications', action: 'function:showAlert:زر التنبيهات' },
-            { text: 'من نحن', icon: 'info', action: 'go:about.html' },
-           
-            { text: 'بحث', icon: 'search', action: 'function:toggleSearchBar' }
-        ];
+        const footerButtons = [{"text":"الرئيسية","icon":"home","action":"function:resetNewsAndHideSearch"},{"text":"فئات","icon":"category","action":"go:https://www.google.com/search?q=فئات+الأخبار"},{"text":"تنبيهات","icon":"notifications","action":"function:showAlert:زر التنبيهات"},{"text":"من نحن","icon":"info","action":"go:about.html"},{"text":"بحث","icon":"search","action":"function:toggleSearchBar"}];
         function executeAction(actionString) {
             if (!actionString) return;
             if (actionString.startsWith('go:')) {
@@ -1207,5 +1331,7 @@
         };
         // End of self-contained script content (DO NOT MODIFY THESE COMMENTS)
     </script>
-</body>
+
+
+<ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;" data-ad-status="unfilled"><div id="aswift_0_host" style="border: none; height: 0px; width: 0px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block;"><iframe id="aswift_0" name="aswift_0" browsingtopics="true" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;min-height:auto;max-height:none;min-width:auto;max-width:none;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allow="attribution-reporting; run-ad-auction" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-1234567890123456&amp;output=html&amp;adk=1812271804&amp;adf=3025194257&amp;abgtt=6&amp;lmt=1752693434&amp;plat=1%3A16777216%2C3%3A65536%2C4%3A65536%2C16%3A8388608%2C17%3A32%2C24%3A32%2C25%3A32%2C32%3A32%2C41%3A32%2C42%3A32&amp;format=0x0&amp;url=https%3A%2F%2Fpronews-zxm8.vercel.app%2F&amp;pra=5&amp;wgl=1&amp;aihb=0&amp;aiudt=1&amp;asro=0&amp;aifxl=29_18~30_19&amp;aiapm=0.1542&amp;aiapmd=0.1542&amp;aiapmi=0.16&amp;aiapmid=0.16&amp;aiact=0.5423&amp;aiactd=0.5423&amp;aicct=0.7&amp;aicctd=0.5799&amp;ailct=0.5849&amp;ailctd=0.65&amp;aimart=4&amp;aimartd=4&amp;uach=WyJBbmRyb2lkIiwiMTUuMC4wIiwiIiwiMjQxMTVSQThFRyIsIjEzOC4wLjcyMDQuNjMiLG51bGwsMSxudWxsLCIiLFtbIk5vdClBO0JyYW5kIiwiOC4wLjAuMCJdLFsiQ2hyb21pdW0iLCIxMzguMC43MjA0LjYzIl0sWyJHb29nbGUgQ2hyb21lIiwiMTM4LjAuNzIwNC42MyJdXSwwXQ..&amp;dt=1752761293884&amp;bpp=7&amp;bdt=6419&amp;idt=26&amp;shv=r20250715&amp;mjsv=m202507140101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie_enabled=1&amp;eoidce=1&amp;nras=1&amp;correlator=5083892521946&amp;frm=20&amp;pv=2&amp;u_tz=180&amp;u_his=1&amp;u_h=904&amp;u_w=407&amp;u_ah=904&amp;u_aw=407&amp;u_cd=24&amp;u_sd=3&amp;dmc=8&amp;adx=-12245933&amp;ady=-12245933&amp;biw=406&amp;bih=766&amp;scr_x=0&amp;scr_y=0&amp;eid=31093273%2C31093426%2C95362656%2C95365880%2C95366019%2C95366348%2C42533293%2C95359266%2C95366366&amp;oid=2&amp;pvsid=2203032048552849&amp;tmod=1446890325&amp;uas=0&amp;nvt=1&amp;fsapi=1&amp;ref=https%3A%2F%2Fvercel.com%2F&amp;fc=1920&amp;brdim=0%2C0%2C0%2C0%2C407%2C0%2C407%2C766%2C406%2C766&amp;vis=1&amp;rsz=%7C%7Cs%7C&amp;abl=NS&amp;fu=32768&amp;bc=31&amp;bz=1&amp;td=1&amp;tdf=2&amp;psd=W251bGwsbnVsbCxudWxsLDNd&amp;nt=1&amp;ifi=1&amp;uci=a!1&amp;fsb=1&amp;dtd=51" data-google-container-id="a!1" tabindex="0" title="Advertisement" aria-label="Advertisement" data-load-complete="true"></iframe></div></ins><iframe src="https://www.google.com/recaptcha/api2/aframe" width="0" height="0" style="display: none;"></iframe><iframe id="google_esf" name="google_esf" src="https://googleads.g.doubleclick.net/pagead/html/r20250715/r20190131/zrt_lookup_fy2021.html" style="display: none;"></iframe>
 </html>
