@@ -114,6 +114,51 @@
             font-size: 1.1em; /* Smaller icon for smaller button */
         }
         
+        /* New styles for suggested news */
+        .suggested-news-container {
+            margin-top: 40px; /* Space above suggested news */
+            padding-top: 20px;
+            border-top: 1px solid #333; /* Separator line */
+            text-align: center;
+        }
+        .suggested-news-container h2 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 25px;
+        }
+        .suggested-news-links {
+            display: flex;
+            flex-direction: column; /* Stack links vertically */
+            gap: 15px; /* Space between links */
+            width: 100%;
+            max-width: 400px; /* Limit width for better readability */
+            margin: 0 auto; /* Center the links */
+        }
+        .suggested-news-links a {
+            font-family: 'Cairo', sans-serif;
+            background-color: #222; /* Darker background for suggestions */
+            color: #f0f0f0;
+            border: 1px solid #444;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Space out icon and text */
+            text-align: right; /* Align text to the right */
+        }
+        .suggested-news-links a:hover {
+            background-color: #333;
+            border-color: #00aaff;
+        }
+        .suggested-news-links a .material-icons {
+            font-size: 1.2em;
+            color: #00aaff; /* Accent color for icons */
+            margin-right: 10px; /* Space between icon and text */
+        }
+
         /* Footer Navigation - same as index.html for consistency */
         .footer-nav {
             position: fixed;
@@ -218,7 +263,13 @@
                 قناتنا على التلغرام <i class="material-icons">send</i>
             </a>
         </div>
-    </div>
+
+        <div class="suggested-news-container">
+            <h2>أخبار قد تهمك</h2>
+            <div class="suggested-news-links" id="suggestedNewsLinks">
+                </div>
+        </div>
+        </div>
 
     <div class="footer-nav" id="footerNav">
         </div>
@@ -308,26 +359,34 @@
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         }
 
-        // New function to insert ad after the first sentence-ending punctuation (specifically a dot)
+        // Function to insert ad after the first dot (.) in the content
         function insertAdAfterFirstDot(fullContent) {
-            // 1. Clean up multiple spaces and trim overall content for better consistency
-            fullContent = fullContent.replace(/\s\s+/g, ' ').trim();
-
             // RegEx to find the first dot (.), optionally followed by one or more spaces or end of string
-            const regex = /\.(\s+|$)/; 
+            const regex = /\.(?:\s*|$)/; 
             const match = fullContent.match(regex);
 
             let htmlContent = '';
 
-            if (match) {
-                const dotIndex = match.index + match[0].length; // Index after the dot and its following spaces
-                const firstPart = fullContent.substring(0, dotIndex);
-                const secondPart = fullContent.substring(dotIndex);
+            // Helper to format a text segment into paragraphs with <br> and clean internal spaces
+            const formatSegmentToHtml = (segment) => {
+                // Split into paragraphs by double newlines, filter out empty ones
+                const paragraphs = segment.split('\n\n').filter(p => p.trim() !== '');
+                
+                // Process each paragraph: clean internal spaces, replace single newlines with <br>, wrap in <p>
+                return paragraphs.map(p => {
+                    // Replace multiple spaces with a single space within each line/phrase
+                    // Then replace single newlines with <br>
+                    return `<p class="detail-text">${p.replace(/\s\s+/g, ' ').trim().replace(/\n/g, '<br>')}</p>`;
+                }).join('');
+            };
 
-                // Process first part: split by double newlines for paragraphs, then single newlines for <br>
-                htmlContent += firstPart.split('\n\n').map(p => {
-                    return `<p class="detail-text">${p.trim().replace(/\n/g, '<br>')}</p>`;
-                }).filter(p => p.trim() !== '<p class="detail-text"></p>').join(''); // Filter out empty paragraphs
+            if (match) {
+                // Calculate the exact split point: after the dot and any following spaces
+                const splitPoint = match.index + match[0].length; 
+                const firstPart = fullContent.substring(0, splitPoint);
+                const secondPart = fullContent.substring(splitPoint);
+
+                htmlContent += formatSegmentToHtml(firstPart);
 
                 // Ad Container HTML
                 htmlContent += `
@@ -344,24 +403,20 @@
                 // Push ad to AdSense for rendering
                 (adsbygoogle = window.adsbygoogle || []).push({});
 
-                // Process second part similarly
-                htmlContent += secondPart.split('\n\n').map(p => {
-                    return `<p class="detail-text">${p.trim().replace(/\n/g, '<br>')}</p>`;
-                }).filter(p => p.trim() !== '<p class="detail-text"></p>').join(''); // Filter out empty paragraphs
+                htmlContent += formatSegmentToHtml(secondPart);
                 
                 return htmlContent;
             } else {
                 // If no dot is found, just format the entire content as paragraphs
-                return fullContent.split('\n\n').map(p => {
-                    return `<p class="detail-text">${p.trim().replace(/\n/g, '<br>')}</p>`;
-                }).filter(p => p.trim() !== '<p class="detail-text"></p>').join(''); // Filter out empty paragraphs
+                return formatSegmentToHtml(fullContent);
             }
         }
 
 
         document.addEventListener('DOMContentLoaded', () => {
             const newsId = parseInt(getUrlParameter('id'));
-            const newsItem = newsData.find(news => news.id === newsId);
+            const newsItemIndex = newsData.findIndex(news => news.id === newsId);
+            const newsItem = newsData[newsItemIndex];
 
             if (newsItem) {
                 document.getElementById('detailNewsImage').src = newsItem.image;
@@ -371,10 +426,41 @@
 
                 const newsContentWrapper = document.getElementById('newsContentWrapper');
                 if (newsContentWrapper) {
-                    newsContentWrapper.innerHTML = insertAdAfterFirstDot(newsItem.content); // استخدم الوظيفة الجديدة
+                    newsContentWrapper.innerHTML = insertAdAfterFirstDot(newsItem.content);
                 }
 
                 document.title = `تفاصيل الخبر: ${newsItem.title} - برو نيوز`;
+
+                // --- Suggested News Logic ---
+                const suggestedNewsLinksContainer = document.getElementById('suggestedNewsLinks');
+                if (suggestedNewsLinksContainer) {
+                    suggestedNewsLinksContainer.innerHTML = ''; // Clear previous content
+
+                    // Previous News
+                    if (newsItemIndex > 0) {
+                        const prevNews = newsData[newsItemIndex - 1];
+                        const prevLink = document.createElement('a');
+                        prevLink.href = `news-detail.html?id=${prevNews.id}`;
+                        prevLink.innerHTML = `<i class="material-icons">arrow_forward</i><span>الخبر السابق: ${prevNews.title}</span>`;
+                        suggestedNewsLinksContainer.appendChild(prevLink);
+                    }
+
+                    // Next News
+                    if (newsItemIndex < newsData.length - 1) {
+                        const nextNews = newsData[newsItemIndex + 1];
+                        const nextLink = document.createElement('a');
+                        nextLink.href = `news-detail.html?id=${nextNews.id}`;
+                        nextLink.innerHTML = `<i class="material-icons">arrow_back</i><span>الخبر التالي: ${nextNews.title}</span>`;
+                        suggestedNewsLinksContainer.appendChild(nextLink);
+                    }
+
+                    // If no suggestions, hide the container
+                    if (suggestedNewsLinksContainer.children.length === 0) {
+                        suggestedNewsLinksContainer.parentElement.style.display = 'none';
+                    }
+                }
+                // --- End Suggested News Logic ---
+
             } else {
                 // Handle case where news item is not found
                 document.getElementById('detailNewsTitle').textContent = 'الخبر غير موجود';
@@ -385,6 +471,12 @@
                 document.getElementById('detailNewsImage').style.display = 'none';
                 document.getElementById('detailNewsDate').style.display = 'none';
                 document.title = 'خطأ - الخبر غير موجود - برو نيوز';
+
+                // Hide suggested news section if news not found
+                const suggestedNewsContainer = document.querySelector('.suggested-news-container');
+                if (suggestedNewsContainer) {
+                    suggestedNewsContainer.style.display = 'none';
+                }
             }
             setupFooterButtons();
         });
