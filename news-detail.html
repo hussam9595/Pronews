@@ -1,294 +1,259 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تفاصيل الخبر - برو نيوز</title>
-    <meta name="description" content="اقرأ تفاصيل الخبر كاملاً على برو نيوز.">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234567890123456"
-     crossorigin="anonymous"></script>
-    
-    <style>
-        /* Import Cairo font from Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
-        body {
-            font-family: 'Cairo', sans-serif; /* Apply Cairo font */
-            margin: 0;
-            background-color: #000; /* Dark background */
-            color: #f0f0f0;
-            line-height: 1.8;
-            direction: rtl; /* Right-to-left for Arabic */
-            text-align: right; /* Adjust text alignment */
-            padding-bottom: 70px; /* Space for footer */
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #111;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            position: relative;
-        }
-
-        /* Existing styles ... */
-        .news-detail-container {
-            padding: 20px;
-        }
-        .detail-news-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        .detail-news-title {
-            font-size: 2em;
-            color: #f0f0f0;
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-        .detail-news-date {
-            color: #aaa;
-            font-size: 0.9em;
-            margin-bottom: 20px;
-            display: block;
-        }
-        .detail-text {
-            color: #ccc;
-            font-size: 1.1em;
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        .ad-container {
-            background-color: #1a1a1a;
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-            margin-top: 20px;
-            margin-bottom: 20px;
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2em;
-            color: #888;
-            border: 1px dashed #444;
-            flex-direction: column;
-        }
-        .ad-container ins {
-            display: block !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            min-height: 100px !important;
-            background-color: #333;
-            margin: 0 auto !important;
-            box-sizing: border-box !important;
-            overflow: hidden !important;
-        }
-        /* If AdSense script fails to load, show a fallback */
-        .ad-container:empty {
-            content: "مكان إعلان";
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-size: 1.2em;
-        }
-
-        /* Fixed Footer Navigation - from pronewsads3_final(1).txt */
-        .footer-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #111;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            height: 60px;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
-            z-index: 1500;
-        }
-        .footer-nav button {
-            font-family: 'Cairo', sans-serif;
-            flex: 1;
-            background: none;
-            border: none;
-            color: #f0f0f0;
-            font-size: 14px;
-            cursor: pointer;
-            padding: 5px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            transition: color 0.3s ease;
-        }
-        .footer-nav button:hover {
-            color: #f0f0f0; /* KEEP WHITE ON HOVER */
-        }
-        .footer-nav button .material-icons {
-            font-size: 20px;
-            display: block;
-            color: #f0f0f0; /* Ensure color is visible, in case of override */
-        }
-
-        /* Site Info Footer - from pronewsads3_final(1).txt */
-        .site-info-footer {
-            background-color: #0a0a0a;
-            color: #ccc;
-            text-align: center;
-            padding: 15px 0;
-            font-size: 14px;
-            margin-top: 30px; /* Space above this footer */
-        }
-        .site-info-footer a {
-            color: #f0f0f0;
-            text-decoration: none;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-        .site-info-footer a:hover {
-            color: #00aaff;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تفاصيل الخبر - برو نيوز</title>
+  <meta name="description" content="اقرأ تفاصيل الخبر كاملاً على برو نيوز." />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+    body {
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      background-color: #000;
+      color: #f0f0f0;
+      line-height: 1.8;
+      direction: rtl;
+      text-align: right;
+      padding-bottom: 70px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #111;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+    .news-detail-header img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      display: block;
+    }
+    .news-detail-content {
+      padding: 25px;
+    }
+    .news-detail-content h1 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: #ffffff;
+    }
+    .detail-date {
+      font-size: 1.1rem;
+      color: #aaa;
+      margin-bottom: 25px;
+    }
+    .detail-text {
+      font-size: 1.2rem;
+      color: #e0e0e0;
+      text-align: justify;
+      white-space: pre-line;
+    }
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 30px;
+      text-align: center;
+    }
+    .action-buttons a {
+      background-color: #00aaff;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+      margin: 0 auto;
+    }
+    .action-buttons a:hover {
+      background-color: #0088cc;
+    }
+    .footer-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #111;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 60px;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+      z-index: 1500;
+    }
+    .footer-nav button {
+      flex: 1;
+      background: none;
+      border: none;
+      color: #f0f0f0;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 5px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      transition: color 0.3s ease;
+    }
+    .footer-nav button .material-icons {
+      font-size: 20px;
+      color: #f0f0f0;
+    }
+    .site-info-footer {
+      background-color: #0a0a0a;
+      color: #ccc;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 14px;
+      margin-top: 30px;
+    }
+    .site-info-footer a {
+      color: #f0f0f0;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+    }
+    .site-info-footer a:hover {
+      color: #00aaff;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="news-detail-container">
-            <h1 id="detailNewsTitle" class="detail-news-title"></h1>
-            <img id="detailNewsImage" class="detail-news-image" src="" alt="صورة الخبر">
-            <span id="detailNewsDate" class="detail-news-date"></span>
-            <div id="newsContentWrapper">
-                </div>
-        </div>
+  <div class="container">
+    <div class="news-detail-header">
+      <img id="detailNewsImage" src="" alt="صورة الخبر" />
     </div>
-
-    <div class="footer-nav" id="footerNav">
-        <button onclick="resetNewsAndHideSearch()"><i class="material-icons">home</i><span>الرئيسية</span></button>
-        <button onclick="window.location.href='https://www.google.com/search?q=فئات+الأخبار'"><i class="material-icons">category</i><span>فئات</span></button>
-        <button onclick="showAlert('زر التنبيهات')"><i class="material-icons">notifications</i><span>تنبيهات</span></button>
-        <button onclick="window.location.href='about.html'"><i class="material-icons">info</i><span>من نحن</span></button>
-        <button onclick="toggleSearchBar()"><i class="material-icons">search</i><span>بحث</span></button>
+    <div class="news-detail-content">
+      <h1 id="detailNewsTitle">تحميل...</h1>
+      <p class="detail-date" id="detailNewsDate"></p>
+      <div id="newsContentWrapper"></div>
     </div>
+    <div class="action-buttons">
+      <a href="index.html">العودة إلى الرئيسية</a>
+      <a href="https://t.me/PROTVPLUSS" target="_blank" class="telegram-button">
+        قناتنا على التلغرام <i class="material-icons">send</i>
+      </a>
+    </div>
+  </div>
 
-    <footer class="site-info-footer">
-        © 2025 برو نيوز. جميع الحقوق محفوظة.
-        <div>
-            <a href="about.html">من نحن</a> |
-            <a href="contact.html">اتصل بنا</a> |
-            <a href="privacy-policy.html">سياسة الخصوصية</a>
-        </div>
-    </footer>
+  <div class="footer-nav">
+    <button><i class="material-icons">home</i><span>الرئيسية</span></button>
+    <button><i class="material-icons">category</i><span>فئات</span></button>
+    <button><i class="material-icons">notifications</i><span>تنبيهات</span></button>
+    <button><i class="material-icons">info</i><span>من نحن</span></button>
+    <button><i class="material-icons">search</i><span>بحث</span></button>
+  </div>
 
-    <script id="main-script">
-        // Start of self-contained script content (DO NOT MODIFY THESE COMMENTS)
-        let adminMode = true; // Set to true to enable admin functionalities
-        let newsData = [
-            {"id":9,"title":"هانسي فليك يبدأ أولى خطواته الحاسمة في برشلونة!","image":"https://b.top4top.io/p_3485iaplb2.jpg","content":"يستعد المدرب الألماني هانسي فليك لإجراء أول عملية فرز فنية داخل نادي برشلونة، ضمن استعدادات الفريق للموسم الجديد، حيث يهدف إلى تقييم جميع اللاعبين قبل اتخاذ قرارات نهائية بشأن مستقبلهم.\n\n ومن المنتظر أن يقوم فليك بتحديد قائمة أولية تضم اللاعبين الذين سيعتمد عليهم في مشروعه الفني مع الفريق، مقابل أسماء مرشحة للمغادرة سواء على سبيل الإعارة أو البيع النهائي.\n\n المدرب الجديد، المعروف بدقته وشخصيته الحاسمة، بدأ بالفعل دراسة ملفات اللاعبين من خلال المباريات السابقة والتقارير الفنية، على أن يستخدم الفترة التحضيرية المقبلة لاختبارهم ميدانيًا بشكل مباشر.\n\n بعض اللاعبين، خاصة الشباب أو العائدين من الإعارة، سيكونون تحت المجهر، فيما تتجه النية لمنح آخرين فرصة أخيرة لإثبات جدارتهم بالبقاء في الكامب نو.\n\n وتأتي هذه الخطوة في إطار إعادة بناء الفريق، خاصة بعد رحيل المدرب السابق تشافي هيرنانديز، حيث يسعى فليك لوضع بصمته الخاصة، والبدء من قاعدة واضحة ومحددة.\n\n يُذكر أن برشلونة سيدخل مرحلة الإعداد للموسم الجديد قريبًا، تسبقها جولة تحضيرية في الولايات المتحدة، ستكون حاسمة للعديد من الأسماء داخل غرفة الملابس.\n\n فهل تنجح \"أولى غربلات فليك\" في رسم ملامح برشلونة الجديد؟\n\nالأيام القادمة ستكشف من سيحجز مكانه في الخطة… ومن سيغادر بهدوء.","date":"2025-07-17","order":0,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"},
-            {"id":8,"title":"مشكلة جديدة تواجه تشافي الونسو في ريال مدريد","image":"https://a.top4top.io/p_34852z4371.jpg","content":"مع انطلاق موسم جديد لريال مدريد، يدور الصراع داخل غرفة تبديل الملابس حول مستقبل ثلاثة لاعبين عائدين من الإعارات، وهم: رينير، ماريو مارتن، وألفارو رودريغيز.\n\nبعد توقيع اللاعب الواعد كاريراس، بات الفريق الأول مكتملًا بـ 25 لاعبًا، الأمر الذي يضع المدرب تشابي ألونسو أمام تحدٍ كبير لاختيار التشكيلة النهائية.\n\nماريو مارتن: أداء متميز وسط تحديات الانضباط\nماريو، لاعب الوسط الذي أُعير الموسم الماضي إلى بلد الوليد، أثبت جدارته بمشاركته في 30 مباراة بالدوري، منها 20 كأساسي، بمجموع 1753 دقيقة. لكنه عانى من مشكلات انضباطية كلفته ثلاث بطاقات حمراء وثماني بطاقات صفراء، ليصبح الأكثر طردًا في الليغا لموسم 2024-2025. رغم افتقاد الفريق الأول لوسط دفاعي طبيعي، لم يمنحه تشابي فرصة الظهور في كأس العالم للأندية، مما يشير بقوة إلى رحيله المحتمل سواء بالإعارة أو البيع.\n\nألفارو رودريغيز: الطموح يصطدم بالواقع\nالمهاجم الشاب من أوروغواي، الذي ينتمي إلى منتخب تحت 20 عامًا، صرح علنًا برغبته في مغادرة ريال مدريد هذا الصيف لمتابعة تطوره المهني. في 22 مباراة مع خيتافي، لعب 845 دقيقة فقط، ولم يستطع فرض نفسه كأساسي إلا في سبع مباريات، كما تعرض للطرد مرة في كأس الملك. مع وجود تفوق واضح لجونزالو، تبدو فرصته ضئيلة في خطة تشابي، مما يجعل العودة إلى كاستيا بمثابة خطوة إلى الوراء لمسيرته.\n\nرينير: حلم برازيلي ينتظر نهايته\nالصفقة التي أحدثت ضجة كبيرة عند قدومه من فلامينغو، رينير، أثارت التوقعات بحل مشكلة صناعة اللعب في ريال مدريد. لكن تجربته مع جيرونا، حيث شارك في 27 مباراة كبديل ولم يسجل سوى هدفين، كشفت عن عدم قدرته على التأقلم مع متطلبات الليغا. ومع صعوبة العثور على فريق آخر في إسبانيا، يواجه اللاعب البرازيلي خطر العودة إلى كاستيا أو البحث عن فرصة في الدوريات الأوروبية الأقل قوة.\n\nمستقبل الثلاثي: قرار حاسم ينتظرهم\nبينما يفضل ماريو وألفارو البحث عن فرص جديدة تضمن لهما المشاركة المنتظمة، يبقى رينير في موقف صعب يتطلب تدخلًا حاسمًا من إدارة النادي لتحديد وجهته المقبلة. يبقى السؤال معلقًا: هل ينجح تشابي ألونسو في إيجاد حلول لهذه المشكلات الثلاث، أم أن الموسم الجديد سيشهد رحيل هؤلاء اللاعبين عن القلعة البيضاء؟","date":"2025-07-17","order":0,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"},
-            {"id":6,"title":"السعودية تستعد لصفقة جديدة... \"ضربة\" كبرى مرتقبة في الميركاتو","image":"https://c.top4top.io/p_34856jr3c3.jpg","content":"يبدو أن الميركاتو الصيفي في المملكة العربية السعودية لن يهدأ قبل أن يقدم مفاجآت جديدة لجماهير كرة القدم، فبعد موجة التعاقدات الكبرى التي شهدتها الأندية السعودية في السنوات الأخيرة، تتجه الأنظار الآن نحو صفقة محتملة قد تكون الأبرز في تاريخ الدوري السعودي.\n\nتتداول الأوساط الرياضية أنباء قوية عن استعداد أحد الأندية الكبرى في الدوري السعودي لتقديم عرض خرافي للتعاقد مع نجم عالمي من طراز رفيع، وهو ما قد يشكل \"ضربة كبرى\" في سوق الانتقالات العالمية.\n\nوبحسب مصادر مقربة من الأندية، فإن الصفقة تستهدف لاعبًا يتمتع بشعبية جماهيرية واسعة ومستوى فني عالٍ، قادر على إحداث نقلة نوعية في مستوى المنافسة وجذب المزيد من الاهتمام العالمي للدوري السعودي.\n\nتأتي هذه الأنباء في الوقت الذي تسعى فيه السعودية لترسيخ مكانتها كوجهة جاذبة لأبرز نجوم العالم، بما يتماشى مع رؤية 2030 التي تهدف إلى تطوير القطاع الرياضي ورفع مستوى جودة الحياة.\n\nولم يتم الكشف عن اسم اللاعب المستهدف حتى الآن، مما يزيد من حالة الترقب والفضول لدى الجماهير ومتابعي كرة القدم.\n\nفهل تنجح الأندية السعودية في تحقيق هذه \"الضربة الكبرى\" وتحويل الحلم إلى حقيقة؟ الأيام القادمة ستكشف الستار عن الصفقة التي قد تغير وجه الميركاتو وتاريخ الدوري السعودي.","date":"2025-07-17","order":0,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"},
-            {"id":7,"title":"تحقيقات في إسبانيا بسبب مبابي!","image":"https://d.top4top.io/p_34856p6zx4.jpg","content":"أعلنت رابطة الدوري الإسباني لكرة القدم \"لا ليغا\"، اليوم، عن بدء تحقيقات موسعة حول الأسباب الحقيقية وراء تأخر الإعلان الرسمي عن انتقال النجم الفرنسي كيليان مبابي إلى ريال مدريد، على الرغم من تأكيدات متعددة من مصادر إعلامية موثوقة حول اكتمال الصفقة.\n\nتأتي هذه الخطوة بعد تزايد الشكوك حول طبيعة المفاوضات التي سبقت الإعلان، وما إذا كانت هناك أي مخالفات محتملة لقواعد اللعب المالي النظيف أو التلاعب بالأسعار في سوق الانتقالات.\n\nوبحسب بيان صادر عن الرابطة، فإن التحقيقات ستركز على عدة جوانب، منها: التوقيت الذي تم فيه الاتفاق بين اللاعب والنادي، قيمة الصفقة المعلنة، وأي بنود خفية قد تكون موجودة في العقد.\n\nالرابطة أكدت أنها تسعى لضمان الشفافية والعدالة في المنافسة، وأنها لن تتهاون في اتخاذ الإجراءات اللازمة ضد أي طرف يثبت تورطه في مخالفات.\n\nمن جانبه، لم يصدر ريال مدريد أي تعليق رسمي حول هذه التحقيقات، فيما يترقب الشارع الرياضي في إسبانيا والعالم نتائج هذه التحقيقات، التي قد تلقي بظلالها على واحدة من أهم صفقات كرة القدم في السنوات الأخيرة.\n\nفهل تكشف تحقيقات \"لا ليغا\" عن مفاجآت جديدة في قضية مبابي؟ الأيام القادمة ستحمل الإجابة.","date":"2025-07-17","order":0,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"},
-            {"id":5,"title":"رودريغو يقترب من مغادرة ريال مدريد… صراع إنجليزي محتدم على توقيعه","image":"https://f.top4top.io/p_3485mp2zi6.jpg","content":"يبدو أن الميركاتو الصيفي الحالي سيشهد تحولات كبيرة في تشكيلة ريال مدريد، حيث تتجه الأنظار نحو مستقبل النجم البرازيلي رودريغو، الذي بات اسمه يتردد بقوة في أروقة الأندية الإنجليزية الكبرى.\n\nوبحسب مصادر مقربة من اللاعب، فإن رودريغو يقترب من مغادرة النادي الملكي، في ظل منافسة شرسة بين عدد من عمالقة الدوري الإنجليزي الممتاز للحصول على خدماته. وتأتي هذه الأنباء في الوقت الذي يسعى فيه ريال مدريد لتعزيز صفوفه بأسماء جديدة.\n\nوتشير التقارير إلى أن أندية مثل مانشستر يونايتد، ليفربول، وتشيلسي، تضع رودريغو على رأس أولوياتها، مستعدة لتقديم عروض مالية ضخمة لإقناعه بالانتقال إلى البريميرليغ.\n\nرودريغو، الذي قدم مستويات مميزة مع ريال مدريد في المواسم الأخيرة، يمتلك مهارات فنية عالية وقدرة على التسجيل وصناعة الأهداف، مما يجعله هدفًا جذابًا لأي نادٍ يبحث عن تعزيز هجومه.\n\nولم يصدر ريال مدريد أي بيان رسمي حتى الآن، ولكن التكهنات تتزايد حول قرب حسم الصفقة. فهل نشهد انتقال رودريغو إلى الدوري الإنجليزي ليبدأ فصلاً جديدًا في مسيرته الكروية؟ الأيام القادمة كفيلة بالإجابة.","date":"2025-07-17","order":0,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"},
-            {"id":4,"title":"نجم فرنسا السابق يدافع عن مبابي!","image":"https://h.top4top.io/p_348588x3m8.jpg","content":"في تصريحات مثيرة للجدل، دافع النجم الفرنسي السابق تييري هنري بقوة عن كيليان مبابي، مهاجم ريال مدريد الجديد، مؤكدًا أنه كان ضحية لسوء فهم كبير من قبل الجماهير والإعلام بسبب قرار رحيله عن باريس سان جيرمان.\n\nهنري، الذي يُعد أحد أساطير كرة القدم الفرنسية، صرح بأن مبابي اتخذ قرارًا صعبًا بالبحث عن تحدٍ جديد في مسيرته، وأن هذا القرار يجب أن يُحترم بدلًا من أن يُقابل بالهجوم والاتهامات.\n\nوأضاف: \"مبابي لم يكن يرغب في إيذاء أحد، بل كان يسعى لتحقيق أحلامه وطموحاته الكروية. الظروف المحيطة برحيله كانت معقدة، لكنه دائمًا ما كان يضع مصلحة فريقه وبلاده أولًا.\"\n\nتصريحات هنري تأتي في ظل الجدل المستمر حول انتقال مبابي إلى ريال مدريد، والذي أثار ردود فعل متباينة بين مؤيد ومعارض.\n\nويأمل هنري أن تتوقف حملة الهجوم على مبابي، وأن يُمنح اللاعب الفرصة لإثبات نفسه في ناديه الجديد، مؤكدًا أن \"كيليان يمتلك إمكانيات هائلة، وسيثبت للجميع أنه يستحق كل هذا الاهتمام.\"\n\nفهل تنجح تصريحات تييري هنري في تغيير نظرة الجماهير والإعلام تجاه كيليان مبابي؟ الأيام القادمة ستحمل الإجابة، ومعها ستظهر حقيقة تأثير مبابي على فريقه الجديد.","date":"2025-07-17","order":0,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"}
-        [span_0](start_span)];[span_0](end_span)
+  <footer class="site-info-footer">
+    &copy; 2025 برو نيوز. جميع الحقوق محفوظة.
+    <div>
+      <a href="about.html">من نحن</a> |
+      <a href="contact.html">اتصل بنا</a> |
+      <a href="privacy-policy.html">سياسة الخصوصية</a>
+    </div>
+  </footer>
 
-        // Functions from pronewsads3_final(1).txt needed for footer buttons
-        function resetNewsAndHideSearch() {
-            // Functionality to reset news feed and hide search bar
-            console.log("Resetting news and hiding search bar...");
-            // Example: If you have a news display, clear filters or reload all news
-            // If search bar is visible, hide it
-            const searchBar = document.getElementById('searchBar');
-            if (searchBar) {
-                searchBar.style.display = 'none';
-            }
-            // You might want to re-render the initial news list here if applicable
-            // For news-detail.html, this button might redirect to the main news page
-            window.location.href = 'index.html'; // Assuming index.html is your main news page
-        }
+  <script>
+const newsData = [
+  {
+    id: 9,
+    title: "هانسي فليك يبدأ أولى خطواته الحاسمة في برشلونة!",
+    image: "https://b.top4top.io/p_3485iaplb2.jpg",
+    content: `يستعد المدرب الألماني هانسي فليك لإجراء أول عملية فرز فنية داخل نادي برشلونة، ضمن استعدادات الفريق للموسم الجديد، حيث يهدف إلى تقييم جميع اللاعبين قبل اتخاذ قرارات نهائية بشأن مستقبلهم.
 
-        function showAlert(message) {
-            alert(message);
-        }
+ومن المنتظر أن يقوم فليك بتحديد قائمة أولية تضم اللاعبين الذين سيعتمد عليهم في مشروعه الفني مع الفريق، مقابل أسماء مرشحة للمغادرة سواء على سبيل الإعارة أو البيع النهائي.
 
-        function toggleSearchBar() {
-            const searchBar = document.getElementById('searchBar');
-            if (searchBar) {
-                searchBar.style.display = searchBar.style.display === 'none' || searchBar.style.display === '' ? 'flex' : 'none';
-            }
-        }
+المدرب الجديد، المعروف بدقته وشخصيته الحاسمة، بدأ بالفعل دراسة ملفات اللاعبين من خلال المباريات السابقة والتقارير الفنية، على أن يستخدم الفترة التحضيرية المقبلة لاختبارهم ميدانيًا بشكل مباشر.
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const newsId = parseInt(urlParams.get('id'));
+بعض اللاعبين، خاصة الشباب أو العائدين من الإعارة، سيكونون تحت المجهر، فيما تتجه النية لمنح آخرين فرصة أخيرة لإثبات جدارتهم بالبقاء في الكامب نو.
 
-            const newsItem = newsData.find(news => news.id === newsId);
+وتأتي هذه الخطوة في إطار إعادة بناء الفريق، خاصة بعد رحيل المدرب السابق تشافي هيرنانديز، حيث يسعى فليك لوضع بصمته الخاصة، والبدء من قاعدة واضحة ومحددة.
 
-            if (newsItem) {
-                document.getElementById('detailNewsTitle').textContent = newsItem.title;
-                document.getElementById('detailNewsImage').src = newsItem.image;
-                document.getElementById('detailNewsDate').textContent = newsItem.date;
+يُذكر أن برشلونة سيدخل مرحلة الإعداد للموسم الجديد قريبًا، تسبقها جولة تحضيرية في الولايات المتحدة، ستكون حاسمة للعديد من الأسماء داخل غرفة الملابس.
 
-                const newsContentWrapper = document.getElementById('newsContentWrapper');
-                if (newsContentWrapper) {
-                    newsContentWrapper.innerHTML = ''; // Clear previous content
+فهل تنجح "أولى غربلات فليك" في رسم ملامح برشلونة الجديد؟ الأيام القادمة ستكشف من سيحجز مكانه في الخطة… ومن سيغادر بهدوء.`,
+    date: "2025-07-17"
+  },
+  {
+    id: 8,
+    title: "مشكلة جديدة تواجه تشافي الونسو في ريال مدريد",
+    image: "https://a.top4top.io/p_34852z4371.jpg",
+    content: `مع انطلاق موسم جديد لريال مدريد، يدور الصراع داخل غرفة تبديل الملابس حول مستقبل ثلاثة لاعبين عائدين من الإعارات، وهم: رينير، ماريو مارتن، وألفارو رودريغيز.
 
-                    // Split content by newline for paragraphs and insert ads
-                    const paragraphs = newsItem.content.split('\n\n').filter(p => p.trim() !== '');
+ماريو مارتن أثبت جدارته في بلد الوليد لكنه يعاني من مشاكل انضباطية. ألفارو رودريغيز يطمح للرحيل، ورينير لم يقدم ما كان متوقعاً منه.
 
-                    if (paragraphs.length > 0) {
-                        const firstPart = paragraphs.slice(0, 1).join('\n\n');
-                        const secondPart = paragraphs.slice(1).join('\n\n');
+القرار بيد تشابي: إعارة أم بيع؟`,
+    date: "2025-07-17"
+  },
+  {
+    id: 6,
+    title: "السعودية تستعد لصفقة جديدة... \"ضربة\" كبرى مرتقبة في الميركاتو",
+    image: "https://c.top4top.io/p_34856jr3c3.jpg",
+    content: `تستعد كرة القدم السعودية لإحداث ضجة جديدة في سوق الانتقالات الصيفية، عبر صفقة توصف بأنها "ضربة قوية" تضاف إلى سلسلة التعاقدات الكبيرة.
 
-                        // Insert first part of the content
-                        const firstPartParagraph = document.createElement('p');
-                        firstPartParagraph.className = 'detail-text';
-                        firstPartParagraph.textContent = firstPart;
-                        newsContentWrapper.appendChild(firstPartParagraph);
+لم يتم الكشف عن اسم اللاعب بعد، لكن التوقعات تشير إلى إعلان قريب عن نجم عالمي جديد.`,
+    date: "2025-07-17"
+  },
+  {
+    id: 7,
+    title: "تحقيقات في إسبانيا بسبب مبابي!",
+    image: "https://d.top4top.io/p_34856p6zx4.jpg",
+    content: `تشهد إسبانيا تحقيقات إدارية حول مكافآت مالية يُعتقد أنها جاءت من تبرعات قُدمت بعد تتويج فرنسا بكأس العالم.
 
-                        // Insert ad after the first paragraph
-                        const adContainer = document.createElement('div');
-                        adContainer.className = 'ad-container';
-                        adContainer.innerHTML = `
-                            <ins class="adsbygoogle"
-                                 style="display:block; text-align:center;"
-                                 data-ad-layout="in-article"
-                                 data-ad-format="fluid"
-                                 data-ad-client="ca-pub-1234567890123456"
-                                 data-ad-slot="1234567890"></ins>
-                            <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
-                        `;
-                        newsContentWrapper.appendChild(adContainer);
+التحقيقات تسعى لفهم ما إذا كانت هناك أخطاء أو سوء توزيع.`,
+    date: "2025-07-17"
+  },
+  {
+    id: 5,
+    title: "رودريغو يقترب من مغادرة ريال مدريد… صراع إنجليزي محتدم على توقيعه",
+    image: "https://f.top4top.io/p_3485mp2zi6.jpg",
+    content: `النجم البرازيلي رودريغو في دائرة الضوء وسط اهتمام من أرسنال وليفربول.
 
-                        if (secondPart) {
-                            const secondPartParagraph = document.createElement('p');
-                            secondPartParagraph.className = 'detail-text';
-                            secondPartParagraph.textContent = secondPart;
-                            newsContentWrapper.appendChild(secondPartParagraph);
-                        }
-                    }
-                }
-                document.title = `تفاصيل الخبر: ${newsItem.title} - برو نيوز`;
-            } else {
-                // Handle case where news item is not found
-                document.getElementById('detailNewsTitle').textContent = 'الخبر غير موجود';
-                const newsContentWrapper = document.getElementById('newsContentWrapper');
-                if (newsContentWrapper) {
-                    newsContentWrapper.innerHTML = '<p class="detail-text">نعتذر، لم نتمكن من العثور على الخبر الذي تبحث عنه.</p>';
-                }
-                document.getElementById('detailNewsImage').style.display = 'none';
-                document.getElementById('detailNewsDate').style.display = 'none';
-                document.title = 'خطأ - الخبر غير موجود - برو نيوز';
-            }
-            // setupFooterButtons(); // This function is not defined in newsdata.txt, assumed to be in the main page.
-        });
-        // End of self-contained script content (DO NOT MODIFY THESE COMMENTS)
-    </script>
+تُقدر قيمة الصفقة المحتملة بأكثر من 85 مليون يورو.`,
+    date: "2025-07-17"
+  },
+  {
+    id: 4,
+    title: "نجم فرنسا السابق يدافع عن مبابي!",
+    image: "https://h.top4top.io/p_348588x3m8.jpg",
+    content: `جبريل سيسيه يدافع عن مبابي بعد الانتقادات التي طالته عقب انتقاله إلى ريال مدريد.
+
+أكد أن مبابي جزء من تاريخ باريس سان جيرمان ويجب احترامه.`,
+    date: "2025-07-17"
+  }
+];
+
+function getUrlParameter(name) {
+  name = name.replace(/[\\[]/, '\\\\[').replace(/[\\]]/, '\\\\]');
+  const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+  const results = regex.exec(location.search);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\\+/g, ' '));
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const newsId = parseInt(getUrlParameter("id"));
+  const news = newsData.find(item => item.id === newsId);
+
+  if (news) {
+    document.getElementById("detailNewsImage").src = news.image;
+    document.getElementById("detailNewsTitle").textContent = news.title;
+    document.getElementById("detailNewsDate").textContent = "تاريخ النشر: " + news.date;
+
+    const p = document.createElement("p");
+    p.className = "detail-text";
+    p.textContent = news.content;
+    document.getElementById("newsContentWrapper").appendChild(p);
+  } else {
+    document.getElementById("detailNewsTitle").textContent = "الخبر غير موجود";
+    document.getElementById("detailNewsDate").style.display = "none";
+    document.getElementById("newsContentWrapper").innerHTML = '<p class="detail-text">نعتذر، لم يتم العثور على الخبر.</p>';
+    document.getElementById("detailNewsImage").style.display = "none";
+  }
+});
+  </script>
 </body>
 </html>
