@@ -1,66 +1,128 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <title>تفاصيل الخبر</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    body { font-family: Arial, sans-serif; background: #000; color: #fff; direction: rtl; padding: 20px; }
-    img { max-width: 100%; height: auto; border-radius: 10px; }
-    h1 { font-size: 24px; }
-    .date { color: #aaa; margin-bottom: 15px; }
-    .content { white-space: pre-wrap; font-size: 18px; line-height: 1.5; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      padding: 20px;
+      margin: 0;
+    }
+    .news-container {
+      max-width: 800px;
+      margin: auto;
+    }
+    .news-image {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .news-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .news-date {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+    .news-content {
+      font-size: 18px;
+      line-height: 1.8;
+      white-space: pre-wrap;
+    }
+    .ads-box {
+      width: 100%;
+      height: 100px;
+      background-color: #1a1a1a;
+      border: 1px dashed #444;
+      margin: 30px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
 
-  <img id="newsImage" src="" alt="صورة الخبر" />
-  <h1 id="newsTitle">جاري التحميل...</h1>
-  <p class="date" id="newsDate"></p>
-  <div class="content" id="newsContent"></div>
+  <div class="news-container">
+    <img id="newsImage" class="news-image" src="" alt="صورة الخبر" />
+    <div class="news-title" id="newsTitle">تحميل العنوان...</div>
+    <div class="news-date" id="newsDate"></div>
+    <div class="ads-box">
+      مساحة إعلانية (AdSense Placeholder)
+    </div>
+    <div class="news-content" id="newsContent">تحميل المحتوى...</div>
+  </div>
 
-<script>
-  const newsData = [
-    {
-      id: 9,
-      title: "هانسي فليك يبدأ أولى خطواته الحاسمة في برشلونة!",
-      image: "https://b.top4top.io/p_3485iaplb2.jpg",
-      content: `يستعد المدرب الألماني هانسي فليك لإجراء أول عملية فرز فنية داخل نادي برشلونة... (النص كامل كما في السابق)`,
-      date: "2025-07-17"
+  <script>
+    const newsData = [
+      {
+        id: 9,
+        title: "هانسي فليك يبدأ أولى خطواته الحاسمة في برشلونة!",
+        image: "https://b.top4top.io/p_3485iaplb2.jpg",
+        content: `يستعد المدرب الألماني هانسي فليك لإجراء أول عملية فرز فنية داخل نادي برشلونة، حيث يسعى لتحديد ملامح الفريق الأول الذي سيعتمد عليه في الموسم الجديد.
+
+ووفقًا لتقارير صحيفة "سبورت" الإسبانية، سيبدأ فليك بتقييم أداء عدد من اللاعبين الشباب خلال فترة الإعداد، خاصة أولئك الذين عادوا من الإعارة.
+
+ويهدف فليك إلى دمج المواهب الشابة مع العناصر الأساسية في الفريق، مع التركيز على تعزيز الجوانب الدفاعية والهجومية على حد سواء.
+
+يُذكر أن فليك تولى تدريب برشلونة خلفًا لتشافي هيرنانديز، ويأمل في إعادة الفريق إلى منصات التتويج محليًا وأوروبيًا.`,
+        date: "2025-07-17"
+      },
+      {
+        id: 8,
+        title: "رسميًا.. الاتحاد السعودي يعلن التعاقد مع توماس توخيل",
+        image: "https://d.top4top.io/p_3485i2dz73.jpg",
+        content: `أعلن نادي الاتحاد السعودي، اليوم، عن التوقيع رسميًا مع المدرب الألماني توماس توخيل لتولي قيادة الفريق الأول لكرة القدم.
+
+ونشر النادي بيانًا رسميًا عبر حساباته على مواقع التواصل الاجتماعي، أكد فيه أن العقد يمتد لمدة موسمين، مع خيار التمديد لموسم ثالث.
+
+توخيل يعد من أبرز المدربين في أوروبا، حيث سبق له تدريب أندية مثل بوروسيا دورتموند، وباريس سان جيرمان، وتشيلسي وبايرن ميونخ.
+
+ويأمل الاتحاد أن يقود توخيل مشروع العودة لمنصات التتويج المحلية والقارية.`,
+        date: "2025-07-15"
+      },
+      {
+        id: 7,
+        title: "كريستيانو رونالدو يحقق رقمًا تاريخيًا جديدًا في مسيرته",
+        image: "https://e.top4top.io/p_3485nni264.jpg",
+        content: `حقق النجم البرتغالي كريستيانو رونالدو رقمًا تاريخيًا جديدًا، بعدما سجل هدفه رقم 900 في مسيرته الاحترافية، وذلك خلال مباراة فريقه النصر الأخيرة في الدوري السعودي.
+
+وأشاد محللون عالميون بما يقدمه الدون في الملاعب رغم بلوغه سن الـ40، مؤكدين أن التزامه وانضباطه البدني والذهني هو سر استمراريته.
+
+ويواصل رونالدو تحطيم الأرقام القياسية سواء على صعيد الأندية أو المنتخبات، وسط إشادة جماهيرية واسعة.`,
+        date: "2025-07-14"
+      }
+    ];
+
+    function getUrlParameter(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
     }
-  ];
 
-  function getUrlParameter(name) {
-    const url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-    const results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-  }
+    document.addEventListener("DOMContentLoaded", () => {
+      const id = parseInt(getUrlParameter('id'), 10);
+      const news = newsData.find(item => item.id === id);
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const idParam = getUrlParameter('id');
-    const id = idParam ? parseInt(idParam, 10) : null;
-
-    if (!id) {
-      document.getElementById('newsTitle').textContent = 'معرف الخبر غير موجود في الرابط!';
-      return;
-    }
-
-    const news = newsData.find(n => n.id === id);
-
-    if (!news) {
-      document.getElementById('newsTitle').textContent = 'الخبر غير موجود.';
-      return;
-    }
-
-    document.getElementById('newsImage').src = news.image;
-    document.getElementById('newsTitle').textContent = news.title;
-    document.getElementById('newsDate').textContent = 'تاريخ النشر: ' + news.date;
-    document.getElementById('newsContent').textContent = news.content;
-  });
-</script>
+      if (news) {
+        document.getElementById("newsImage").src = news.image;
+        document.getElementById("newsTitle").textContent = news.title;
+        document.getElementById("newsDate").textContent = "تاريخ النشر: " + news.date;
+        document.getElementById("newsContent").textContent = news.content;
+      } else {
+        document.getElementById("newsTitle").textContent = "لم يتم العثور على الخبر.";
+        document.getElementById("newsContent").textContent = "";
+      }
+    });
+  </script>
 
 </body>
 </html>
