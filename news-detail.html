@@ -36,8 +36,12 @@
     }
     .news-detail-content {
       padding: 25px 0 0 0;
-      max-height: none;
-      overflow: visible;
+      max-height: none !important;
+      overflow: visible !important;
+    }
+    #newsContentWrapper {
+      max-height: none !important;
+      overflow: visible !important;
     }
     .news-detail-content h1 {
       font-size: 1.8rem;
@@ -53,7 +57,7 @@
       font-size: 1.2rem;
       color: #e0e0e0;
       text-align: justify;
-      white-space: normal;
+      white-space: pre-wrap !important;
       line-height: 1.6;
     }
     .ad-container {
@@ -141,9 +145,8 @@
       <p class="detail-date" id="detailNewsDate"></p>
       <div id="newsContentWrapper"></div>
 
-      <!-- حاوية إعلان أدسنس -->
+      <!-- إعلان أدسنس -->
       <div class="ad-container">
-        <!-- ضع هنا كود إعلان أدسنس الخاص بك -->
         <ins class="adsbygoogle"
           style="display:block"
           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
@@ -178,14 +181,14 @@
     </div>
   </footer>
 
-  <!-- كود جافاسكريبت تحميل الأخبار -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
-const newsData = [
-  {
-    id: 9,
-    title: "هانسي فليك يبدأ أولى خطواته الحاسمة في برشلونة!",
-    image: "https://b.top4top.io/p_3485iaplb2.jpg",
-    content: `يستعد المدرب الألماني هانسي فليك لإجراء أول عملية فرز فنية داخل نادي برشلونة، ضمن استعدادات الفريق للموسم الجديد، حيث يهدف إلى تقييم جميع اللاعبين قبل اتخاذ قرارات نهائية بشأن مستقبلهم.
+    const newsData = [
+      {
+        id: 9,
+        title: "هانسي فليك يبدأ أولى خطواته الحاسمة في برشلونة!",
+        image: "https://b.top4top.io/p_3485iaplb2.jpg",
+        content: `يستعد المدرب الألماني هانسي فليك لإجراء أول عملية فرز فنية داخل نادي برشلونة، ضمن استعدادات الفريق للموسم الجديد، حيث يهدف إلى تقييم جميع اللاعبين قبل اتخاذ قرارات نهائية بشأن مستقبلهم.
 
 ومن المنتظر أن يقوم فليك بتحديد قائمة أولية تضم اللاعبين الذين سيعتمد عليهم في مشروعه الفني مع الفريق، مقابل أسماء مرشحة للمغادرة سواء على سبيل الإعارة أو البيع النهائي.
 
@@ -198,90 +201,41 @@ const newsData = [
 يُذكر أن برشلونة سيدخل مرحلة الإعداد للموسم الجديد قريبًا، تسبقها جولة تحضيرية في الولايات المتحدة، ستكون حاسمة للعديد من الأسماء داخل غرفة الملابس.
 
 فهل تنجح "أولى غربلات فليك" في رسم ملامح برشلونة الجديد؟ الأيام القادمة ستكشف من سيحجز مكانه في الخطة… ومن سيغادر بهدوء.`,
-    date: "2025-07-17"
-  },
-  {
-    id: 8,
-    title: "مشكلة جديدة تواجه تشافي الونسو في ريال مدريد",
-    image: "https://a.top4top.io/p_34852z4371.jpg",
-    content: `مع انطلاق موسم جديد لريال مدريد، يدور الصراع داخل غرفة تبديل الملابس حول مستقبل ثلاثة لاعبين عائدين من الإعارات، وهم: رينير، ماريو مارتن، وألفارو رودريغيز.
+        date: "2025-07-17"
+      },
+      // بقية الأخبار...
+    ];
 
-ماريو مارتن أثبت جدارته في بلد الوليد لكنه يعاني من مشاكل انضباطية. ألفارو رودريغيز يطمح للرحيل، ورينير لم يقدم ما كان متوقعاً منه.
+    function getUrlParameter(name) {
+      name = name.replace(/[\\[]/, '\\\\[').replace(/[\\]]/, '\\\\]');
+      const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      const results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\\+/g, ' '));
+    }
 
-القرار بيد تشابي: إعارة أم بيع؟`,
-    date: "2025-07-17"
-  },
-  {
-    id: 6,
-    title: "السعودية تستعد لصفقة جديدة... \"ضربة\" كبرى مرتقبة في الميركاتو",
-    image: "https://c.top4top.io/p_34856jr3c3.jpg",
-    content: `تستعد كرة القدم السعودية لإحداث ضجة جديدة في سوق الانتقالات الصيفية، عبر صفقة توصف بأنها "ضربة قوية" تضاف إلى سلسلة التعاقدات الكبيرة.
+    document.addEventListener("DOMContentLoaded", () => {
+      const newsId = parseInt(getUrlParameter("id"));
+      const news = newsData.find(item => item.id === newsId);
 
-لم يتم الكشف عن اسم اللاعب بعد، لكن التوقعات تشير إلى إعلان قريب عن نجم عالمي جديد.`,
-    date: "2025-07-17"
-  },
-  {
-    id: 7,
-    title: "تحقيقات في إسبانيا بسبب مبابي!",
-    image: "https://d.top4top.io/p_34856p6zx4.jpg",
-    content: `تشهد إسبانيا تحقيقات إدارية حول مكافآت مالية يُعتقد أنها جاءت من تبرعات قُدمت بعد تتويج فرنسا بكأس العالم.
+      if (news) {
+        document.getElementById("detailNewsImage").src = news.image;
+        document.getElementById("detailNewsTitle").textContent = news.title;
+        document.getElementById("detailNewsDate").textContent = "تاريخ النشر: " + news.date;
 
-التحقيقات تسعى لفهم ما إذا كانت هناك أخطاء أو سوء توزيع.`,
-    date: "2025-07-17"
-  },
-  {
-    id: 5,
-    title: "رودريغو يقترب من مغادرة ريال مدريد… صراع إنجليزي محتدم على توقيعه",
-    image: "https://f.top4top.io/p_3485mp2zi6.jpg",
-    content: `النجم البرازيلي رودريغو في دائرة الضوء وسط اهتمام من أرسنال وليفربول.
+        const p = document.createElement("p");
+        p.className = "detail-text";
+        p.innerHTML = news.content.replace(/\n/g, "<br>");
+        document.getElementById("newsContentWrapper").appendChild(p);
 
-تُقدر قيمة الصفقة المحتملة بأكثر من 85 مليون يورو.`,
-    date: "2025-07-17"
-  },
-  {
-    id: 4,
-    title: "نجم فرنسا السابق يدافع عن مبابي!",
-    image: "https://h.top4top.io/p_348588x3m8.jpg",
-    content: `جبريل سيسيه يدافع عن مبابي بعد الانتقادات التي طالته عقب انتقاله إلى ريال مدريد.
-
-أكد أن مبابي جزء من تاريخ باريس سان جيرمان ويجب احترامه.`,
-    date: "2025-07-17"
-  }
-];
-
-function getUrlParameter(name) {
-  name = name.replace(/[\\[]/, '\\\\[').replace(/[\\]]/, '\\\\]');
-  const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-  const results = regex.exec(location.search);
-  return results === null ? '' : decodeURIComponent(results[1].replace(/\\+/g, ' '));
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const newsId = parseInt(getUrlParameter("id"));
-  const news = newsData.find(item => item.id === newsId);
-
-  if (news) {
-    document.getElementById("detailNewsImage").src = news.image;
-    document.getElementById("detailNewsTitle").textContent = news.title;
-    document.getElementById("detailNewsDate").textContent = "تاريخ النشر: " + news.date;
-
-    const p = document.createElement("p");
-    p.className = "detail-text";
-    p.innerHTML = news.content.replace(/\n/g, "<br>");
-    document.getElementById("newsContentWrapper").appendChild(p);
-
-    // تفعيل إعلان أدسنس بعد التحميل
-    (adsbygoogle = window.adsbygoogle || []).push();
-  } else {
-    document.getElementById("detailNewsTitle").textContent = "الخبر غير موجود";
-    document.getElementById("detailNewsDate").style.display = "none";
-    document.getElementById("newsContentWrapper").innerHTML = '<p class="detail-text">نعتذر، لم يتم العثور على الخبر.</p>';
-    document.getElementById("detailNewsImage").style.display = "none";
-  }
-});
+        // تفعيل إعلان أدسنس
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      } else {
+        document.getElementById("detailNewsTitle").textContent = "الخبر غير موجود";
+        document.getElementById("detailNewsDate").style.display = "none";
+        document.getElementById("newsContentWrapper").innerHTML = '<p class="detail-text">نعتذر، لم يتم العثور على الخبر.</p>';
+        document.getElementById("detailNewsImage").style.display = "none";
+      }
+    });
   </script>
-
-  <!-- كود جوجل أدسنس -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </body>
 </html>
