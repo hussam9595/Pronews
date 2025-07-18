@@ -32,15 +32,15 @@
         }
         .news-detail-header {
             position: relative;
-            overflow: hidden;
-            border-radius: 10px; /* تم تعديل هذا السطر لتقويس جميع الزوايا */
+            overflow: hidden; /* هذا السطر مهم لقص أي جزء من الصورة يخرج عن الزوايا المقوسة */
+            border-radius: 10px; /* تم تطبيق التقويس على الحاوية نفسها */
         }
         .news-detail-header img {
             width: 100%;
             height: 350px;
-            object-fit: contain; /* تم إعادة هذا السطر إلى 'contain' لضمان ظهور الصورة بكامل أبعادها */
+            object-fit: contain; /* تم الإبقاء على 'contain' لضمان ظهور الصورة بكامل أبعادها */
             display: block;
-            border-radius: 10px; /* تم الإبقاء على هذا السطر لتقويس زوايا الصورة */
+            /* تم إزالة border-radius من هنا، حيث سيتولى العنصر الأب (news-detail-header) مهمة التقويس والقص */
         }
         .news-detail-content {
             padding: 25px;
