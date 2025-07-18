@@ -32,27 +32,23 @@
         }
         .news-detail-header {
             position: relative;
-            /* لم يعد news-detail-header هو المسؤول المباشر عن التقويس */
-            /* border-radius: 10px; */ /* تم إزالة هذا */
-            /* overflow: hidden; */ /* تم إزالة هذا */
         }
         /* New wrapper for image to ensure rounding */
         .image-wrapper {
             width: 100%;
-            height: 350px; /* نفس ارتفاع الصورة */
+            /* تمت إزالة الارتفاع الثابت هنا للسماح له بالتأقلم مع أبعاد الصورة */
             border-radius: 10px; /* تطبيق تقويس الزوايا هنا */
             overflow: hidden; /* قص المحتوى الزائد */
-            display: flex; /* لمركزة الصورة بالداخل */
-            justify-content: center;
-            align-items: center;
+            /* تمت إزالة display: flex و justify-content و align-items */
             background-color: #000; /* خلفية سوداء للمساحات الفارغة إن وجدت */
         }
         .news-detail-header img {
+            width: 100%; /* لضمان أن الصورة تملأ عرض الحاوية */
+            height: auto; /* لضمان الحفاظ على نسبة الأبعاد */
             max-width: 100%; /* لضمان عدم تجاوز العرض */
-            max-height: 100%; /* لضمان عدم تجاوز الارتفاع */
+            max-height: 350px; /* يمكن تحديد أقصى ارتفاع هنا إذا لزم الأمر */
             object-fit: contain; /* إظهار الصورة بكامل أبعادها */
             display: block;
-            /* border-radius: 10px; */ /* تم إزالة هذا أو يمكن تركه كـ inherit */
         }
         .news-detail-content {
             padding: 25px;
