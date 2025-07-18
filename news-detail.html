@@ -6,12 +6,11 @@
     <title>تفاصيل الخبر - برو نيوز</title>
     <meta name="description" content="اقرأ تفاصيل الخبر كاملاً على برو نيوز.">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234567890123456"
-     crossorigin="anonymous"></script>
     
     <style>
         /* Import Cairo font from Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
         body {
             font-family: 'Cairo', sans-serif; /* Apply Cairo font */
             margin: 0;
@@ -46,7 +45,7 @@
             padding: 25px;
         }
         .news-detail-content h1 {
-            font-size: 1.8rem; /* Reduced title size */
+            font-size: 2.2rem;
             margin-bottom: 15px;
             color: #ffffff;
             text-align: right;
@@ -62,14 +61,12 @@
             color: #e0e0e0;
             text-align: justify;
         }
-        .action-buttons { /* New container for buttons */
-            display: flex;
-            flex-direction: column; /* Stack buttons vertically */
-            gap: 15px; /* Space between buttons */
+        .back-button {
+            display: block;
             margin: 30px auto 0;
             text-align: center;
         }
-        .action-buttons a {
+        .back-button a {
             font-family: 'Cairo', sans-serif;
             background-color: #00aaff;
             color: white;
@@ -80,31 +77,9 @@
             font-size: 1.1rem;
             text-decoration: none;
             transition: background-color 0.3s ease;
-            display: flex; /* For icon and text alignment */
-            align-items: center;
-            justify-content: center;
-            width: fit-content; /* Adjust width to content */
-            margin: 0 auto; /* Center the buttons */
         }
-        .action-buttons a:hover {
+        .back-button a:hover {
             background-color: #0088cc;
-        }
-        .action-buttons a.telegram-button { /* Specific style for Telegram button */
-            background-color: #0088cc; /* Telegram blue */
-            padding: 8px 18px; /* Reduced padding for smaller size */
-            font-size: 0.95rem; /* Reduced font size for smaller size */
-        }
-        .action-buttons a.telegram-button:hover {
-            background-color: #0077b3; /* Darker Telegram blue on hover */
-        }
-        .action-buttons a .material-icons {
-            margin-left: 8px; /* Space between icon and text */
-            font-size: 1.3em;
-        }
-        /* Adjusted for Telegram button */
-        .action-buttons a.telegram-button .material-icons {
-            margin-left: 6px; /* Slightly less margin for smaller button */
-            font-size: 1.1em; /* Smaller icon for smaller button */
         }
         
         /* Footer Navigation - same as index.html for consistency */
@@ -163,33 +138,6 @@
         .site-info-footer a:hover {
             color: #00aaff;
         }
-
-        /* AdSense Container Styling - Similar to index.html */
-        .ad-container {
-            background-color: #1a1a1a; /* Darker background for ads */
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-            margin-top: 20px; /* Space above ads */
-            margin-bottom: 20px; /* Space below ads */
-            min-height: 100px; /* Give it some height for visibility */
-            display: flex; /* To center placeholder text/images */
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2em;
-            color: #888;
-            border: 1px dashed #444; /* This border should definitely make it visible */
-            flex-direction: column;
-        }
-        .ad-container ins {
-            display: block !important;
-            min-height: 100px; /* Placeholder for AdSense actual size */
-            background-color: #333;
-            margin: 0 auto;
-            width: 100%;
-            max-width: 728px;
-        }
     </style>
 </head>
 <body>
@@ -200,15 +148,10 @@
         <div class="news-detail-content">
             <h1 id="detailNewsTitle"></h1>
             <p class="detail-date" id="detailNewsDate"></p>
-            <div id="newsContentWrapper">
-  
-            </div>
+            <p class="detail-text" id="detailNewsContent"></p>
         </div>
-        <div class="action-buttons">
+        <div class="back-button">
             <a href="index.html">العودة إلى الرئيسية</a>
-            <a href="https://t.me/PROTVPLUSS" target="_blank" class="telegram-button">
-                قناتنا على التلغرام <i class="material-icons">send</i>
-            </a>
         </div>
     </div>
 
@@ -228,30 +171,20 @@
         // Start of self-contained script content (DO NOT MODIFY THESE COMMENTS)
         // Replicate newsData here so news-detail.html can function independently
         let newsData = [
-            { id: 1, title: 'مشكلة جديدة تواجه تشافي الونسو في ريال مدريد', image: 'https://a.top4top.io/p_34852z4371.jpg', content: 'مع انطلاق موسم جديد لريال مدريد، يدور الصراع داخل غرفة تبديل الملابس حول مستقبل ثلاثة لاعبين عائدين من الإعارات، وهم: رينير، ماريو مارتن، وألفارو رودريغيز. بعد توقيع اللاعب الواعد كاريراس، بات الفريق الأول مكتملًا بـ 25 لاعبًا، الأمر الذي يضع المدرب تشابي ألونسو أمام تحدٍ كبير لاختيار التشكيلة النهائية.
-
-ماريو مارتن: أداء متميز وسط تحديات الانضباط
-ماريو، لاعب الوسط الذي أُعير الموسم الماضي إلى بلد الوليد، أثبت جدارته بمشاركته في 30 مباراة بالدوري، منها 20 كأساسي، بمجموع 1753 دقيقة. لكنه عانى من مشكلات انضباطية كلفته ثلاث بطاقات حمراء وثماني بطاقات صفراء، ليصبح الأكثر طردًا في الليغا لموسم 2024-2025. رغم افتقاد الفريق الأول لوسط دفاعي طبيعي، لم يمنحه تشابي فرصة الظهور في كأس العالم للأندية، مما يشير بقوة إلى رحيله المحتمل سواء بالإعارة أو البيع.
-
-ألفارو رودريغيز: الطموح يصطدم بالواقع
-المهاجم الشاب من أوروغواي، الذي ينتمي إلى منتخب تحت 20 عامًا، صرح علنًا برغبته في مغادرة ريال مدريد هذا الصيف لمتابعة تطوره المهني. في 22 مباراة مع خيتافي، لعب 845 دقيقة فقط، ولم يستطع فرض نفسه كأساسي إلا في سبع مباريات، كما تعرض للطرد مرة في كأس الملك. مع وجود تفوق واضح لجونزالو، تبدو فرصته ضئيلة في خطة تشابي، مما يجعل العودة إلى كاستيا بمثابة خطوة إلى الوراء لمسيرته.
-
-رينير: حلم برازيلي ينتظر نهايته
-الصفقة التي كلفت ريال مدريد 30 مليون يورو لم تر النور في البرنابيو قط. المهاجم البرازيلي قضى أعوامه الأربعة ونصف الماضية متنقلاً بين إعارات متتالية مع دورتموند، جيرونا، فروزينوني، وغرناطة. خلال هذه الفترات، لم يتمكن من تحقيق الأهداف المتوقعة، حيث شارك في 105 مباريات فقط، سجل خلالها 7 أهداف، وبقي بعيدًا عن التوهج الذي كان منتظراً منه. مع انتهاء عقده بعد عام واحد، يبدو أن رحيله بات أمراً محتوماً.
-
-القرار بيد تشابي: إعارة أم بيع؟
-مع قرب إغلاق سوق الانتقالات وامتلاء قائمة الفريق، يتوجب على تشابي ألونسو اتخاذ قرار سريع بشأن هؤلاء اللاعبين. سواء كانت الإعارة لموسم جديد أو بيع نهائي، فإن مستقبل هؤلاء الثلاثة سيكون مفتاحًا جديدًا لريال مدريد في سعيه نحو النجاح المستدام..', date: '2025-07-17', order: 1, detailButtonText: 'تفاصيل الخبر', detailButtonColor: '#cf0e0e' },
+            { id: 1, title: 'اكتشاف أثري جديد في العراق يثير اهتمام العالم', image: 'https://picsum.photos/600/400?random=1', content: 'كشفت بعثة تنقيب دولية عن اكتشافات أثرية مذهلة في جنوب العراق، يعتقد أنها تعود إلى الحضارات القديمة، مما قد يغير فهمنا لتاريخ المنطقة. الاكتشاف يتضمن قطعًا فخارية ونقوشًا نادرة. اكتشافات أثرية جديدة في العراق تفتح آفاقًا لفهم أعمق للتاريخ القديم للمنطقة. تتضمن الاكتشافات الأخيرة مجموعة من القطع الأثرية النادرة التي تشير إلى وجود حضارات متقدمة كانت مزدهرة في هذه المنطقة. يعمل الفريق حاليًا على تحليل هذه الاكتشافات وتقديم تقارير مفصلة عنها. هذا الاكتشاف يعد إضافة قيمة للتراث الثقافي العراقي والعالمي.', date: '2025-07-10', order: 10, detailButtonText: 'تفاصيل الخبر', detailButtonColor: '#cf0e0e' },
             { id: 2, title: 'تطورات في مشروع الطاقة المتجددة في كربلاء', image: 'https://picsum.photos/600/400?random=2', content: 'أعلنت السلطات المحلية عن تقدم كبير في مشروع الطاقة الشمسية بكربلاء، والذي يهدف إلى تزويد المدينة بجزء كبير من احتياجاتها الكهربائية من مصادر نظيفة. المشروع يتضمن تركيب ألواح شمسية على مساحات واسعة وسيساهم في تقليل الاعتماد على الوقود الأحفوري وتعزيز الاستدامة البيئية في المحافظة. من المتوقع أن يتم الانتهاء من المرحلة الأولى من المشروع في نهاية العام الحالي، مما سيوفر طاقة نظيفة لآلاف المنازل والمنشآت. هذا المشروع يعكس التزام العراق بالتحول نحو الطاقة المتجددة.', date: '2025-07-12', order: 20, detailButtonText: 'اقرأ المزيد', detailButtonColor: '#28a745' },
             { id: 3, title: 'افتتاح معرض فني دولي في بغداد', image: 'https://picsum.photos/600/400?random=3', content: 'شهدت العاصمة بغداد اليوم افتتاح معرض فني دولي بمشاركة فنانين من مختلف أنحاء العالم، يعرضون أعمالًا فنية تعكس التنوع الثقافي والإبداع. يهدف المعرض إلى تعزيز التبادل الثقافي والفني بين الدول وتقديم منصة للفنانين لعرض إبداعاتهم. حضر الافتتاح عدد كبير من الشخصيات الثقافية والدبلوماسية، وقد أشاد الحضور بجودة الأعمال المعروضة والتنظيم المميز للمعرض. المعرض سيكون مفتوحًا للجمهور لمدة شهر، ونتوقع أن يجذب الآلاف من الزوار.', date: '2025-07-14', order: 30, detailButtonText: 'مشاهدة الخبر', detailButtonColor: '#007bff' }
         ];
+        
         // Footer Buttons - also replicated for consistency
         const footerButtons = [
-            { text: 'الرئيسية', icon: 'home', action: 'go:index.html' },
+            { text: 'الرئيسية', icon: 'home', action: 'go:index.html' }, // Changed action to go to index.html
             { text: 'فئات', icon: 'category', action: 'go:https://www.google.com/search?q=فئات+الأخبار' },
             { text: 'تنبيهات', icon: 'notifications', action: 'function:showAlert:زر التنبيهات' },
             { text: 'من نحن', icon: 'info', action: 'go:about.html' },
             { text: 'بحث', icon: 'search', action: 'function:handleSearchClick' } // Changed for news-detail context
         ];
+
         function executeAction(actionString) {
             if (!actionString) return;
             if (actionString.startsWith('go:')) {
@@ -300,7 +233,7 @@
             footerNav.innerHTML = '';
             footerButtons.forEach(button => {
                 const btn = document.createElement('button');
-                btn.innerHTML = `<i class="material-icons">${button.icon}</i><span>${button.text}</span>`; // Ensure button.text is used for display
+                btn.innerHTML = `<i class="material-icons">${button.icon}</i><span>${button.text}</span>`;
                 btn.onclick = () => executeAction(button.action);
                 footerNav.appendChild(btn);
             });
@@ -323,104 +256,13 @@
                 document.getElementById('detailNewsImage').alt = newsItem.title;
                 document.getElementById('detailNewsTitle').textContent = newsItem.title;
                 document.getElementById('detailNewsDate').textContent = `تاريخ النشر: ${newsItem.date}`;
-
-                // --- Start of content splitting and ad insertion logic ---
-                const newsContentWrapper = document.getElementById('newsContentWrapper');
-                
-                let contentToDisplay = newsItem.content;
-                let splitPoint = -1;
-                // Find the first occurrence of '.' or ',' after a reasonable starting point (e.g., 100 characters)
-                const minCharsBeforeAd = 100;
-
-                for (let i = minCharsBeforeAd; i < contentToDisplay.length; i++) {
-                    if (contentToDisplay[i] === '.' || contentToDisplay[i] === ',') {
-                        // Ensure it's not immediately followed by another punctuation or space, but actually ends a thought
-                        if (contentToDisplay[i+1] === ' ' || contentToDisplay[i+1] === '\n' || i === contentToDisplay.length -1) {
-                            splitPoint = i + 1; // Include the punctuation in the first part
-                            break;
-                        }
-                    }
-                }
-
-                if (newsContentWrapper) {
-                    newsContentWrapper.innerHTML = ''; // Clear any existing content
-
-                    if (splitPoint !== -1) {
-                        const firstPartText = contentToDisplay.substring(0, splitPoint).trim();
-                        const secondPartText = contentToDisplay.substring(splitPoint).trim();
-
-                        const firstPartParagraph = document.createElement('p');
-                        firstPartParagraph.className = 'detail-text';
-                        firstPartParagraph.textContent = firstPartText;
-                        newsContentWrapper.appendChild(firstPartParagraph);
-                        
-                        // Insert AdSense Ad container
-                        const adContainer = document.createElement('div');
-                        adContainer.className = 'ad-container';
-                        adContainer.innerHTML = `
-                            <p>إعلان</p>
-                            <ins class="adsbygoogle"
-                                 style="display:block; text-align:center;"
-                                 data-ad-layout="in-article"
-                                 data-ad-format="fluid"
-                                 data-ad-client="ca-pub-1234567890123456"
-                                 data-ad-slot="1111111111"></ins> `;
-                        newsContentWrapper.appendChild(adContainer);
-
-                        // Push ad to AdSense for rendering
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-
-                        if (secondPartText) {
-                            const secondPartParagraph = document.createElement('p');
-                            secondPartParagraph.className = 'detail-text';
-                            secondPartParagraph.textContent = secondPartText;
-                            newsContentWrapper.appendChild(secondPartParagraph);
-                        }
-                    } else {
-                        // Fallback to original paragraph splitting if no suitable punctuation is found
-                        const paragraphs = newsItem.content.split('\n\n').filter(p => p.trim() !== '');
-                        const splitIndex = Math.ceil(paragraphs.length / 2);
-
-                        const firstPart = paragraphs.slice(0, splitIndex).join('\n\n');
-                        const secondPart = paragraphs.slice(splitIndex).join('\n\n');
-
-                        const firstPartParagraph = document.createElement('p');
-                        firstPartParagraph.className = 'detail-text';
-                        firstPartParagraph.textContent = firstPart;
-                        newsContentWrapper.appendChild(firstPartParagraph);
-
-                        const adContainer = document.createElement('div');
-                        adContainer.className = 'ad-container';
-                        adContainer.innerHTML = `
-                            <p>إعلان</p>
-                            <ins class="adsbygoogle"
-                                 style="display:block; text-align:center;"
-                                 data-ad-layout="in-article"
-                                 data-ad-format="fluid"
-                                 data-ad-client="ca-pub-1234567890123456"
-                                 data-ad-slot="1111111111"></ins> `;
-                        newsContentWrapper.appendChild(adContainer);
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-
-                        if (secondPart) {
-                            const secondPartParagraph = document.createElement('p');
-                            secondPartParagraph.className = 'detail-text';
-                            secondPartParagraph.textContent = secondPart;
-                            newsContentWrapper.appendChild(secondPartParagraph);
-                        }
-                    }
-                }
-                // --- End of content splitting and ad insertion logic ---
-
-                document.title = `تفاصيل الخبر: ${newsItem.title} - برو نيوز`;
+                document.getElementById('detailNewsContent').textContent = newsItem.content;
+                document.title = `تفاصيل الخبر: ${newsItem.title} - برو نيوز`; // Update page title
             } else {
                 // Handle case where news item is not found
                 document.getElementById('detailNewsTitle').textContent = 'الخبر غير موجود';
-                const newsContentWrapper = document.getElementById('newsContentWrapper');
-                if (newsContentWrapper) {
-                    newsContentWrapper.innerHTML = '<p class="detail-text">نعتذر، لم نتمكن من العثور على الخبر الذي تبحث عنه.</p>';
-                }
-                document.getElementById('detailNewsImage').style.display = 'none';
+                document.getElementById('detailNewsContent').textContent = 'نعتذر، لم نتمكن من العثور على الخبر الذي تبحث عنه.';
+                document.getElementById('detailNewsImage').style.display = 'none'; // Hide image if not found
                 document.getElementById('detailNewsDate').style.display = 'none';
                 document.title = 'خطأ - الخبر غير موجود - برو نيوز';
             }
