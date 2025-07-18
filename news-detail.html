@@ -308,22 +308,26 @@
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         }
 
-        // New function to insert ad after the first sentence-ending punctuation
-        function insertAdAfterFirstPunctuation(fullContent) {
-            // RegEx to find sentence-ending punctuation (., !, ?, ،) potentially followed by space or newline
-            const regex = /([.،!?])(\s+|$)/; 
+        // New function to insert ad after the first sentence-ending punctuation (specifically a dot)
+        function insertAdAfterFirstDot(fullContent) {
+            // 1. Clean up multiple spaces and trim overall content for better consistency
+            fullContent = fullContent.replace(/\s\s+/g, ' ').trim();
+
+            // RegEx to find the first dot (.), optionally followed by one or more spaces or end of string
+            const regex = /\.(\s+|$)/; 
             const match = fullContent.match(regex);
 
-            if (match) {
-                const punctuationIndex = match.index + match[1].length;
-                const firstPart = fullContent.substring(0, punctuationIndex).trim();
-                const secondPart = fullContent.substring(punctuationIndex).trim();
+            let htmlContent = '';
 
-                let htmlContent = '';
+            if (match) {
+                const dotIndex = match.index + match[0].length; // Index after the dot and its following spaces
+                const firstPart = fullContent.substring(0, dotIndex);
+                const secondPart = fullContent.substring(dotIndex);
+
                 // Process first part: split by double newlines for paragraphs, then single newlines for <br>
                 htmlContent += firstPart.split('\n\n').map(p => {
                     return `<p class="detail-text">${p.trim().replace(/\n/g, '<br>')}</p>`;
-                }).join('');
+                }).filter(p => p.trim() !== '<p class="detail-text"></p>').join(''); // Filter out empty paragraphs
 
                 // Ad Container HTML
                 htmlContent += `
@@ -343,14 +347,14 @@
                 // Process second part similarly
                 htmlContent += secondPart.split('\n\n').map(p => {
                     return `<p class="detail-text">${p.trim().replace(/\n/g, '<br>')}</p>`;
-                }).join('');
+                }).filter(p => p.trim() !== '<p class="detail-text"></p>').join(''); // Filter out empty paragraphs
                 
                 return htmlContent;
             } else {
-                // If no punctuation is found, just format the entire content as paragraphs
+                // If no dot is found, just format the entire content as paragraphs
                 return fullContent.split('\n\n').map(p => {
                     return `<p class="detail-text">${p.trim().replace(/\n/g, '<br>')}</p>`;
-                }).join('');
+                }).filter(p => p.trim() !== '<p class="detail-text"></p>').join(''); // Filter out empty paragraphs
             }
         }
 
@@ -367,7 +371,7 @@
 
                 const newsContentWrapper = document.getElementById('newsContentWrapper');
                 if (newsContentWrapper) {
-                    newsContentWrapper.innerHTML = insertAdAfterFirstPunctuation(newsItem.content);
+                    newsContentWrapper.innerHTML = insertAdAfterFirstDot(newsItem.content); // استخدم الوظيفة الجديدة
                 }
 
                 document.title = `تفاصيل الخبر: ${newsItem.title} - برو نيوز`;
