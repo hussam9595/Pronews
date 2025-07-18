@@ -68,7 +68,7 @@
             font-size: 1.2rem;
             color: #e0e0e0;
             text-align: justify;
-            white-space: pre-wrap; /* للحفاظ على فواصل الأسطر والمسافات */
+            white-space: pre-wrap; /* هذا هو المفتاح: يحافظ على فواصل الأسطر والمسافات الأصلية */
         }
         .action-buttons { /* New container for buttons */
             display: flex;
@@ -309,19 +309,6 @@
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         }
 
-        // Function to format content with line breaks after punctuation
-        function formatContent(text) {
-            // Replace common punctuation marks followed by a space or newline with the mark and two line breaks
-            // This ensures a new line after each sentence/phrase
-            text = text.replace(/([.،!؟])\s*/g, '$1<br><br>');
-            // Also handle cases where a punctuation might be at the end of the text without a trailing space
-            text = text.replace(/([.،!؟])$/g, '$1<br><br>');
-            // Replace multiple consecutive line breaks with just two for tidiness
-            text = text.replace(/(<br><br>){2,}/g, '<br><br>');
-            return text;
-        }
-
-
         document.addEventListener('DOMContentLoaded', () => {
             const newsId = parseInt(getUrlParameter('id'));
             const newsItem = newsData.find(news => news.id === newsId);
@@ -335,76 +322,45 @@
                 // --- Start of content splitting and ad insertion logic ---
                 const newsContentWrapper = document.getElementById('newsContentWrapper');
                 
-                let contentToDisplay = formatContent(newsItem.content); // تطبيق التنسيق الجديد هنا
-                let splitPoint = -1;
-                // Find the first occurrence of '<br><br>' after a reasonable starting point (e.g., 100 characters)
-                const minCharsBeforeAd = 100;
-
-                // For content splitting, we now look for the HTML line break tags
-                let tempContent = newsItem.content; // Use original content for finding split point
-                for (let i = minCharsBeforeAd; i < tempContent.length; i++) {
-                    if (tempContent[i] === '.' || tempContent[i] === '،' || tempContent[i] === '!' || tempContent[i] === '؟') {
-                        // Ensure it's not immediately followed by another punctuation or space, but actually ends a thought
-                        if (tempContent[i+1] === ' ' || tempContent[i+1] === '\n' || i === tempContent.length -1) {
-                            splitPoint = i + 1; // Include the punctuation in the first part
-                            break;
-                        }
-                    }
-                }
-
+                // هنا نستخدم النص الأصلي لتقسيم الفقرات
+                const paragraphs = newsItem.content.split('\n\n').filter(p => p.trim() !== '');
+                
                 if (newsContentWrapper) {
                     newsContentWrapper.innerHTML = ''; // Clear any existing content
 
-                    if (splitPoint !== -1) {
-                        const firstPartText = formatContent(newsItem.content.substring(0, splitPoint).trim());
-                        const secondPartText = formatContent(newsItem.content.substring(splitPoint).trim());
+                    // نحدد نقطة التقسيم للإعلان بناءً على عدد الفقرات
+                    const splitIndex = Math.ceil(paragraphs.length / 2);
 
-                        const firstPartParagraph = document.createElement('p');
-                        firstPartParagraph.className = 'detail-text';
-                        firstPartParagraph.innerHTML = firstPartText; // استخدام innerHTML
-                        newsContentWrapper.appendChild(firstPartParagraph);
-                        
-                        // Insert AdSense Ad container
-                        const adContainer = document.createElement('div');
-                        adContainer.className = 'ad-container';
-                        adContainer.innerHTML = `
-                            <p>إعلان</p>
-                            <ins class="adsbygoogle"
-                                 style="display:block; text-align:center;"
-                                 data-ad-layout="in-article"
-                                 data-ad-format="fluid"
-                                 data-ad-client="ca-pub-1234567890123456"
-                                 data-ad-slot="1111111111"></ins> `;
-                        newsContentWrapper.appendChild(adContainer);
+                    // إضافة الفقرات الجزء الأول
+                    for (let i = 0; i < splitIndex; i++) {
+                        const p = document.createElement('p');
+                        p.className = 'detail-text';
+                        p.textContent = paragraphs[i]; // استخدام textContent للحفاظ على التنسيق الأصلي للمسافات
+                        newsContentWrapper.appendChild(p);
+                    }
+                    
+                    // Insert AdSense Ad container
+                    const adContainer = document.createElement('div');
+                    adContainer.className = 'ad-container';
+                    adContainer.innerHTML = `
+                        <p>إعلان</p>
+                        <ins class="adsbygoogle"
+                             style="display:block; text-align:center;"
+                             data-ad-layout="in-article"
+                             data-ad-format="fluid"
+                             data-ad-client="ca-pub-1234567890123456"
+                             data-ad-slot="1111111111"></ins> `;
+                    newsContentWrapper.appendChild(adContainer);
 
-                        // Push ad to AdSense for rendering
-                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    // Push ad to AdSense for rendering
+                    (adsbygoogle = window.adsbygoogle || []).push({});
 
-                        if (secondPartText) {
-                            const secondPartParagraph = document.createElement('p');
-                            secondPartParagraph.className = 'detail-text';
-                            secondPartParagraph.innerHTML = secondPartText; // استخدام innerHTML
-                            newsContentWrapper.appendChild(secondPartParagraph);
-                        }
-                    } else {
-                        // Fallback if no suitable split point found, just format the entire content
-                        const fullContentParagraph = document.createElement('p');
-                        fullContentParagraph.className = 'detail-text';
-                        fullContentParagraph.innerHTML = contentToDisplay; // استخدام innerHTML
-                        newsContentWrapper.appendChild(fullContentParagraph);
-
-                        const adContainer = document.createElement('div');
-                        adContainer.className = 'ad-container';
-                        adContainer.innerHTML = `
-                            <p>إعلان</p>
-                            <ins class="adsbygoogle"
-                                 style="display:block; text-align:center;"
-                                 data-ad-layout="in-article"
-                                 data-ad-format="fluid"
-                                 data-ad-client="ca-pub-1234567890123456"
-                                 data-ad-slot="1111111111"></ins> `;
-                        newsContentWrapper.appendChild(adContainer);
-                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    // إضافة الفقرات الجزء الثاني
+                    for (let i = splitIndex; i < paragraphs.length; i++) {
+                        const p = document.createElement('p');
+                        p.className = 'detail-text';
+                        p.textContent = paragraphs[i]; // استخدام textContent للحفاظ على التنسيق الأصلي للمسافات
+                        newsContentWrapper.appendChild(p);
                     }
                 }
                 // --- End of content splitting and ad insertion logic ---
