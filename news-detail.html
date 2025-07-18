@@ -68,7 +68,6 @@
             font-size: 1.2rem;
             color: #e0e0e0;
             text-align: justify;
-            white-space: pre-wrap; /* هذا هو المفتاح: يحافظ على فواصل الأسطر والمسافات الأصلية */
         }
         .action-buttons { /* New container for buttons */
             display: flex;
@@ -309,6 +308,53 @@
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         }
 
+        // New function to insert ad after the first sentence-ending punctuation
+        function insertAdAfterFirstPunctuation(fullContent) {
+            // RegEx to find sentence-ending punctuation (., !, ?, ،) potentially followed by space or newline
+            const regex = /([.،!?])(\s+|$)/; 
+            const match = fullContent.match(regex);
+
+            if (match) {
+                const punctuationIndex = match.index + match[1].length;
+                const firstPart = fullContent.substring(0, punctuationIndex).trim();
+                const secondPart = fullContent.substring(punctuationIndex).trim();
+
+                let htmlContent = '';
+                // Process first part: split by double newlines for paragraphs, then single newlines for <br>
+                htmlContent += firstPart.split('\n\n').map(p => {
+                    return `<p class="detail-text">${p.trim().replace(/\n/g, '<br>')}</p>`;
+                }).join('');
+
+                // Ad Container HTML
+                htmlContent += `
+                    <div class="ad-container">
+                        <p>إعلان</p>
+                        <ins class="adsbygoogle"
+                             style="display:block; text-align:center;"
+                             data-ad-layout="in-article"
+                             data-ad-format="fluid"
+                             data-ad-client="ca-pub-1234567890123456"
+                             data-ad-slot="1111111111"></ins>
+                    </div>
+                `;
+                // Push ad to AdSense for rendering
+                (adsbygoogle = window.adsbygoogle || []).push({});
+
+                // Process second part similarly
+                htmlContent += secondPart.split('\n\n').map(p => {
+                    return `<p class="detail-text">${p.trim().replace(/\n/g, '<br>')}</p>`;
+                }).join('');
+                
+                return htmlContent;
+            } else {
+                // If no punctuation is found, just format the entire content as paragraphs
+                return fullContent.split('\n\n').map(p => {
+                    return `<p class="detail-text">${p.trim().replace(/\n/g, '<br>')}</p>`;
+                }).join('');
+            }
+        }
+
+
         document.addEventListener('DOMContentLoaded', () => {
             const newsId = parseInt(getUrlParameter('id'));
             const newsItem = newsData.find(news => news.id === newsId);
@@ -319,51 +365,10 @@
                 document.getElementById('detailNewsTitle').textContent = newsItem.title;
                 document.getElementById('detailNewsDate').textContent = `تاريخ النشر: ${newsItem.date}`;
 
-                // --- Start of content splitting and ad insertion logic ---
                 const newsContentWrapper = document.getElementById('newsContentWrapper');
-                
-                // هنا نستخدم النص الأصلي لتقسيم الفقرات
-                const paragraphs = newsItem.content.split('\n\n').filter(p => p.trim() !== '');
-                
                 if (newsContentWrapper) {
-                    newsContentWrapper.innerHTML = ''; // Clear any existing content
-
-                    // نحدد نقطة التقسيم للإعلان بناءً على عدد الفقرات
-                    const splitIndex = Math.ceil(paragraphs.length / 2);
-
-                    // إضافة الفقرات الجزء الأول
-                    for (let i = 0; i < splitIndex; i++) {
-                        const p = document.createElement('p');
-                        p.className = 'detail-text';
-                        p.textContent = paragraphs[i]; // استخدام textContent للحفاظ على التنسيق الأصلي للمسافات
-                        newsContentWrapper.appendChild(p);
-                    }
-                    
-                    // Insert AdSense Ad container
-                    const adContainer = document.createElement('div');
-                    adContainer.className = 'ad-container';
-                    adContainer.innerHTML = `
-                        <p>إعلان</p>
-                        <ins class="adsbygoogle"
-                             style="display:block; text-align:center;"
-                             data-ad-layout="in-article"
-                             data-ad-format="fluid"
-                             data-ad-client="ca-pub-1234567890123456"
-                             data-ad-slot="1111111111"></ins> `;
-                    newsContentWrapper.appendChild(adContainer);
-
-                    // Push ad to AdSense for rendering
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-
-                    // إضافة الفقرات الجزء الثاني
-                    for (let i = splitIndex; i < paragraphs.length; i++) {
-                        const p = document.createElement('p');
-                        p.className = 'detail-text';
-                        p.textContent = paragraphs[i]; // استخدام textContent للحفاظ على التنسيق الأصلي للمسافات
-                        newsContentWrapper.appendChild(p);
-                    }
+                    newsContentWrapper.innerHTML = insertAdAfterFirstPunctuation(newsItem.content);
                 }
-                // --- End of content splitting and ad insertion logic ---
 
                 document.title = `تفاصيل الخبر: ${newsItem.title} - برو نيوز`;
             } else {
