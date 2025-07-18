@@ -33,15 +33,14 @@
         .news-detail-header {
             position: relative;
             overflow: hidden;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
+            border-radius: 10px; /* تم تعديل هذا السطر لتقويس جميع الزوايا */
         }
         .news-detail-header img {
             width: 100%;
             height: 350px;
-            object-fit: contain; /* Changed from 'cover' to 'contain' */
+            object-fit: cover; /* تم تعديل هذا السطر من 'contain' إلى 'cover' */
             display: block;
-            border-radius: 10px; /* تم إضافة هذا السطر لجعل زوايا الصورة مقوسة */
+            border-radius: 10px; /* تم الإبقاء على هذا السطر لتقويس زوايا الصورة */
         }
         .news-detail-content {
             padding: 25px;
