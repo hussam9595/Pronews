@@ -128,36 +128,77 @@
         }
         .suggested-news-links {
             display: flex;
-            flex-direction: column; /* Stack links vertically */
-            gap: 15px; /* Space between links */
-            width: 100%;
-            max-width: 400px; /* Limit width for better readability */
-            margin: 0 auto; /* Center the links */
+            flex-wrap: wrap; /* Allow cards to wrap to the next line */
+            justify-content: center; /* Center cards when there's space */
+            gap: 20px; /* Space between cards */
+            margin: 0 auto;
+            max-width: 100%; /* Ensure it fits container */
         }
-        .suggested-news-links a {
-            font-family: 'Cairo', sans-serif;
-            background-color: #222; /* Darker background for suggestions */
-            color: #f0f0f0;
-            border: 1px solid #444;
-            padding: 12px 20px;
-            border-radius: 8px;
+        .suggested-news-card {
+            background-color: #222;
+            border-radius: 10px;
+            overflow: hidden; /* Ensures image corners are rounded */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
             text-decoration: none;
+            color: #f0f0f0;
+            width: calc(50% - 10px); /* Two cards per row, accounting for gap */
+            min-width: 280px; /* Minimum width for small screens */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; /* Flex container for content inside card */
+            flex-direction: column; /* Stack image and text */
+            text-align: right; /* Align text inside card */
+        }
+
+        @media (max-width: 600px) {
+            .suggested-news-card {
+                width: 100%; /* Full width on smaller screens */
+                min-width: unset; /* Remove min-width constraint */
+            }
+        }
+
+        .suggested-news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        }
+        .suggested-news-card img {
+            width: 100%;
+            height: 150px; /* Fixed height for consistent card size */
+            object-fit: cover; /* Cover the area, cropping if necessary */
+            display: block;
+        }
+        .suggested-news-card .card-content {
+            padding: 15px;
+            flex-grow: 1; /* Allows content to take available space */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Push title to top, icon/direction to bottom */
+        }
+        .suggested-news-card .card-content h3 {
             font-size: 1.1rem;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #ffffff;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Limit title to 2 lines */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .suggested-news-card .card-direction {
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Space out icon and text */
-            text-align: right; /* Align text to the right */
+            justify-content: flex-end; /* Align icon to the left for RTL, text to right */
+            font-size: 0.95rem;
+            color: #00aaff;
+            margin-top: 10px; /* Space above direction text */
         }
-        .suggested-news-links a:hover {
-            background-color: #333;
-            border-color: #00aaff;
+        .suggested-news-card .card-direction .material-icons {
+            font-size: 1.1em;
+            margin-right: 5px; /* Space between icon and text */
+            margin-left: 0; /* Remove left margin if any from global styles */
         }
-        .suggested-news-links a .material-icons {
-            font-size: 1.2em;
-            color: #00aaff; /* Accent color for icons */
-            margin-right: 10px; /* Space between icon and text */
-        }
+
 
         /* Footer Navigation - same as index.html for consistency */
         .footer-nav {
@@ -288,10 +329,14 @@
         // Replicate newsData here so news-detail.html can function independently
         // **IMPORTANT: Added multiple news items for "Suggested News" feature to work**
         let newsData = [
+            // الخبر الأساسي الذي كنت تستخدمه
             { id: 1, title: 'مشكلة جديدة تواجه تشافي الونسو في ريال مدريد!', image: 'https://a.top4top.io/p_34852z4371.jpg', content: 'مع انطلاق موسم جديد لريال مدريد، يدور الصراع داخل غرفة تبديل الملابس حول مستقبل ثلاثة لاعبين عائدين من الإعارات، وهم: رينير، ماريو مارتن، وألفارو رودريغيز. بعد توقيع اللاعب الواعد كاريراس، بات الفريق الأول مكتملًا بـ 25 لاعبًا، الأمر الذي يضع المدرب تشابي ألونسو أمام تحدٍ كبير لاختيار التشكيلة النهائية.\n\nماريو مارتن: أداء متميز وسط تحديات الانضباط\nماريو، لاعب الوسط الذي أُعير الموسم الماضي إلى بلد الوليد، أثبت جدارته بمشاركته في 30 مباراة بالدوري، منها 20 كأساسي، بمجموع 1753 دقيقة. لكنه عانى من مشكلات انضباطية كلفته ثلاث بطاقات حمراء وثماني بطاقات صفراء، ليصبح الأكثر طردًا في الليغا لموسم 2024-2025. رغم افتقاد الفريق الأول لوسط دفاعي طبيعي، لم يمنحه تشابي فرصة الظهور في كأس العالم للأندية، مما يشير بقوة إلى رحيله المحتمل سواء بالإعارة أو البيع.\n\nألفارو رودريغيز: الطموح يصطدم بالواقع\nالمهاجم الشاب من أوروغواي، الذي ينتمي إلى منتخب تحت 20 عامًا، صرح علنًا برغبته في مغادرة ريال مدريد هذا الصيف لمتابعة تطوره المهني. في 22 مباراة مع خيتافي، لعب 845 دقيقة فقط، ولم يستطع فرض نفسه كأساسي إلا في سبع مباريات، كما تعرض للطرد مرة في كأس الملك. مع وجود تفوق واضح لجونزالو، تبدو فرصته ضئيلة في خطة تشابي، مما يجعل العودة إلى كاستيا بمثابة خطوة إلى الوراء لمسيرته.\n\nرينير: حلم برازيلي ينتظر نهايته\nالصفقة التي كلفت ريال مدريد 30 مليون يورو لم تر النور في البرنابيو قط. المهاجم البرازيلي قضى أعوامه الأربعة ونصف الماضية متنقلاً بين إعارات متتالية مع دورتموند، جيرونا، فروزينوني، وغرناطة. خلال هذه الفترات، لم يتمكن من تحقيق الأهداف المتوقعة، حيث شارك في 105 مباريات فقط، سجل خلالها 7 أهداف، وبقي بعيدًا عن التوهج الذي كان منتظراً منه. مع انتهاء عقده بعد عام واحد، يبدو أن رحيله بات أمراً محتوماً.\n\nالقرار بيد تشابي: إعارة أم بيع؟\nمع قرب إغلاق سوق الانتقالات وامتلاء قائمة الفريق، يتوجب على تشابي ألونسو اتخاذ قرار سريع بشأن هؤلاء اللاعبين. سواء كانت الإعارة لموسم جديد أو بيع نهائي، فإن مستقبل هؤلاء الثلاثة سيكون مفتاحًا جديدًا لريال مدريد في سعيه نحو النجاح المستدام.', date: '2025-07-18', order: 10, detailButtonText: 'تفاصيل الخبر', detailButtonColor: '#007bff' },
+            
+            // الخبر الثاني: سيكون "التالي" للخبر الأول و "السابق" للخبر الثالث
             { id: 2, title: 'ليفربول يعلن عن تعاقده مع نجم جديد في خط الوسط', image: 'https://cdn.top4top.io/i_32c0205b381.jpg', content: 'أعلن نادي ليفربول الإنجليزي اليوم عن إتمام صفقة انتقال لاعب خط الوسط الشاب "أليكساندر فورستر" قادمًا من نادي ريد بول سالزبورغ النمساوي. ويأتي هذا التعاقد في إطار سعي الريدز لتعزيز صفوفهم وتجديد دماء الفريق استعدادًا للموسم الجديد والتحديات الأوروبية والمحلية.\n\nفورستر، البالغ من العمر 21 عامًا، يعتبر أحد أبرز المواهب الصاعدة في أوروبا، وقد قدم مستويات مميزة خلال الموسم الماضي، حيث ساهم في قيادة فريقه لتحقيق لقب الدوري النمساوي. يتميز اللاعب بقدرته على الربط بين الدفاع والهجوم، وتمريراته الدقيقة، وقدرته على استخلاص الكرات، مما يجعله إضافة قيمة لخط وسط ليفربول.\n\nوعلق يورغن كلوب، مدرب ليفربول، على الصفقة قائلاً: "نحن سعداء للغاية بانضمام أليكساندر إلينا. إنه لاعب موهوب للغاية ويملك إمكانيات هائلة. سيكون إضافة قوية لفريقنا، ونتطلع لرؤيته يتطور معنا. فلسفتنا تقوم على جلب أفضل المواهب الشابة وتطويرها، وأليكساندر يتناسب تمامًا مع هذه الرؤية."\n\nمن جانبه، أعرب فورستر عن سعادته بالانضمام إلى ليفربول: "إنه حلم تحقق لي أن ألعب في نادٍ بحجم ليفربول. أتطلع لبداية مسيرتي هنا وأتمنى أن أكون جزءًا من النجاحات المستقبلية لهذا النادي العظيم. سأبذل قصارى جهدي لإسعاد الجماهير وتقديم أفضل ما لدي."\n\nيُذكر أن الصفقة كلفت خزينة ليفربول حوالي 45 مليون يورو، ووقع اللاعب عقدًا يمتد لخمس سنوات. ومن المتوقع أن يشارك فورستر في المعسكر الإعدادي للفريق الذي سينطلق الأسبوع المقبل، استعدادًا للمباريات الودية قبل بداية الموسم الرسمي.', date: '2025-07-17', order: 9, detailButtonText: 'تفاصيل الخبر', detailButtonColor: '#007bff' },
+            
+            // الخبر الثالث: سيكون "التالي" للخبر الثاني
             { id: 3, title: 'مانشستر يونايتد يقترب من ضم مدافع أياكس', image: 'https://e.top4top.io/p_3485y0d9w1.jpg', content: 'تشير التقارير الأخيرة إلى أن نادي مانشستر يونايتد بات قريبًا جدًا من حسم صفقة التعاقد مع المدافع الهولندي الدولي "ماتيس دي ليخت" من نادي أياكس أمستردام. تأتي هذه الخطوة في إطار سعي الشياطين الحمر لتعزيز خط دفاعهم الذي عانى من بعض المشاكل خلال الموسم الماضي.\n\nدي ليخت، البالغ من العمر 24 عامًا، يعتبر أحد أبرز المدافعين في أوروبا حاليًا، ويتميز بقوته البدنية، قدرته على قراءة اللعب، ومهاراته في التمرير وبناء الهجمات من الخلف. وقد جذب اهتمام العديد من الأندية الكبرى بعد المستويات الرائعة التي قدمها مع أياكس ومنتخب هولندا.\n\nالمفاوضات بين الناديين وصلت إلى مراحل متقدمة، ومن المتوقع أن يتم الإعلان الرسمي عن الصفقة خلال الأيام القليلة القادمة، بمجرد الانتهاء من الفحص الطبي للاعب وتوقيع العقود الشخصية. يُشاع أن قيمة الصفقة تتجاوز 70 مليون يورو، مما يعكس الأهمية التي يوليها مانشستر يونايتد لتعزيز هذا المركز.\n\nويأمل جمهور مانشستر يونايتد أن يكون دي ليخت هو الحل لمشاكل الفريق الدفاعية، وأن يشكل شراكة قوية في قلب الدفاع تساعد الفريق على المنافسة بقوة على الألقاب المحلية والأوروبية في الموسم المقبل. يُنتظر أن يكون وصوله دفعة معنوية كبيرة للفريق قبل انطلاق الموسم الجديد.', date: '2025-07-19', order: 11, detailButtonText: 'تفاصيل الخبر', detailButtonColor: '#007bff' }
-            // يمكنك إضافة المزيد من الأخبار هنا لتجربة الاقتراحات بشكل كامل.
         ];
         // Footer Buttons - also replicated for consistency
         const footerButtons = [
@@ -431,7 +476,6 @@
 
                 const newsContentWrapper = document.getElementById('newsContentWrapper');
                 if (newsContentWrapper) {
-                    // استخدام الوظيفة الجديدة insertAdAfterFirstDot
                     newsContentWrapper.innerHTML = insertAdAfterFirstDot(newsItem.content);
                 }
 
@@ -439,7 +483,7 @@
 
                 // --- Suggested News Logic ---
                 const suggestedNewsLinksContainer = document.getElementById('suggestedNewsLinks');
-                const suggestedNewsContainerParent = document.querySelector('.suggested-news-container'); // Get the parent container
+                const suggestedNewsContainerParent = document.querySelector('.suggested-news-container'); 
                 
                 if (suggestedNewsLinksContainer) {
                     suggestedNewsLinksContainer.innerHTML = ''; // Clear previous content
@@ -449,8 +493,17 @@
                         const prevNews = newsData[newsItemIndex - 1];
                         const prevLink = document.createElement('a');
                         prevLink.href = `news-detail.html?id=${prevNews.id}`;
-                        // For RTL, "arrow_forward" icon typically points right (previous)
-                        prevLink.innerHTML = `<span>الخبر السابق: ${prevNews.title}</span><i class="material-icons">arrow_forward</i>`;
+                        prevLink.classList.add('suggested-news-card'); // Add class for styling
+                        prevLink.innerHTML = `
+                            <img src="${prevNews.image}" alt="${prevNews.title}">
+                            <div class="card-content">
+                                <h3>${prevNews.title}</h3>
+                                <div class="card-direction">
+                                    <span>الخبر السابق</span>
+                                    <i class="material-icons">arrow_forward</i>
+                                </div>
+                            </div>
+                        `;
                         suggestedNewsLinksContainer.appendChild(prevLink);
                     }
 
@@ -459,8 +512,17 @@
                         const nextNews = newsData[newsItemIndex + 1];
                         const nextLink = document.createElement('a');
                         nextLink.href = `news-detail.html?id=${nextNews.id}`;
-                        // For RTL, "arrow_back" icon typically points left (next)
-                        nextLink.innerHTML = `<span>الخبر التالي: ${nextNews.title}</span><i class="material-icons">arrow_back</i>`;
+                        nextLink.classList.add('suggested-news-card'); // Add class for styling
+                        nextLink.innerHTML = `
+                            <img src="${nextNews.image}" alt="${nextNews.title}">
+                            <div class="card-content">
+                                <h3>${nextNews.title}</h3>
+                                <div class="card-direction">
+                                    <span>الخبر التالي</span>
+                                    <i class="material-icons">arrow_back</i>
+                                </div>
+                            </div>
+                        `;
                         suggestedNewsLinksContainer.appendChild(nextLink);
                     }
 
@@ -472,7 +534,7 @@
                     } else {
                         // Ensure the container is visible if there are suggestions
                         if (suggestedNewsContainerParent) {
-                            suggestedNewsContainerParent.style.display = 'block'; // Or 'flex' if you change its display property in CSS
+                            suggestedNewsContainerParent.style.display = 'block'; 
                         }
                     }
                 }
