@@ -29,85 +29,76 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        }
-        .news-detail-header {
             position: relative;
-            overflow: hidden;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
         }
-        .news-detail-header img {
+
+        /* Existing styles ... */
+        .news-detail-container {
+            padding: 20px;
+        }
+        .detail-news-image {
             width: 100%;
-            height: 350px;
+            height: 250px;
             object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .detail-news-title {
+            font-size: 2em;
+            color: #f0f0f0;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .detail-news-date {
+            color: #aaa;
+            font-size: 0.9em;
+            margin-bottom: 20px;
             display: block;
         }
-        .news-detail-content {
-            padding: 25px;
-        }
-        .news-detail-content h1 {
-            font-size: 1.8rem; /* Reduced title size */
+        .detail-text {
+            color: #ccc;
+            font-size: 1.1em;
             margin-bottom: 15px;
-            color: #ffffff;
-            text-align: right;
-        }
-        .news-detail-content .detail-date {
-            font-size: 1.1rem;
-            color: #aaa;
-            margin-bottom: 25px;
-            text-align: right;
-        }
-        .news-detail-content .detail-text {
-            font-size: 1.2rem;
-            color: #e0e0e0;
             text-align: justify;
         }
-        .action-buttons { /* New container for buttons */
-            display: flex;
-            flex-direction: column; /* Stack buttons vertically */
-            gap: 15px; /* Space between buttons */
-            margin: 30px auto 0;
-            text-align: center;
-        }
-        .action-buttons a {
-            font-family: 'Cairo', sans-serif;
-            background-color: #00aaff;
-            color: white;
-            border: none;
-            padding: 12px 25px;
+        .ad-container {
+            background-color: #1a1a1a;
             border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            display: flex; /* For icon and text alignment */
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+            margin-bottom: 20px;
+            min-height: 100px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: fit-content; /* Adjust width to content */
-            margin: 0 auto; /* Center the buttons */
+            font-size: 1.2em;
+            color: #888;
+            border: 1px dashed #444;
+            flex-direction: column;
         }
-        .action-buttons a:hover {
-            background-color: #0088cc;
+        .ad-container ins {
+            display: block !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            min-height: 100px !important;
+            background-color: #333;
+            margin: 0 auto !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
         }
-        .action-buttons a.telegram-button { /* Specific style for Telegram button */
-            background-color: #0088cc; /* Telegram blue */
-            padding: 8px 18px; /* Reduced padding for smaller size */
-            font-size: 0.95rem; /* Reduced font size for smaller size */
+        /* If AdSense script fails to load, show a fallback */
+        .ad-container:empty {
+            content: "مكان إعلان";
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 1.2em;
         }
-        .action-buttons a.telegram-button:hover {
-            background-color: #0077b3; /* Darker Telegram blue on hover */
-        }
-        .action-buttons a .material-icons {
-            margin-left: 8px; /* Space between icon and text */
-            font-size: 1.3em;
-        }
-        /* Adjusted for Telegram button */
-        .action-buttons a.telegram-button .material-icons {
-            margin-left: 6px; /* Slightly less margin for smaller button */
-            font-size: 1.1em; /* Smaller icon for smaller button */
-        }
-        
-        /* Footer Navigation - same as index.html for consistency */
+
+        /* Fixed Footer Navigation - from pronewsads3_final(1).txt */
         .footer-nav {
             position: fixed;
             bottom: 0;
@@ -137,22 +128,22 @@
             transition: color 0.3s ease;
         }
         .footer-nav button:hover {
-            color: #f0f0f0;
+            color: #f0f0f0; /* KEEP WHITE ON HOVER */
         }
         .footer-nav button .material-icons {
             font-size: 20px;
             display: block;
-            color: #f0f0f0;
+            color: #f0f0f0; /* Ensure color is visible, in case of override */
         }
 
-        /* Site Info Footer - same as index.html for consistency */
+        /* Site Info Footer - from pronewsads3_final(1).txt */
         .site-info-footer {
             background-color: #0a0a0a;
             color: #ccc;
             text-align: center;
             padding: 15px 0;
             font-size: 14px;
-            margin-top: 30px;
+            margin-top: 30px; /* Space above this footer */
         }
         .site-info-footer a {
             color: #f0f0f0;
@@ -163,60 +154,29 @@
         .site-info-footer a:hover {
             color: #00aaff;
         }
-
-        /* AdSense Container Styling - Similar to index.html */
-        .ad-container {
-            background-color: #1a1a1a; /* Darker background for ads */
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-            margin-top: 20px; /* Space above ads */
-            margin-bottom: 20px; /* Space below ads */
-            min-height: 100px; /* Give it some height for visibility */
-            display: flex; /* To center placeholder text/images */
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2em;
-            color: #888;
-            border: 1px dashed #444; /* This border should definitely make it visible */
-            flex-direction: column;
-        }
-        .ad-container ins {
-            display: block !important;
-            min-height: 100px; /* Placeholder for AdSense actual size */
-            background-color: #333;
-            margin: 0 auto;
-            width: 100%;
-            max-width: 728px;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="news-detail-header">
-            <img id="detailNewsImage" src="" alt="صورة الخبر">
-        </div>
-        <div class="news-detail-content">
-            <h1 id="detailNewsTitle"></h1>
-            <p class="detail-date" id="detailNewsDate"></p>
+        <div class="news-detail-container">
+            <h1 id="detailNewsTitle" class="detail-news-title"></h1>
+            <img id="detailNewsImage" class="detail-news-image" src="" alt="صورة الخبر">
+            <span id="detailNewsDate" class="detail-news-date"></span>
             <div id="newsContentWrapper">
-  
-            </div>
-        </div>
-        <div class="action-buttons">
-            <a href="index.html">العودة إلى الرئيسية</a>
-            <a href="https://t.me/PROTVPLUSS" target="_blank" class="telegram-button">
-                قناتنا على التلغرام <i class="material-icons">send</i>
-            </a>
+                </div>
         </div>
     </div>
 
     <div class="footer-nav" id="footerNav">
-        </div>
+        <button onclick="resetNewsAndHideSearch()"><i class="material-icons">home</i><span>الرئيسية</span></button>
+        <button onclick="window.location.href='https://www.google.com/search?q=فئات+الأخبار'"><i class="material-icons">category</i><span>فئات</span></button>
+        <button onclick="showAlert('زر التنبيهات')"><i class="material-icons">notifications</i><span>تنبيهات</span></button>
+        <button onclick="window.location.href='about.html'"><i class="material-icons">info</i><span>من نحن</span></button>
+        <button onclick="toggleSearchBar()"><i class="material-icons">search</i><span>بحث</span></button>
+    </div>
 
     <footer class="site-info-footer">
-        &copy; 2025 برو نيوز. جميع الحقوق محفوظة.
+        © 2025 برو نيوز. جميع الحقوق محفوظة.
         <div>
             <a href="about.html">من نحن</a> |
             <a href="contact.html">اتصل بنا</a> |
@@ -224,169 +184,87 @@
         </div>
     </footer>
 
-    <script>
+    <script id="main-script">
         // Start of self-contained script content (DO NOT MODIFY THESE COMMENTS)
-        // Replicate newsData here so news-detail.html can function independently
+        let adminMode = true; // Set to true to enable admin functionalities
         let newsData = [
-            { id: 2, title: 'السلام عليكم', image: 'https://b.top4top.io/p_3485iaplb2.jpg', content: 'السلام عليكم', date: '2025-07-18', order: 10, detailButtonText: 'تفاصيل الخبر', detailButtonColor: '#007bff' }
-        ]; // تم حذف جميع الأخبار من هنا
-        // Footer Buttons - also replicated for consistency
-        const footerButtons = [
-            { text: 'الرئيسية', icon: 'home', action: 'go:index.html' },
-            { text: 'فئات', icon: 'category', action: 'go:https://www.google.com/search?q=فئات+الأخبار' },
-            { text: 'تنبيهات', icon: 'notifications', action: 'function:showAlert:زر التنبيهات' },
-            { text: 'من نحن', icon: 'info', action: 'go:about.html' },
-            { text: 'بحث', icon: 'search', action: 'function:handleSearchClick' } // Changed for news-detail context
-        ];
-        function executeAction(actionString) {
-            if (!actionString) return;
-            if (actionString.startsWith('go:')) {
-                const url = actionString.substring(3);
-                if (url.startsWith('http://') || url.startsWith('https://')) {
-                    window.open(url, '_blank');
-                } else {
-                    window.location.href = url;
-                }
-            } else if (actionString.startsWith('function:')) {
-                let funcCall = actionString.substring(9);
-                let funcName;
-                let funcArgs = [];
-                if (funcCall.includes(':')) {
-                    const parts = funcCall.split(':');
-                    funcName = parts[0];
-                    funcArgs = parts.slice(1);
-                } else {
-                    funcName = funcCall;
-                }
-                if (typeof window[funcName] === 'function') {
-                    window[funcName](...funcArgs);
-                } else {
-                    console.error('Function not found:', funcName);
-                }
-            } else {
-                console.warn('Unknown action type:', actionString);
+            {"id":9,"title":"هانسي فليك يبدأ أولى خطواته الحاسمة في برشلونة!","image":"https://b.top4top.io/p_3485iaplb2.jpg","content":"يستعد المدرب الألماني هانسي فليك لإجراء أول عملية فرز فنية داخل نادي برشلونة، ضمن استعدادات الفريق للموسم الجديد، حيث يهدف إلى تقييم جميع اللاعبين قبل اتخاذ قرارات نهائية بشأن مستقبلهم.\n\n ومن المنتظر أن يقوم فليك بتحديد قائمة أولية تضم اللاعبين الذين سيعتمد عليهم في مشروعه الفني مع الفريق، مقابل أسماء مرشحة للمغادرة سواء على سبيل الإعارة أو البيع النهائي.\n\n المدرب الجديد، المعروف بدقته وشخصيته الحاسمة، بدأ بالفعل دراسة ملفات اللاعبين من خلال المباريات السابقة والتقارير الفنية، على أن يستخدم الفترة التحضيرية المقبلة لاختبارهم ميدانيًا بشكل مباشر.\n\n بعض اللاعبين، خاصة الشباب أو العائدين من الإعارة، سيكونون تحت المجهر، فيما تتجه النية لمنح آخرين فرصة أخيرة لإثبات جدارتهم بالبقاء في الكامب نو.\n\n وتأتي هذه الخطوة في إطار إعادة بناء الفريق، خاصة بعد رحيل المدرب السابق تشافي هيرنانديز، حيث يسعى فليك لوضع بصمته الخاصة، والبدء من قاعدة واضحة ومحددة.\n\n يُذكر أن برشلونة سيدخل مرحلة الإعداد للموسم الجديد قريبًا، تسبقها جولة تحضيرية في الولايات المتحدة، ستكون حاسمة للعديد من الأسماء داخل غرفة الملابس.\n\n فهل تنجح \"أولى غربلات فليك\" في رسم ملامح برشلونة الجديد؟\n\nالأيام القادمة ستكشف من سيحجز مكانه في الخطة… ومن سيغادر بهدوء.","date":"2025-07-17","order":0,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"},
+            {"id":8,"title":"مشكلة جديدة تواجه تشافي الونسو في ريال مدريد","image":"https://a.top4top.io/p_34852z4371.jpg","content":"مع انطلاق موسم جديد لريال مدريد، يدور الصراع داخل غرفة تبديل الملابس حول مستقبل ثلاثة لاعبين عائدين من الإعارات، وهم: رينير، ماريو مارتن، وألفارو رودريغيز.\n\nبعد توقيع اللاعب الواعد كاريراس، بات الفريق الأول مكتملًا بـ 25 لاعبًا، الأمر الذي يضع المدرب تشابي ألونسو أمام تحدٍ كبير لاختيار التشكيلة النهائية.\n\nماريو مارتن: أداء متميز وسط تحديات الانضباط\nماريو، لاعب الوسط الذي أُعير الموسم الماضي إلى بلد الوليد، أثبت جدارته بمشاركته في 30 مباراة بالدوري، منها 20 كأساسي، بمجموع 1753 دقيقة. لكنه عانى من مشكلات انضباطية كلفته ثلاث بطاقات حمراء وثماني بطاقات صفراء، ليصبح الأكثر طردًا في الليغا لموسم 2024-2025. رغم افتقاد الفريق الأول لوسط دفاعي طبيعي، لم يمنحه تشابي فرصة الظهور في كأس العالم للأندية، مما يشير بقوة إلى رحيله المحتمل سواء بالإعارة أو البيع.\n\nألفارو رودريغيز: الطموح يصطدم بالواقع\nالمهاجم الشاب من أوروغواي، الذي ينتمي إلى منتخب تحت 20 عامًا، صرح علنًا برغبته في مغادرة ريال مدريد هذا الصيف لمتابعة تطوره المهني. في 22 مباراة مع خيتافي، لعب 845 دقيقة فقط، ولم يستطع فرض نفسه كأساسي إلا في سبع مباريات، كما تعرض للطرد مرة في كأس الملك. مع وجود تفوق واضح لجونزالو، تبدو فرصته ضئيلة في خطة تشابي، مما يجعل العودة إلى كاستيا بمثابة خطوة إلى الوراء لمسيرته.\n\nرينير: حلم برازيلي ينتظر نهايته\nالصفقة التي أحدثت ضجة كبيرة عند قدومه من فلامينغو، رينير، أثارت التوقعات بحل مشكلة صناعة اللعب في ريال مدريد. لكن تجربته مع جيرونا، حيث شارك في 27 مباراة كبديل ولم يسجل سوى هدفين، كشفت عن عدم قدرته على التأقلم مع متطلبات الليغا. ومع صعوبة العثور على فريق آخر في إسبانيا، يواجه اللاعب البرازيلي خطر العودة إلى كاستيا أو البحث عن فرصة في الدوريات الأوروبية الأقل قوة.\n\nمستقبل الثلاثي: قرار حاسم ينتظرهم\nبينما يفضل ماريو وألفارو البحث عن فرص جديدة تضمن لهما المشاركة المنتظمة، يبقى رينير في موقف صعب يتطلب تدخلًا حاسمًا من إدارة النادي لتحديد وجهته المقبلة. يبقى السؤال معلقًا: هل ينجح تشابي ألونسو في إيجاد حلول لهذه المشكلات الثلاث، أم أن الموسم الجديد سيشهد رحيل هؤلاء اللاعبين عن القلعة البيضاء؟","date":"2025-07-17","order":0,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"},
+            {"id":6,"title":"السعودية تستعد لصفقة جديدة... \"ضربة\" كبرى مرتقبة في الميركاتو","image":"https://c.top4top.io/p_34856jr3c3.jpg","content":"يبدو أن الميركاتو الصيفي في المملكة العربية السعودية لن يهدأ قبل أن يقدم مفاجآت جديدة لجماهير كرة القدم، فبعد موجة التعاقدات الكبرى التي شهدتها الأندية السعودية في السنوات الأخيرة، تتجه الأنظار الآن نحو صفقة محتملة قد تكون الأبرز في تاريخ الدوري السعودي.\n\nتتداول الأوساط الرياضية أنباء قوية عن استعداد أحد الأندية الكبرى في الدوري السعودي لتقديم عرض خرافي للتعاقد مع نجم عالمي من طراز رفيع، وهو ما قد يشكل \"ضربة كبرى\" في سوق الانتقالات العالمية.\n\nوبحسب مصادر مقربة من الأندية، فإن الصفقة تستهدف لاعبًا يتمتع بشعبية جماهيرية واسعة ومستوى فني عالٍ، قادر على إحداث نقلة نوعية في مستوى المنافسة وجذب المزيد من الاهتمام العالمي للدوري السعودي.\n\nتأتي هذه الأنباء في الوقت الذي تسعى فيه السعودية لترسيخ مكانتها كوجهة جاذبة لأبرز نجوم العالم، بما يتماشى مع رؤية 2030 التي تهدف إلى تطوير القطاع الرياضي ورفع مستوى جودة الحياة.\n\nولم يتم الكشف عن اسم اللاعب المستهدف حتى الآن، مما يزيد من حالة الترقب والفضول لدى الجماهير ومتابعي كرة القدم.\n\nفهل تنجح الأندية السعودية في تحقيق هذه \"الضربة الكبرى\" وتحويل الحلم إلى حقيقة؟ الأيام القادمة ستكشف الستار عن الصفقة التي قد تغير وجه الميركاتو وتاريخ الدوري السعودي.","date":"2025-07-17","order":0,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"},
+            {"id":7,"title":"تحقيقات في إسبانيا بسبب مبابي!","image":"https://d.top4top.io/p_34856p6zx4.jpg","content":"أعلنت رابطة الدوري الإسباني لكرة القدم \"لا ليغا\"، اليوم، عن بدء تحقيقات موسعة حول الأسباب الحقيقية وراء تأخر الإعلان الرسمي عن انتقال النجم الفرنسي كيليان مبابي إلى ريال مدريد، على الرغم من تأكيدات متعددة من مصادر إعلامية موثوقة حول اكتمال الصفقة.\n\nتأتي هذه الخطوة بعد تزايد الشكوك حول طبيعة المفاوضات التي سبقت الإعلان، وما إذا كانت هناك أي مخالفات محتملة لقواعد اللعب المالي النظيف أو التلاعب بالأسعار في سوق الانتقالات.\n\nوبحسب بيان صادر عن الرابطة، فإن التحقيقات ستركز على عدة جوانب، منها: التوقيت الذي تم فيه الاتفاق بين اللاعب والنادي، قيمة الصفقة المعلنة، وأي بنود خفية قد تكون موجودة في العقد.\n\nالرابطة أكدت أنها تسعى لضمان الشفافية والعدالة في المنافسة، وأنها لن تتهاون في اتخاذ الإجراءات اللازمة ضد أي طرف يثبت تورطه في مخالفات.\n\nمن جانبه، لم يصدر ريال مدريد أي تعليق رسمي حول هذه التحقيقات، فيما يترقب الشارع الرياضي في إسبانيا والعالم نتائج هذه التحقيقات، التي قد تلقي بظلالها على واحدة من أهم صفقات كرة القدم في السنوات الأخيرة.\n\nفهل تكشف تحقيقات \"لا ليغا\" عن مفاجآت جديدة في قضية مبابي؟ الأيام القادمة ستحمل الإجابة.","date":"2025-07-17","order":0,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"},
+            {"id":5,"title":"رودريغو يقترب من مغادرة ريال مدريد… صراع إنجليزي محتدم على توقيعه","image":"https://f.top4top.io/p_3485mp2zi6.jpg","content":"يبدو أن الميركاتو الصيفي الحالي سيشهد تحولات كبيرة في تشكيلة ريال مدريد، حيث تتجه الأنظار نحو مستقبل النجم البرازيلي رودريغو، الذي بات اسمه يتردد بقوة في أروقة الأندية الإنجليزية الكبرى.\n\nوبحسب مصادر مقربة من اللاعب، فإن رودريغو يقترب من مغادرة النادي الملكي، في ظل منافسة شرسة بين عدد من عمالقة الدوري الإنجليزي الممتاز للحصول على خدماته. وتأتي هذه الأنباء في الوقت الذي يسعى فيه ريال مدريد لتعزيز صفوفه بأسماء جديدة.\n\nوتشير التقارير إلى أن أندية مثل مانشستر يونايتد، ليفربول، وتشيلسي، تضع رودريغو على رأس أولوياتها، مستعدة لتقديم عروض مالية ضخمة لإقناعه بالانتقال إلى البريميرليغ.\n\nرودريغو، الذي قدم مستويات مميزة مع ريال مدريد في المواسم الأخيرة، يمتلك مهارات فنية عالية وقدرة على التسجيل وصناعة الأهداف، مما يجعله هدفًا جذابًا لأي نادٍ يبحث عن تعزيز هجومه.\n\nولم يصدر ريال مدريد أي بيان رسمي حتى الآن، ولكن التكهنات تتزايد حول قرب حسم الصفقة. فهل نشهد انتقال رودريغو إلى الدوري الإنجليزي ليبدأ فصلاً جديدًا في مسيرته الكروية؟ الأيام القادمة كفيلة بالإجابة.","date":"2025-07-17","order":0,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"},
+            {"id":4,"title":"نجم فرنسا السابق يدافع عن مبابي!","image":"https://h.top4top.io/p_348588x3m8.jpg","content":"في تصريحات مثيرة للجدل، دافع النجم الفرنسي السابق تييري هنري بقوة عن كيليان مبابي، مهاجم ريال مدريد الجديد، مؤكدًا أنه كان ضحية لسوء فهم كبير من قبل الجماهير والإعلام بسبب قرار رحيله عن باريس سان جيرمان.\n\nهنري، الذي يُعد أحد أساطير كرة القدم الفرنسية، صرح بأن مبابي اتخذ قرارًا صعبًا بالبحث عن تحدٍ جديد في مسيرته، وأن هذا القرار يجب أن يُحترم بدلًا من أن يُقابل بالهجوم والاتهامات.\n\nوأضاف: \"مبابي لم يكن يرغب في إيذاء أحد، بل كان يسعى لتحقيق أحلامه وطموحاته الكروية. الظروف المحيطة برحيله كانت معقدة، لكنه دائمًا ما كان يضع مصلحة فريقه وبلاده أولًا.\"\n\nتصريحات هنري تأتي في ظل الجدل المستمر حول انتقال مبابي إلى ريال مدريد، والذي أثار ردود فعل متباينة بين مؤيد ومعارض.\n\nويأمل هنري أن تتوقف حملة الهجوم على مبابي، وأن يُمنح اللاعب الفرصة لإثبات نفسه في ناديه الجديد، مؤكدًا أن \"كيليان يمتلك إمكانيات هائلة، وسيثبت للجميع أنه يستحق كل هذا الاهتمام.\"\n\nفهل تنجح تصريحات تييري هنري في تغيير نظرة الجماهير والإعلام تجاه كيليان مبابي؟ الأيام القادمة ستحمل الإجابة، ومعها ستظهر حقيقة تأثير مبابي على فريقه الجديد.","date":"2025-07-17","order":0,"detailButtonText":"تفاصيل الخبر","detailButtonColor":"#cf0e0e"}
+        [span_0](start_span)];[span_0](end_span)
+
+        // Functions from pronewsads3_final(1).txt needed for footer buttons
+        function resetNewsAndHideSearch() {
+            // Functionality to reset news feed and hide search bar
+            console.log("Resetting news and hiding search bar...");
+            // Example: If you have a news display, clear filters or reload all news
+            // If search bar is visible, hide it
+            const searchBar = document.getElementById('searchBar');
+            if (searchBar) {
+                searchBar.style.display = 'none';
             }
+            // You might want to re-render the initial news list here if applicable
+            // For news-detail.html, this button might redirect to the main news page
+            window.location.href = 'index.html'; // Assuming index.html is your main news page
         }
 
         function showAlert(message) {
-            alert(`تم النقر على: ${message}`);
+            alert(message);
         }
 
-        // Handle search click - on detail page, it just goes to index.html with search bar visible
-        function handleSearchClick() {
-            window.location.href = 'index.html?showSearch=true';
-        }
-
-        function setupFooterButtons() {
-            const footerNav = document.getElementById('footerNav');
-            if (!footerNav) {
-                console.error('Footer navigation element not found!');
-                return;
+        function toggleSearchBar() {
+            const searchBar = document.getElementById('searchBar');
+            if (searchBar) {
+                searchBar.style.display = searchBar.style.display === 'none' || searchBar.style.display === '' ? 'flex' : 'none';
             }
-            footerNav.innerHTML = '';
-            footerButtons.forEach(button => {
-                const btn = document.createElement('button');
-                btn.innerHTML = `<i class="material-icons">${button.icon}</i><span>${button.text}</span>`; // Ensure button.text is used for display
-                btn.onclick = () => executeAction(button.action);
-                footerNav.appendChild(btn);
-            });
-        }
-
-        // Function to parse URL parameters
-        function getUrlParameter(name) {
-            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-            var results = regex.exec(location.search);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const newsId = parseInt(getUrlParameter('id'));
+            const urlParams = new URLSearchParams(window.location.search);
+            const newsId = parseInt(urlParams.get('id'));
+
             const newsItem = newsData.find(news => news.id === newsId);
 
             if (newsItem) {
-                document.getElementById('detailNewsImage').src = newsItem.image;
-                document.getElementById('detailNewsImage').alt = newsItem.title;
                 document.getElementById('detailNewsTitle').textContent = newsItem.title;
-                document.getElementById('detailNewsDate').textContent = `تاريخ النشر: ${newsItem.date}`;
+                document.getElementById('detailNewsImage').src = newsItem.image;
+                document.getElementById('detailNewsDate').textContent = newsItem.date;
 
-                // --- Start of content splitting and ad insertion logic ---
                 const newsContentWrapper = document.getElementById('newsContentWrapper');
-                
-                let contentToDisplay = newsItem.content;
-                let splitPoint = -1;
-                // Find the first occurrence of '.' or ',' after a reasonable starting point (e.g., 100 characters)
-                const minCharsBeforeAd = 100;
-
-                for (let i = minCharsBeforeAd; i < contentToDisplay.length; i++) {
-                    if (contentToDisplay[i] === '.' || contentToDisplay[i] === ',') {
-                        // Ensure it's not immediately followed by another punctuation or space, but actually ends a thought
-                        if (contentToDisplay[i+1] === ' ' || contentToDisplay[i+1] === '\n' || i === contentToDisplay.length -1) {
-                            splitPoint = i + 1; // Include the punctuation in the first part
-                            break;
-                        }
-                    }
-                }
-
                 if (newsContentWrapper) {
-                    newsContentWrapper.innerHTML = ''; // Clear any existing content
+                    newsContentWrapper.innerHTML = ''; // Clear previous content
 
-                    if (splitPoint !== -1) {
-                        const firstPartText = contentToDisplay.substring(0, splitPoint).trim();
-                        const secondPartText = contentToDisplay.substring(splitPoint).trim();
+                    // Split content by newline for paragraphs and insert ads
+                    const paragraphs = newsItem.content.split('\n\n').filter(p => p.trim() !== '');
 
-                        const firstPartParagraph = document.createElement('p');
-                        firstPartParagraph.className = 'detail-text';
-                        firstPartParagraph.textContent = firstPartText;
-                        newsContentWrapper.appendChild(firstPartParagraph);
-                        
-                        // Insert AdSense Ad container
-                        const adContainer = document.createElement('div');
-                        adContainer.className = 'ad-container';
-                        adContainer.innerHTML = `
-                            <p>إعلان</p>
-                            <ins class="adsbygoogle"
-                                 style="display:block; text-align:center;"
-                                 data-ad-layout="in-article"
-                                 data-ad-format="fluid"
-                                 data-ad-client="ca-pub-1234567890123456"
-                                 data-ad-slot="1111111111"></ins> `;
-                        newsContentWrapper.appendChild(adContainer);
+                    if (paragraphs.length > 0) {
+                        const firstPart = paragraphs.slice(0, 1).join('\n\n');
+                        const secondPart = paragraphs.slice(1).join('\n\n');
 
-                        // Push ad to AdSense for rendering
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-
-                        if (secondPartText) {
-                            const secondPartParagraph = document.createElement('p');
-                            secondPartParagraph.className = 'detail-text';
-                            secondPartParagraph.textContent = secondPartText;
-                            newsContentWrapper.appendChild(secondPartParagraph);
-                        }
-                    } else {
-                        // Fallback to original paragraph splitting if no suitable punctuation is found
-                        const paragraphs = newsItem.content.split('\n\n').filter(p => p.trim() !== '');
-                        const splitIndex = Math.ceil(paragraphs.length / 2);
-
-                        const firstPart = paragraphs.slice(0, splitIndex).join('\n\n');
-                        const secondPart = paragraphs.slice(splitIndex).join('\n\n');
-
+                        // Insert first part of the content
                         const firstPartParagraph = document.createElement('p');
                         firstPartParagraph.className = 'detail-text';
                         firstPartParagraph.textContent = firstPart;
                         newsContentWrapper.appendChild(firstPartParagraph);
 
+                        // Insert ad after the first paragraph
                         const adContainer = document.createElement('div');
                         adContainer.className = 'ad-container';
                         adContainer.innerHTML = `
-                            <p>إعلان</p>
                             <ins class="adsbygoogle"
                                  style="display:block; text-align:center;"
                                  data-ad-layout="in-article"
                                  data-ad-format="fluid"
                                  data-ad-client="ca-pub-1234567890123456"
-                                 data-ad-slot="1111111111"></ins> `;
+                                 data-ad-slot="1234567890"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        `;
                         newsContentWrapper.appendChild(adContainer);
-                        (adsbygoogle = window.adsbygoogle || []).push({});
 
                         if (secondPart) {
                             const secondPartParagraph = document.createElement('p');
@@ -396,8 +274,6 @@
                         }
                     }
                 }
-                // --- End of content splitting and ad insertion logic ---
-
                 document.title = `تفاصيل الخبر: ${newsItem.title} - برو نيوز`;
             } else {
                 // Handle case where news item is not found
@@ -410,7 +286,7 @@
                 document.getElementById('detailNewsDate').style.display = 'none';
                 document.title = 'خطأ - الخبر غير موجود - برو نيوز';
             }
-            setupFooterButtons();
+            // setupFooterButtons(); // This function is not defined in newsdata.txt, assumed to be in the main page.
         });
         // End of self-contained script content (DO NOT MODIFY THESE COMMENTS)
     </script>
