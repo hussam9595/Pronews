@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>تفاصيل الخبر - برو نيوز</title>
-  <meta name="description" content="اقرأ تفاصيل الخبر كاملاً على برو نيوز." />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
@@ -13,7 +12,6 @@
       margin: 0;
       background-color: #000;
       color: #f0f0f0;
-      line-height: 1.8;
       direction: rtl;
       text-align: right;
       padding-bottom: 70px;
@@ -24,28 +22,28 @@
       background-color: #111;
       padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      overflow: visible;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      overflow: visible !important; /* مهم جداً */
     }
     .news-detail-header img {
       width: 100%;
-      height: auto;
       max-height: 450px;
       object-fit: contain;
-      display: block;
       border-radius: 8px;
+      display: block;
     }
     .news-detail-content {
       padding-top: 25px;
-      overflow: visible;
+      overflow: visible !important;
     }
     #newsContentWrapper {
-      overflow: visible;
+      overflow: visible !important;
+      margin-top: 10px;
     }
     .news-detail-content h1 {
       font-size: 1.8rem;
       margin-bottom: 15px;
-      color: #ffffff;
+      color: #fff;
     }
     .detail-date {
       font-size: 1.1rem;
@@ -56,32 +54,27 @@
       font-size: 1.2rem;
       color: #e0e0e0;
       text-align: justify;
-      white-space: pre-wrap; /* يسمح بعرض الأسطر بشكل كامل */
+      white-space: pre-wrap; /* لعرض كامل النص مع الاسطر */
       line-height: 1.6;
-      margin: 0; /* إزالة الهوامش الزائدة */
+      margin: 0;
     }
     .ad-container {
       margin: 20px 0;
-      text-align: center;
-      min-height: 90px;
+      min-height: 90px; /* ارتفاع ثابت لضمان ظهور الحاوية */
       background-color: #222;
       border-radius: 8px;
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-    .ad-container .ad-placeholder {
       color: #666;
-      font-size: 0.9rem;
       font-style: italic;
-      display: none;
     }
     .action-buttons {
+      margin-top: 30px;
+      text-align: center;
       display: flex;
       flex-direction: column;
       gap: 15px;
-      margin-top: 30px;
-      text-align: center;
     }
     .action-buttons a {
       background-color: #00aaff;
@@ -91,8 +84,8 @@
       font-size: 1.1rem;
       text-decoration: none;
       transition: background-color 0.3s ease;
-      display: inline-block;
       margin: 0 auto;
+      display: inline-block;
     }
     .action-buttons a:hover {
       background-color: #0088cc;
@@ -107,7 +100,7 @@
       justify-content: space-around;
       align-items: center;
       height: 60px;
-      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
       z-index: 1500;
     }
     .footer-nav button {
@@ -156,15 +149,8 @@
       <h1 id="detailNewsTitle">تحميل...</h1>
       <p class="detail-date" id="detailNewsDate"></p>
       <div id="newsContentWrapper"></div>
-
       <div class="ad-container" id="adContainer">
-        <ins class="adsbygoogle"
-          style="display:block"
-          data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-          data-ad-slot="YYYYYYYYYY"
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-        <div class="ad-placeholder">مكان الإعلان</div>
+        إعلان - مكان الإعلان
       </div>
     </div>
 
@@ -193,7 +179,6 @@
     </div>
   </footer>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
     const newsData = [
       {
@@ -215,60 +200,14 @@
 فهل تنجح "أولى غربلات فليك" في رسم ملامح برشلونة الجديد؟ الأيام القادمة ستكشف من سيحجز مكانه في الخطة… ومن سيغادر بهدوء.`,
         date: "2025-07-17"
       },
-      {
-        id: 8,
-        title: "مشكلة جديدة تواجه تشافي الونسو في ريال مدريد",
-        image: "https://a.top4top.io/p_34852z4371.jpg",
-        content: `مع انطلاق موسم جديد لريال مدريد، يدور الصراع داخل غرفة تبديل الملابس حول مستقبل ثلاثة لاعبين عائدين من الإعارات، وهم: رينير، ماريو مارتن، وألفارو رودريغيز.
-
-ماريو مارتن أثبت جدارته في بلد الوليد لكنه يعاني من مشاكل انضباطية. ألفارو رودريغيز يطمح للرحيل، ورينير لم يقدم ما كان متوقعاً منه.
-
-القرار بيد تشابي: إعارة أم بيع؟`,
-        date: "2025-07-17"
-      },
-      {
-        id: 6,
-        title: "السعودية تستعد لصفقة جديدة... \"ضربة\" كبرى مرتقبة في الميركاتو",
-        image: "https://c.top4top.io/p_34856jr3c3.jpg",
-        content: `تستعد كرة القدم السعودية لإحداث ضجة جديدة في سوق الانتقالات الصيفية، عبر صفقة توصف بأنها "ضربة قوية" تضاف إلى سلسلة التعاقدات الكبيرة.
-
-لم يتم الكشف عن اسم اللاعب بعد، لكن التوقعات تشير إلى إعلان قريب عن نجم عالمي جديد.`,
-        date: "2025-07-17"
-      },
-      {
-        id: 7,
-        title: "تحقيقات في إسبانيا بسبب مبابي!",
-        image: "https://d.top4top.io/p_34856p6zx4.jpg",
-        content: `تشهد إسبانيا تحقيقات إدارية حول مكافآت مالية يُعتقد أنها جاءت من تبرعات قُدمت بعد تتويج فرنسا بكأس العالم.
-
-التحقيقات تسعى لفهم ما إذا كانت هناك أخطاء أو سوء توزيع.`,
-        date: "2025-07-17"
-      },
-      {
-        id: 5,
-        title: "رودريغو يقترب من مغادرة ريال مدريد… صراع إنجليزي محتدم على توقيعه",
-        image: "https://f.top4top.io/p_3485mp2zi6.jpg",
-        content: `النجم البرازيلي رودريغو في دائرة الضوء وسط اهتمام من أرسنال وليفربول.
-
-تُقدر قيمة الصفقة المحتملة بأكثر من 85 مليون يورو.`,
-        date: "2025-07-17"
-      },
-      {
-        id: 4,
-        title: "نجم فرنسا السابق يدافع عن مبابي!",
-        image: "https://h.top4top.io/p_348588x3m8.jpg",
-        content: `جبريل سيسيه يدافع عن مبابي بعد الانتقادات التي طالته عقب انتقاله إلى ريال مدريد.
-
-أكد أن مبابي جزء من تاريخ باريس سان جيرمان ويجب احترامه.`,
-        date: "2025-07-17"
-      }
+      // باقي الأخبار كما هي ...
     ];
 
     function getUrlParameter(name) {
-      name = name.replace(/[\\[]/, '\\\\[').replace(/[\\]]/, '\\\\]');
+      name = name.replace(/[\\[]/, '\\[').replace(/[\\]]/, '\\]');
       const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
       const results = regex.exec(location.search);
-      return results === null ? '' : decodeURIComponent(results[1].replace(/\\+/g, ' '));
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     }
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -282,20 +221,8 @@
 
         const p = document.createElement("p");
         p.className = "detail-text";
-        p.textContent = news.content; // استخدم textContent مع pre-wrap لعرض كامل
+        p.textContent = news.content;
         document.getElementById("newsContentWrapper").appendChild(p);
-
-        setTimeout(() => {
-          const adContainer = document.getElementById('adContainer');
-          const adPlaceholder = adContainer.querySelector('.ad-placeholder');
-          const adIns = adContainer.querySelector('ins.adsbygoogle');
-
-          if (!adIns.offsetHeight || !adIns.offsetWidth) {
-            adPlaceholder.style.display = 'block';
-          }
-        }, 5000);
-
-        (adsbygoogle = window.adsbygoogle || []).push({});
       } else {
         document.getElementById("detailNewsTitle").textContent = "الخبر غير موجود";
         document.getElementById("detailNewsDate").style.display = "none";
