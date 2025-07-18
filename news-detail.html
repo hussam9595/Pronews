@@ -25,7 +25,7 @@
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      overflow: visible; /* منع اقتطاع المحتوى */
+      overflow: visible;
     }
     .news-detail-header img {
       width: 100%;
@@ -37,10 +37,10 @@
     }
     .news-detail-content {
       padding-top: 25px;
-      overflow: visible; /* منع اقتطاع المحتوى */
+      overflow: visible;
     }
     #newsContentWrapper {
-      overflow: visible; /* منع اقتطاع المحتوى */
+      overflow: visible;
     }
     .news-detail-content h1 {
       font-size: 1.8rem;
@@ -56,25 +56,25 @@
       font-size: 1.2rem;
       color: #e0e0e0;
       text-align: justify;
-      white-space: pre-wrap !important;
+      white-space: pre-wrap; /* يسمح بعرض الأسطر بشكل كامل */
       line-height: 1.6;
+      margin: 0; /* إزالة الهوامش الزائدة */
     }
-    /* حاوية الإعلان بحجم ثابت ومحدّد */
     .ad-container {
       margin: 20px 0;
       text-align: center;
-      min-height: 90px; /* ارتفاع ثابت تقريبي لإعلان أدسنس */
-      background-color: #222; /* خلفية داكنة ظاهرة حتى لو الإعلان لم يظهر */
+      min-height: 90px;
+      background-color: #222;
       border-radius: 8px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    /* نص بديل للإعلان عند عدم ظهوره */
     .ad-container .ad-placeholder {
       color: #666;
       font-size: 0.9rem;
       font-style: italic;
+      display: none;
     }
     .action-buttons {
       display: flex;
@@ -157,7 +157,6 @@
       <p class="detail-date" id="detailNewsDate"></p>
       <div id="newsContentWrapper"></div>
 
-      <!-- إعلان أدسنس -->
       <div class="ad-container" id="adContainer">
         <ins class="adsbygoogle"
           style="display:block"
@@ -165,7 +164,7 @@
           data-ad-slot="YYYYYYYYYY"
           data-ad-format="auto"
           data-full-width-responsive="true"></ins>
-        <div class="ad-placeholder" style="display:none;">مكان الإعلان</div>
+        <div class="ad-placeholder">مكان الإعلان</div>
       </div>
     </div>
 
@@ -283,22 +282,19 @@
 
         const p = document.createElement("p");
         p.className = "detail-text";
-        p.innerHTML = news.content.replace(/\n/g, "<br>");
+        p.textContent = news.content; // استخدم textContent مع pre-wrap لعرض كامل
         document.getElementById("newsContentWrapper").appendChild(p);
 
-        // إظهار نص بديل في حالة عدم ظهور إعلان
         setTimeout(() => {
           const adContainer = document.getElementById('adContainer');
           const adPlaceholder = adContainer.querySelector('.ad-placeholder');
           const adIns = adContainer.querySelector('ins.adsbygoogle');
 
-          // إذا لم يتم تحميل إعلان خلال 5 ثواني، إظهر النص البديل
           if (!adIns.offsetHeight || !adIns.offsetWidth) {
             adPlaceholder.style.display = 'block';
           }
         }, 5000);
 
-        // تفعيل إعلان أدسنس
         (adsbygoogle = window.adsbygoogle || []).push({});
       } else {
         document.getElementById("detailNewsTitle").textContent = "الخبر غير موجود";
